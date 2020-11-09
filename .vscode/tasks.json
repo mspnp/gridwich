@@ -1,0 +1,68 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "clean",
+      "command": "dotnet",
+      "args": [
+        "clean",
+        "/p:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "type": "process",
+      "group": "build",
+      "problemMatcher": "$msCompile",
+      "options": {
+        "cwd": "${workspaceFolder}/src"
+      }
+    },
+    {
+      "label": "restore",
+      "command": "dotnet",
+      "args": [
+        "restore",
+        "--interactive"
+      ],
+      "type": "process",
+      "group": "none",
+      "options": {
+        // the reason we execute this command on THIS project is because --interactive will pick up
+        // that the deviceflow auth needs to happen; if we do 'restore' on all /src, the deviceflow
+        // login is lost among other restoring other projects
+        "cwd": "${workspaceFolder}/src/Gridwich.SagaParticipants.Encode.CloudPort/src"
+      }
+    },
+    {
+      "label": "build",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "/p:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "type": "process",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "dependsOn": "restore",
+      "problemMatcher": "$msCompile",
+      "options": {
+        "cwd": "${workspaceFolder}/src"
+      }
+    },
+    {
+      "type": "func",
+      "group": "none",
+      "dependsOn": [
+        "build"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/src/Gridwich.Host.FunctionApp/src/bin/Debug/netcoreapp3.1"
+      },
+      "command": "host start",
+      "isBackground": true,
+      "problemMatcher": "$func-watch"
+    }
+  ]
+}

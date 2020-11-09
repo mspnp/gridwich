@@ -1,0 +1,13 @@
+<!--    This file pulls in the additional targets for Non-Test projects.
+        csproj files would use:
+            <Import Project="..\Build\AllNonTestProjects.targets" />
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <!-- Code Analysis targets -->
+    <Import Project="..\Build\Code.Analysis\Analyzers.targets" />
+    <!-- Targets common to all Project types -->
+    <Import Project="..\Build\Common\AllProjects.targets" />
+
+</Project>

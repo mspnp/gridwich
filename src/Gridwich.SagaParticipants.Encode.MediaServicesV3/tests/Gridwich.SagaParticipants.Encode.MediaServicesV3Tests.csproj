@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <Import Project="..\..\Build\AllTestProjects.targets" />
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Management.Media" Version="2.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Gridwich.Core\src\Gridwich.Core.csproj" />
+    <ProjectReference Include="..\src\Gridwich.SagaParticipants.Encode.MediaServicesV3.csproj" />
+  </ItemGroup>
+
+</Project>

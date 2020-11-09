@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <Import Project="..\..\Build\AllTestProjects.targets" />
+
+  <ItemGroup>
+    <PackageReference Include="Telestream.Cloud.VantageCloudPort" Version="0.9.1-preview" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode\src\Gridwich.SagaParticipants.Encode.csproj" />
+    <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode.TelestreamCloud\src\Gridwich.SagaParticipants.Encode.TelestreamCloud.csproj" />
+    <ProjectReference Include="..\src\Gridwich.SagaParticipants.Encode.CloudPort.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,86 @@
+parameters:
+  - name: 'packDirectory'
+    type: string
+  - name: 'artifactName'
+    type: string
+  - name: 'applicationName'
+    type: string
+  - name: 'deploymentEnvironmentType'
+    type: string
+    default: ''
+    # environmentLabel is just a string to match which environments should be deployed
+  - name: 'environmentLabel'
+    type: string
+    # externalEnvironment is a string that allows its value to be used for deploying an
+    # an environment, as long as the environmentLabel is external, otherwise this value
+    # will be ignored
+  - name: 'externalEnvironment'
+    type: string
+    default: ''
+  - name: 'checkWarnings'
+    type: boolean
+    default: false
+  - name: 'environmentsMap'
+    type: object
+    # Environments are used in many places, keep them ALL LOWERCASE & NO SPACES!
+    default:
+      # For deploying single dev environments by providing the environment value at run time
+      external:
+        label: external
+        # environment here is empty so that we can then pass the runtime externalEnvironment value instead
+        environment: ''
+        serviceConnection: a-ndrouin-Sandbox1
+      dev:
+        label: dev
+        environment: sb
+        serviceConnection: a-ndrouin-Sandbox1
+      qa:
+        label: prod
+        environment: qa
+        serviceConnection: a-ndrouin-Sandbox1
+      uat:
+        label: prod
+        environment: stg
+        serviceConnection: a-ndrouin-Sandbox1
+      prod:
+        label: prod
+        environment: prd
+        serviceConnection: a-ndrouin-Sandbox1
+
+stages:
+  - stage: BuildFunctionsArtifact
+    displayName: Build Functions Artifact
+    dependsOn: []
+    pool:
+      vmImage: 'ubuntu-latest'
+    variables:
+      buildConfiguration: 'Release'
+      workingDirectory:   '$(Build.SourcesDirectory)/src/${{ parameters.artifactName }}'
+      functionAppProjectName:  '${{ parameters.artifactName }}.csproj'
+      packDirectory: ${{ parameters.packDirectory }}
+      downloadDirectory: '$(Build.SourcesDirectory)/downloadDirectory'
+
+    jobs:
+      - job: BuildFunctionAppArtifact
+        steps:
+          - template: ../steps/build-test-report-steps-template.yml
+            parameters:
+              checkWarnings: ${{ parameters.checkWarnings }}
+          - publish: ${{ parameters.packDirectory }}
+            artifact: ${{ parameters.artifactName }}
+
+  - ${{ each pair in parameters.environmentsMap }}:
+    - ${{ if eq(pair.value.label, parameters.environmentLabel) }}:
+      - template: deploy-to-env-stages-template.yml
+        parameters:
+          applicationName: ${{ parameters.applicationName }}
+          deploymentEnvironmentType: ${{ parameters.deploymentEnvironmentType }}
+          artifactName: ${{ parameters.artifactName }}
+          packDirectory: ${{ parameters.packDirectory }}
+          # When using an external environment, we need a fixed environment name
+          # otherwise ADO wont execute the pipeline. Here we set it to 'single_env' for 'external' runs
+          environmentName: ${{ coalesce(pair.value.environment, 'single_env') }}
+          # A hack that allows us to pass expansion time value (pair.value.environment) or a
+          # runtime value (parameters.externalEnvironment) depending or the type of run
+          environmentValue: ${{ pair.value.environment }}${{ parameters.externalEnvironment }}
+          serviceConnection: ${{ pair.value.serviceConnection }}

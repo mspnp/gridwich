@@ -1,0 +1,8 @@
+variables:
+  - group: gridwich-cicd-variables.global
+  - name: artifactName
+    value: Gridwich.Host.FunctionApp
+  - name: PipelineVariableDir
+    value: $(Pipeline.Workspace)/variables
+  - name: PipelineBashScriptsDir
+    value: $(Pipeline.Workspace)/bash_scripts

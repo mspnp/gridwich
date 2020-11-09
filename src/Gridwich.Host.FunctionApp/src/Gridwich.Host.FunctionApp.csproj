@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AzureFunctionsVersion>v3</AzureFunctionsVersion>
+  </PropertyGroup>
+
+  <Import Project="..\..\Build\AllNonTestProjects.targets" />
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.0.0" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.9" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.6" />
+    <PackageReference Include="Telestream.Cloud.Flip" Version="1.0.0.1" />
+    <PackageReference Include="Telestream.Cloud.Notifications" Version="1.0.0" />
+    <PackageReference Include="Telestream.Cloud.Stores" Version="1.0.0" />
+    <PackageReference Include="Telestream.Cloud.VantageCloudPort" Version="0.9.1-preview" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Gridwich.Core\src\Gridwich.Core.csproj" />
+    <ProjectReference Include="..\..\Gridwich.Core.EventGrid\src\Gridwich.Core.EventGrid.csproj" />
+    <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode\src\Gridwich.SagaParticipants.Encode.csproj" />
+    <ProjectReference Include="..\..\Gridwich.SagaParticipants.Storage.AzureStorage\src\Gridwich.SagaParticipants.Storage.AzureStorage.csproj" />
+    <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode.TelestreamCloud\src\Gridwich.SagaParticipants.Encode.TelestreamCloud.csproj" />
+    <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode.CloudPort\src\Gridwich.SagaParticipants.Encode.CloudPort.csproj" />
+    <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode.Flip\src\Gridwich.SagaParticipants.Encode.Flip.csproj" />
+    <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode.MediaServicesV2\src\Gridwich.SagaParticipants.Encode.MediaServicesV2.csproj" />
+    <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode.MediaServicesV3\src\Gridwich.SagaParticipants.Encode.MediaServicesV3.csproj" />
+    <ProjectReference Include="..\..\Gridwich.SagaParticipants.Analysis.MediaInfo\src\Gridwich.SagaParticipants.Analysis.MediaInfo.csproj" />
+    <ProjectReference Include="..\..\Gridwich.SagaParticipants.Publication.MediaServicesV3\src\Gridwich.SagaParticipants.Publication.MediaServicesV3.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="host.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="local.settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

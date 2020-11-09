@@ -1,0 +1,146 @@
+parameters:
+  - name: 'packDirectory'
+    type: string
+  - name: 'artifactName'
+    type: string
+  - name: 'applicationName'
+    type: string
+  - name: 'deploymentEnvironmentType'
+    type: string
+  - name: 'environmentName'
+    type: string
+  - name: 'environmentValue'
+    type: string
+  - name: 'serviceConnection'
+    type: string
+
+stages:
+  - template: terraform-stages-template.yml
+    parameters:
+      applyDependsOn:
+      - BuildFunctionsArtifact
+      environmentName: ${{ parameters.environmentName }}
+      environmentValue: ${{ parameters.environmentValue }}
+      applicationName: ${{ parameters.applicationName }}
+      serviceConnection: ${{ parameters.serviceConnection }}
+      stageSuffix: top
+      stageSuffixDisplayName: Top
+      TerraformArguments: >-
+        -var department=GridwichDevCrew
+        -var extsys_event_endpoint="$(eventEndpointExtSys)"
+        -var amsDrm_OpenIdConnectDiscoveryDocument_endpoint="$(amsDrmOpenIdConnectDiscoveryDocumentEndpoint)"
+        -var amsDrm_FairPlay_Pfx_Password="$(amsDrmFairPlayPfxPassword)"
+        -var amsDrm_FairPlay_Ask_Hex="$(amsDrmFairPlayAskHex)"
+        -var amsDrm_EnableContentKeyPolicyUpdate="$(amsDrmEnableContentKeyPolicyUpdate)"
+        -var telestream_cloud_api_key=$(telestreamCloudApiKey)
+        -var event_grid_function_name='EventGrid'
+        -var amsv2callback_function_name='AmsV2Callback'
+        -var pipeline_build_id="$(Build.BuildId)"
+        -target module.sa_inbox
+        -target module.sa_main
+        -target module.sa_migrate
+        -target module.sa_outbox
+        -target module.appinsights
+        -target module.functions
+        -target module.functionKeys
+        -target module.shared
+        -target module.event_viewer
+        -target module.secret_changed_handler
+        -target module.mediaservices
+
+  - stage: Functions${{ parameters.environmentName }}Release
+    variables:
+    - group: gridwich-cicd-variables.${{ parameters.environmentName }}
+    displayName: 'Functions Deployment: ${{ parameters.environmentName }}'
+    dependsOn:
+      - BuildFunctionsArtifact
+      - Terraform_Apply_${{ parameters.environmentName }}_top
+    jobs:
+      - deployment: Deploy${{ parameters.environmentName }}Functions
+        environment: ${{ parameters.environmentValue }}
+        displayName: 'Deploy Functions: ${{ parameters.environmentName }}'
+        pool:
+          vmImage: ubuntu-latest
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+              - bash: ls -al
+                displayName: List Everything under Pipeline.Workspace
+                workingDirectory: $(Pipeline.Workspace)
+
+              - bash: ls -al
+                displayName: List Out Variables Test Dir
+                workingDirectory: $(Pipeline.Workspace)/variables_${{ parameters.environmentValue }}_top
+
+              - bash: |
+                  set -eu
+                  cat ./variables.json
+                  cat ./variables.json | jq -r '
+                    . as $in
+                    | keys[]
+                    | ["##vso[task.setvariable variable=" + . + "]" + ($in[.] | tostring)]
+                    | @tsv'
+                name: TerraformOutputs
+                displayName: Export variables outputs
+                workingDirectory: $(Pipeline.Workspace)/variables_${{ parameters.environmentValue }}_top
+
+              - bash: |
+                  echo '$FUNCTION_APP_NAME: ' $FUNCTION_APP_NAME
+                  echo '$FUNCTION_APP_RESOURCE_GROUP: ' $FUNCTION_APP_RESOURCE_GROUP
+                  echo '$DELIVERY_TOPIC_ID: '$DELIVERY_TOPIC_ID
+                displayName: echoing out environments
+
+              - template: ../steps/functions-deploy-steps-template.yml
+                parameters:
+                  applicationName: ${{ parameters.applicationName }}
+                  deploymentEnvironmentType: ${{ parameters.deploymentEnvironmentType }}
+                  artifactName: ${{ parameters.artifactName }}
+                  packDirectory: ${{ parameters.packDirectory }}
+                  environment: ${{ parameters.environmentValue }}
+                  functionAppName: $(FUNCTION_APP_NAME)
+                  functionAppResourceGroup: $(FUNCTION_APP_RESOURCE_GROUP)
+                  keyVaultName: $(SHARED_KV_NAME)
+                  serviceConnection: ${{ parameters.serviceConnection }}
+
+  - template: terraform-stages-template.yml
+    parameters:
+      planDependsOn:
+      - Functions${{ parameters.environmentName }}Release
+      environmentName: ${{ parameters.environmentName }}
+      environmentValue: ${{ parameters.environmentValue }}
+      applicationName: ${{ parameters.applicationName }}
+      serviceConnection: ${{ parameters.serviceConnection }}
+      stageSuffix: bottom
+      stageSuffixDisplayName: Bottom
+      TerraformArguments: >-
+        -var department=GridwichDevCrew
+        -var extsys_event_endpoint="$(eventEndpointExtSys)"
+        -var amsDrm_OpenIdConnectDiscoveryDocument_endpoint="$(amsDrmOpenIdConnectDiscoveryDocumentEndpoint)"
+        -var amsDrm_FairPlay_Pfx_Password="$(amsDrmFairPlayPfxPassword)"
+        -var amsDrm_FairPlay_Ask_Hex="$(amsDrmFairPlayAskHex)"
+        -var amsDrm_EnableContentKeyPolicyUpdate="$(amsDrmEnableContentKeyPolicyUpdate)"
+        -var telestream_cloud_api_key=$(telestreamCloudApiKey)
+        -var event_grid_function_name='EventGrid'
+        -var amsv2callback_function_name='AmsV2Callback'
+        -var pipeline_build_id="$(Build.BuildId)"
+
+  - stage: Azure_CLI_Last_Stage_${{ parameters.environmentName }}
+    displayName: 'Azure CLI Post Deploy: ${{ parameters.environmentName }}'
+    dependsOn:
+      - Terraform_Apply_${{ parameters.environmentName }}_bottom
+    jobs:
+      - deployment: Azure_CLI_Last_Deployment_${{ parameters.environmentName }}
+        environment: ${{ parameters.environmentValue }}
+        displayName: 'Azure CLI Post Deploy: ${{ parameters.environmentName }}'
+        pool:
+          vmImage: ubuntu-latest
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+              - template: ../steps/azcli-last-steps-template.yml
+                parameters:
+                  applicationName: ${{ parameters.applicationName }}
+                  environment: ${{ parameters.environmentValue }}
+                  serviceConnection: ${{ parameters.serviceConnection }}

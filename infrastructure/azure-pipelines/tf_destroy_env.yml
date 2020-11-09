@@ -1,0 +1,34 @@
+trigger: none
+pr: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+- name: PipelineVariableDir
+  value: $(Pipeline.Workspace)/variables
+- name: PipelineBashScriptsDir
+  value: $(Pipeline.Workspace)/bash_scripts
+- name: TERRAFORM_VARS
+  value: >-
+    -var department=GridwichDevCrew
+    -var extsys_event_endpoint="**********"
+    -var amsDrm_OpenIdConnectDiscoveryDocument_endpoint="**********"
+    -var amsDrm_FairPlay_Pfx_Password="**********"
+    -var amsDrm_FairPlay_Ask_Hex="**********"
+    -var telestream_cloud_api_key="************"
+    -var event_grid_function_name='EventGrid'
+    -var amsv2callback_function_name='AmsV2Callback'
+    -var pipeline_build_id="$(Build.BuildId)"
+    -var run_flag_subscriptions_disabled=$(RUN_FLAG_SUBSCRIPTIONS_DISABLED)
+    -var run_flag_subscriptions_fail_gracefully=$(RUN_FLAG_SUBSCRIPTIONS_FAIL_GRACEFULLY)
+
+stages:
+- template: templates/stages/terraform-destroy-stages-template.yml
+  parameters:
+    applicationName: $(applicationName)
+    TerraformArguments: $(TERRAFORM_VARS)
+    TerraformEnvVariables: {}
+    TerraformPlanBranches:
+    - '''refs/heads/master'''
+    TerraformReleaseBranchPrefix: '''refs/heads/release/'''
