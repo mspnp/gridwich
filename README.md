@@ -1,6 +1,6 @@
 # The Gridwich Project 🎆🥪
 
-A framework for stateless workloads (batteries included for video on-demand operations).  For more background, see ["The Gridwich Project"](./docs/Concepts_The_Gridwich_Project.md).
+<!-- A framework for stateless workloads (batteries included for video on-demand operations).  For more background, see ["The Gridwich Project"](./docs/Concepts_The_Gridwich_Project.md).
 
 ## Features
 
@@ -51,5 +51,4 @@ A framework for stateless workloads (batteries included for video on-demand oper
 * [Gridwich Message Formats](./docs/Resources_Message_Formats.md)
 * [Long Running Function Deployments](./docs/Concepts_Deploying_Long_Running_Functions.md)
 * [Telestream Workflow Definitions (JSON source file)](./docs/Resources_Telestream_Workflow_Definitions.json)
-
-Brought to you by the [Gridwich Team 🥪](./docs/Concepts_The_Gridwich_Project.md#theteam)
+-->
