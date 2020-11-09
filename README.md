@@ -1,54 +1,51 @@
 # The Gridwich Project 🎆🥪
 
-<!-- A framework for stateless workloads (batteries included for video on-demand operations).  For more background, see ["The Gridwich Project"](./docs/Concepts_The_Gridwich_Project.md).
+A framework for stateless workloads (batteries included for video on-demand operations). For more background, see [Gridwich architecture](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-architecture).
 
 ## Features
 
-* Stateless workloads allowing an arbituary object to flow through each workload. See [Operation Context](./docs/Concepts_Operation_Context.md)
-* Easily customizable by hooking [custom Event Grid listeners](./docs/Concepts_Request_and_response_flow.md)
-* Object Logging integrated with Application Insights See [Concepts: ObjectLogger](./docs/Concepts_ObjectLogger.md)
-* Terraform is used for deployment
-* ADO Pipelines utilized
+* Stateless workloads allow an arbituary object to flow through each workload. See [Operation context](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-architecture#operation-context).
+* Easily customize by hooking [custom Event Grid listeners](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-architecture#gridwich-sandwiches).
+* Object logging is integrated with Azure Application Insights. See [Gridwich logging](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-logging).
+* Deployment uses Azure Pipelines and Terraform.
 
-## Getting Started
+## Getting started
 
-1. [Clone to your Azure DevOps](./docs/GettingStarted_Cloning_Azure_DevOps.md)
-1. [Setting up the Pipeline to deploy the app](./docs/GettingStarted_Cloning_Azure_DevOps.md)
-1. [Run the Smoke Test](./docs/Walkthrough_Testing_AMS_V3_Encoding.md)
-1. If you want to add functionality to the app, see [Setting up a local dev environment](./docs/GettingStarted_Creating_New_Azure_Environment.md)
-1. [Set up local settings](./docs/GettingStarted_Create_Local_Settings_json.md)
-1. [Set up DRM Settings](./docs/GettingStarted_DRM_Settings.md)
+* [Set up the Azure DevOps Project and Azure Pipelines](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/set-up-azure-devops).
+* [Set up content protection policies and DRM](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-content-protection-drm).
+* To add functionality to Gridwich, [set up a local dev environment](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/set-up-local-environment).
+* To smoke-test Gridwich, [test Azure Media Services V3 encoding](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/test-encoding).
 
 ## Concepts
 
-* [Clean Projects](./docs/Concepts_Clean_Monolith.md)
-* [Saga Pattern](./docs/Concepts_Sagas.md)
-* [Command and Response Pattern](./docs/Concepts_Request_and_response_flow.md)
-* [Operation Context](./docs/Concepts_Operation_Context.md)
-* [CI/CD Patterns](./docs/Concepts_CICD_Principles.md)
-* [Accessing Azure Storage](./docs/Concepts_Azure_Storage_Use.md)
-* [Content Protection - DRM](./docs/Concepts_Content_Protection_DRM.md)
-* [Using the Gridwich Object Logger](./docs/Concepts_ObjectLogger.md)
+* [Gridwich architecture](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-architecture).
+* [Clean monolith design](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-clean-monolith).
+* [Saga orchestration](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/saga-orchestration).
+* [Request and response flow](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-architecture#request-flow).
+* [Operation context](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-architecture#operation-context).
+* [Synchronous and asynchronous handlers](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-architecture#sync-and-async-handlers).
+* [CI/CD patterns](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-cicd).
+* [Azure Pipelines to Terraform variable flow](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/variable-group-terraform-flow).
+* [Content protection and DRM](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-content-protection-drm).
+* [Azure Media Services](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/media-services-setup-scale).
+* [Gridwich Storage Provider](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-storage-service).
+* [Gridwich ObjectLogger](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-logging#objectlogger).
 
-## Tutorials
+## Procedures
 
-* [Building a Development Environment on Azure](./docs/GettingStarted_Creating_New_Azure_Environment.md)
-* Creating a Simple Handler
-  * [An Asynchronous Handler](./docs/Walkthrough_Simple_Async_Handler.md)
-  * [A Synchronous Handler](./docs/Walkthrough_Simple_Sync_Handler.md)
-* [Setting up and Scaling Azure Media Services](./docs/Walkthrough_Azure_Media_Services_Setup_and_Scaling.md)
-* [Testing Azure Media Services V3 Encoding](./docs/Walkthrough_Testing_AMS_V3_Encoding.md)
-* [Pipeline Generated Scripts for Admins](./docs/Walkthrough_Pipeline_Generated_Scripts_For_Admins.md)
-* [Set up Management of Secrets](./docs/Walkthrough_Instructions_for_a_Secret_Manager_to_maintain_all_secret_types.md)
-* [Azure DevOps Secret to Terraform Flow](./docs/Walkthrough_Pipeline_Variable_Group_Variable_To_Terraform_Flow.md)
+* [Set up Azure Project and Azure Pipelines](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/set-up-azure-devops).
+* [Run pipeline-generated admin scripts](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/admin-scripts).
+* [Maintain and rotate keys and secrets](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/maintain-keys).
+* [Set up a local development environment](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/set-up-local-environment).
+* [Create or delete a cloud environment](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/create-delete-cloud-environment).
+* [Set up content protection and DRM](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-content-protection-drm).
+* [Set up and scale Azure Media Services](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/media-services-setup-scale).
+* [Test Azure Media Services V3 Encoding](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/test-encoding).
 
 ## Resources
 
-* [Azure Deployment Diagram](./docs/Resources_Azure_Deployment_Diagram.md)
-* [Project Naming Conventions](./docs/Resources_Project_Naming_Conventions.md)
-* [Details on the generated Admin Scripts](./docs/Walkthrough_Pipeline_Generated_Scripts_For_Admins.md)
-* [Storage Provider Code Walkthrough](./docs/Concepts_Azure_Storage_Use.md)
-* [Gridwich Message Formats](./docs/Resources_Message_Formats.md)
-* [Long Running Function Deployments](./docs/Concepts_Deploying_Long_Running_Functions.md)
-* [Telestream Workflow Definitions (JSON source file)](./docs/Resources_Telestream_Workflow_Definitions.json)
--->
+* [Azure deployment diagram](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/create-delete-cloud-environment#azure-resources).
+* [Project naming conventions](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-project-names).
+* [Gridwich message formats](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-message-formats).
+* [Long running function deployments](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-architecture#long-running-functions).
+* [Telestream workflow definitions (JSON source file)](Resources_Telestream_Workflow_Definitions.json)
