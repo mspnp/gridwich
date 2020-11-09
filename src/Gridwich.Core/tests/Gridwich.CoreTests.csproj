@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <Import Project="..\..\Build\AllTestProjects.targets" />
+
+    <ItemGroup>
+      <ProjectReference Include="..\src\Gridwich.Core.csproj" />
+      <ProjectReference Include="..\..\Gridwich.Core.Tests\src\Gridwich.Core.Tests.csproj" />
+    </ItemGroup>
+
+</Project>

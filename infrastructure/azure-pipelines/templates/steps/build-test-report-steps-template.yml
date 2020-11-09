@@ -1,0 +1,129 @@
+parameters:
+  - name: 'checkWarnings'
+    type: boolean
+
+steps:
+- task: UseDotNet@2
+  displayName: 'Use .NET Core sdk 3.1'
+  inputs:
+    packageType: sdk
+    version: 3.1.x
+
+# *** DEBUG ***
+# - script: 'find .'
+#   displayName: 'List all files before build.'
+#   workingDirectory: $(Build.SourcesDirectory)
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet restore'
+  inputs:
+    command: 'restore'
+    projects: '**/*$(functionAppProjectName)'
+    workingDirectory: $(workingDirectory)
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build function app' # If name changes here, reflect changes on warning gate filter below
+  inputs:
+    command: build
+    projects: '**/*$(functionAppProjectName)'
+    arguments: '--configuration $(BuildConfiguration) --output $(packDirectory) /flp1:warningsonly;'
+    workingDirectory: $(workingDirectory)
+    modifyOutputPath: true
+
+# *** DEBUG ***
+# - script: 'find .'
+#   displayName: 'List all files before build.'
+#   workingDirectory: $(Build.SourcesDirectory)
+
+- task: DotNetCoreCLI@2
+  displayName: 'Install ReportGenerator'
+  inputs:
+    workingDirectory: $(Build.SourcesDirectory)
+    command: custom
+    custom: tool
+    arguments: 'install --tool-path tools dotnet-reportgenerator-globaltool'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build test projects' # If name changes here, reflect changes on warning gate filter below
+  inputs:
+    projects: '**/*Tests.csproj'
+    arguments: '--configuration $(BuildConfiguration) /flp2:warningsonly;'
+    workingDirectory: $(workingDirectory)
+
+# *** DEBUG ***
+#- script: 'find .'
+#  displayName: 'List all files before unit tests'
+#  workingDirectory: $(Build.SourcesDirectory)
+
+- task: DotNetCoreCLI@2
+  displayName: 'Run unit tests - $(BuildConfiguration)'
+  inputs:
+    command: 'test'
+    arguments: '--no-build --configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Exclude="[Telestream.Cloud.Flip]*" '
+    publishTestResults: true
+    projects: '**/*Tests.csproj'
+    workingDirectory: $(Build.SourcesDirectory)
+
+# *** DEBUG ***
+#- script: 'find .'
+#  displayName: 'List all files after unit tests'
+#  condition: always()
+#  workingDirectory: $(Build.SourcesDirectory)
+
+- script: 'tools/reportgenerator -reports:src/*/tests/coverage.cobertura.xml -targetdir:CodeCoverage "-reporttypes:HtmlInline_AzurePipelines;Cobertura"'
+  displayName: 'Create code coverage report'
+  workingDirectory: $(Build.SourcesDirectory)
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage report'
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(Build.SourcesDirectory)/CodeCoverage/Cobertura.xml'
+    reportDirectory: '$(Build.SourcesDirectory)/CodeCoverage'
+
+# We have to process the warnings because the GitHubComment task does not do it by itself
+# is also does not like variables with line breaks
+- task: Bash@3
+  displayName: 'Process warnings comments'
+  inputs:
+    targetType: inline
+    script: |
+      codewarnings=$(tr -d '\n' <msbuild1.log)
+      testwarnings=$(tr -d '\n' <msbuild2.log)
+      if [ -z "$codewarnings" ]
+      then
+            codecomment="No code warnings."
+      else
+            codecomment=$codewarnings
+      fi
+      if [ -z "$testwarnings" ]
+      then
+            testcomment="No test warnings."
+      else
+            testcomment=$testwarnings
+      fi
+      comment="[Code warnings]: $codecomment -- [Test warnings]: $testcomment"
+      echo "##vso[task.setvariable variable=comment;]$comment"
+    workingDirectory: $(workingDirectory)
+
+#- task: GitHubComment@0
+#  displayName: 'Write alerts as GitHub comment'
+#  inputs:
+#    gitHubConnection: gwsGHConnection
+#    comment: '$(comment)'
+
+- task: BuildQualityChecks@7
+  displayName: 'Check code coverage'
+  inputs:
+    checkCoverage: true
+    coverageFailOption: 'fixed'
+    coverageType: 'lines'
+    coverageThreshold: '50'
+    checkWarnings: ${{ parameters.checkWarnings }}
+    warningFailOption: 'fixed'
+    showStatistics: true
+    evaluateTaskWarnings: true
+    warningThreshold: 2 # Changed to 2 -- SE... was: Zero warnings are accepted
+    warningTaskFilters: |
+      /^dotnet\sbuild.*$/i
+    buildConfiguration: '$(BuildConfiguration)'

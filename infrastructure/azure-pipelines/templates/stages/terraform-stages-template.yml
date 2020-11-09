@@ -1,0 +1,69 @@
+# THIS FILE IS THE ORIGINAL MULTI ENVIRONMENT TEMPLATE
+# CHANGES HERE MAY ALSO AFFECT terraform-stages-single-env-template.yml
+
+parameters:
+  planDependsOn: []
+  applyDependsOn: []
+  environmentName: stage
+  environmentValue: stage
+  serviceConnection: ''
+  TerraformArguments: {}
+  TerraformEnvVariables: {}
+  TerraformPlanBranches:
+  - '''refs/heads/master'''
+  TerraformReleaseBranchPrefix: '''refs/heads/release/'''
+
+stages:
+- stage: Terraform_Plan_${{ parameters.environmentName }}_${{ parameters.stageSuffix }}
+  variables:
+  - group: gridwich-cicd-variables.${{ parameters.environmentName }}
+  displayName: 'Plan ${{ parameters.stageSuffixDisplayName }}: ${{ parameters.environmentName }}'
+  dependsOn: ${{ parameters.planDependsOn }}
+  jobs:
+  - job: Terraform_Plan
+    displayName: 'Terraform Plan: ${{ parameters.environmentName }}'
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - template: ../steps/terraform-plan-steps-template.yml
+      parameters:
+        serviceConnection: ${{ parameters.serviceConnection }}
+        environment: ${{ parameters.environmentValue }}
+        TerraformArguments: ${{ parameters.TerraformArguments }}
+        TerraformEnvVariables: ${{ parameters.TerraformEnvVariables }}
+        TerraformPlanBranches: ${{ parameters.TerraformPlanBranches }}
+        TerraformReleaseBranchPrefix: ${{ parameters.TerraformReleaseBranchPrefix }}
+        stageSuffix: ${{ parameters.stageSuffix }}
+        stageSuffixDisplayName: ${{ parameters.stageSuffixDisplayName }}
+        applicationName: ${{ parameters.applicationName }}
+
+- stage: Terraform_Apply_${{ parameters.environmentName }}_${{ parameters.stageSuffix }}
+  variables:
+  - group: gridwich-cicd-variables.${{ parameters.environmentName }}
+  - name: publishBashScripts
+    value: false
+  displayName: 'Apply ${{ parameters.stageSuffixDisplayName }}: ${{ parameters.environmentName }}'
+  dependsOn:
+  - Terraform_Plan_${{ parameters.environmentName }}_${{ parameters.stageSuffix }}
+  - ${{ parameters.applyDependsOn }}
+  jobs:
+  - deployment: Apply_${{ parameters.stageSuffixDisplayName }}
+    environment: ${{ parameters.environmentValue }}
+    displayName: 'Terraform Apply: ${{ parameters.environmentName }}'
+    pool:
+      vmImage: ubuntu-latest
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - template: ../steps/terraform-action-steps-template.yml
+            parameters:
+              serviceConnection: ${{ parameters.serviceConnection }}
+              environment: ${{ parameters.environmentValue }}
+              TerraformArguments: ${{ parameters.TerraformArguments }}
+              TerraformEnvVariables: ${{ parameters.TerraformEnvVariables }}
+              TerraformPlanBranches: ${{ parameters.TerraformPlanBranches }}
+              TerraformReleaseBranchPrefix: ${{ parameters.TerraformReleaseBranchPrefix }}
+              stageSuffix: ${{ parameters.stageSuffix }}
+              stageSuffixDisplayName: ${{ parameters.stageSuffixDisplayName }}
+              applicationName: ${{ parameters.applicationName }}

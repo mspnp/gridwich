@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <Import Project="..\..\Build\AllNonTestProjects.targets" />
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Management.Fluent" Version="1.34.0" />
+    <PackageReference Include="Microsoft.Azure.Management.ResourceManager.Fluent" Version="1.34.0" />
+    <PackageReference Include="Microsoft.Azure.Services.AppAuthentication" Version="1.5.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.6" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+    <PackageReference Include="Telestream.Cloud.Flip" Version="1.0.0.1" />
+    <PackageReference Include="Telestream.Cloud.Notifications" Version="1.0.0" />
+    <PackageReference Include="Telestream.Cloud.Stores" Version="1.0.0" />
+    <PackageReference Include="Telestream.Cloud.VantageCloudPort" Version="0.9.1-preview" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Gridwich.Core\src\Gridwich.Core.csproj" />
+    <ProjectReference Include="..\..\Gridwich.SagaParticipants.Storage.AzureStorage\src\Gridwich.SagaParticipants.Storage.AzureStorage.csproj" />
+  </ItemGroup>
+
+</Project>

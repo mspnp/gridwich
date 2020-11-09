@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <Import Project="..\..\Build\AllNonTestProjects.targets" />
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.6" />
+    <PackageReference Include="RestSharp" Version="106.11.4" />
+    <PackageReference Include="RestSharp.Serializers.NewtonsoftJson" Version="106.11.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Gridwich.Core\src\Gridwich.Core.csproj" />
+    <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode\src\Gridwich.SagaParticipants.Encode.csproj" />
+  </ItemGroup>
+
+</Project>

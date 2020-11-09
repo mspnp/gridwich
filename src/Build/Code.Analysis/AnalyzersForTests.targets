@@ -1,0 +1,31 @@
+<!--
+    Note: [2020.03.27 SE] this file is currently the same as the non-test Analyzers.targets, except
+    that it directs to the Tests.ruleset (which in turn directs back to Standard.ruleset).  This file
+    is in place to later let us cleanly allow for a different set of rules for tests (like no doc required
+    on every method), without hitting every csproj file.
+-->
+<Project>
+
+    <PropertyGroup>
+        <CodeAnalysisRuleSet>..\..\Build\Code.Analysis\Tests.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.113" />
+        <!-- TODO: To be added/enabled in secondary PR.
+            <PackageReference Include="StyleCop.CSharp.Async.Rules" Version="6.1.41">
+                <PrivateAssets>all</PrivateAssets>
+                <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            </PackageReference>
+        -->
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="..\..\Build\Code.Analysis\StyleCop.json" Link="StyleCop.json" />
+    </ItemGroup>
+
+</Project>

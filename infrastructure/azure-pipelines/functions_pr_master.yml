@@ -1,0 +1,23 @@
+trigger: none
+pr:
+  branches:
+    include:
+      - master
+    exclude:
+      - develop
+
+variables:
+  buildConfiguration: 'Release'
+  artifactName:       'Gridwich.Host.FunctionApp'
+  workingDirectory:   '$(Build.SourcesDirectory)/src/$(artifactName)'
+  functionAppProjectName:  '$(artifactName).csproj'
+  packDirectory: '$(Build.ArtifactStagingDirectory)'
+  downloadDirectory: '$(Build.SourcesDirectory)/downloadDirectory'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- template: templates/steps/build-test-report-steps-template.yml
+  parameters:
+    checkWarnings: true

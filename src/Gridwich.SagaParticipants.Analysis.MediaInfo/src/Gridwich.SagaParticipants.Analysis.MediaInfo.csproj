@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <Import Project="..\..\Build\AllNonTestProjects.targets" />
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.4.4" />
+    <PackageReference Include="MediaInfo.Wrapper.Core" Version="19.9.4" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Gridwich.Core\src\Gridwich.Core.csproj" />
+  </ItemGroup>
+
+</Project>

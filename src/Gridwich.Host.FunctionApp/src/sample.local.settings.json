@@ -1,0 +1,41 @@
+// The following are the expected application settings for the funciton app.
+// To test locally, follow the instructions in /docs/GettingStarted_Create_Local_Settings_json.md
+
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_EXTENSION_VERSION": "~3",
+    "APPNAME": "Gridwich",
+    "DEPLOYMENT_ENVIRONMENT": "ENV",
+    "AppInsights_ResourceId": "urlEncodedResourceUri",
+    "AmsAccountName": "gridwichamsENV",
+    "AmsResourceGroup": "gridwich-application-rg-ENV",
+    "AmsLocation": "REGION",
+    "AmsAadTenantId": "22220000-0000-0000-0000-111122223333",
+    "AmsArmEndpoint": "https://management.azure.com",
+    "AmsSubscriptionId": "11110000-0000-0000-0000-111122223333",
+    "AmsV2RestApiEndpoint": "https://gridwichamsENV.restv2.REGION.media.azure.net/api/",
+    "AmsV2CallbackEndpoint": "https://gridwich-grw-fxn-ENV.azurewebsites.net/api/AmsV2Callback?code=000000000000000000000000000000000000000000000000000000==",
+    "KeyVaultBaseUrl": "https://gridwich-kv-ENV.vault.azure.net/",
+    "AmsDrmOpenIdConnectDiscoveryDocument": "https://domain.com/.well-known/OpenIdConfiguration",
+    "AmsAadClientId": "33330000-0000-0000-0000-111122223333",
+    "AmsAadClientSecret": "44440000-0000-0000-0000-111122223333",
+    "AmsDrmFairPlayAskHex": "00000000000000000000000000000000",
+    "AmsDrmFairPlayPfxPassword": "0000000000000",
+    "AmsDrmFairPlayCertificateB64": "0000000000000",
+    "AmsDrmEnableContentKeyPolicyUpdate": "false",
+    "APPINSIGHTS_INSTRUMENTATIONKEY": "55550000-0000-0000-0000-111122223333",
+    "TELESTREAMCLOUD_API_KEY": "tcs_000000000000000000000000",
+    "GRW_TOPIC_END_POINT": "https://gridwich-grw-egt-ENV.REGION-1.eventgrid.azure.net/api/events",
+    "GRW_TOPIC_KEY": "0000000000000000000000000000000000000000000=",
+
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "DEPLOYMENT_ENVIRONMENT_TYPE": "DEV",
+
+    // For local dev access to Azure from a DevContainer, via "gridwich-local-dev" App-Registration, 2 more Env Settings needed
+    // Ref: https://docs.microsoft.com/en-us/dotnet/api/azure.identity.environmentcredential?view=azure-dotnet
+    "AZURE_TENANT_ID": "22220000-0000-0000-0000-111122223333",
+    "AZURE_SUBSCRIPTION_ID": "11110000-0000-0000-0000-111122223333"
+  }
+}

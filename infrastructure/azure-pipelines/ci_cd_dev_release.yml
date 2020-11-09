@@ -1,0 +1,24 @@
+# THIS YAML FILE IS FOR THE DEV ENVIRONMENT PIPELINE ONLY
+
+pr: none
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - infrastructure/
+    - src/
+
+variables:
+  - template: variables.yml
+
+stages:
+- template: templates/stages/ci-cd-release-stages.yml
+  parameters:
+    packDirectory: '$(Build.ArtifactStagingDirectory)'
+    artifactName: $(artifactName)
+    applicationName: $(applicationName) # From variable group
+    deploymentEnvironmentType: $(deploymentEnvironmentType)
+    environmentLabel: dev # Label defines what environment/service connection will be used

@@ -1,0 +1,147 @@
+parameters:
+  serviceConnection: ''
+  environment: stage
+  TerraformArguments: {}
+  TerraformEnvVariables: {}
+  TerraformPlanBranches: 
+  - '''refs/heads/master'''
+  TerraformReleaseBranchPrefix: '''refs/heads/release/'''
+  action: apply
+
+steps:
+- task: DownloadPipelineArtifact@2
+  displayName: Download TF Resources
+  inputs:
+    artifactName: terraform_resources_${{ parameters.environment }}_${{ parameters.stageSuffix }}
+    targetPath: $(System.DefaultWorkingDirectory)/terraform_resources
+
+- template: terraform-init-steps-template.yml
+  parameters:
+    TerraformDirectory: $(System.DefaultWorkingDirectory)/terraform_resources
+    environment: ${{ parameters.environment }}
+    provisionStorage: false
+    applicationName: ${{ parameters.applicationName }}
+    TerraformEnvironmentServiceConnection: ${{ parameters.serviceConnection }}
+    TerraformBackendServiceConnection: ${{ parameters.serviceConnection }}
+
+- bash: |
+    echo "env upper testkey: $TESTKEY"
+    echo "macro lower testkey: $(testkey)"
+    echo "macro upper testkey: $(TESTKEY)"
+  displayName: echoing from stage library
+
+# As the Terraform extension plan task doesn't support -detailed-exitcode
+# (to check if any changes are present), we define an equivalent AzureCLI
+# task instead.
+- bash: |
+    set -eu
+    export ARM_CLIENT_SECRET=$(ARM_CLIENT_SECRET)
+    # terraform plan -detailed-exitcode exit codes:
+    # 0 - Succeeded, diff is empty (no changes)
+    # 1 - Errored
+    # 2 - Succeeded, there is a diff
+    # >2 - unexpected, crash or bug
+    if terraform plan -detailed-exitcode -input=false -out=tfplan -var environment=${{ parameters.environment }} -var sp_client_secret=$(ARM_CLIENT_SECRET) ${{ parameters.TerraformArguments }}; then
+      echo "Terraform succeeded with no changes"
+    else
+      terraform_exitcode=$?
+      if [ $terraform_exitcode -eq 2 ]; then
+        echo "Terraform succeeded with updates"
+      else
+        echo "ERROR: terraform exited with code $terraform_exitcode"
+        exit 1
+      fi
+    fi
+  displayName: Terraform plan
+  condition: and(succeeded(), or(in(variables['Build.SourceBranch'], ${{join(',', parameters.TerraformPlanBranches)}}), variables['RUN_FLAG_TERRAFORM'], startsWith(variables['Build.SourceBranch'], ${{ parameters.TerraformReleaseBranchPrefix }})))
+  workingDirectory: $(System.DefaultWorkingDirectory)/terraform_resources
+  env:
+    ${{ parameters.TerraformEnvVariables }}
+
+- bash: |
+    set -eux  # ensure pipeline stops if terraform fails or diff reports a difference
+    terraform show -no-color tfplan > newplan${{ parameters.environment }}${{ parameters.stageSuffix }}.txt
+    diff -u plan${{ parameters.environment }}${{ parameters.stageSuffix }}.txt newplan${{ parameters.environment }}${{ parameters.stageSuffix }}.txt
+  condition: and(succeeded(), or(in(variables['Build.SourceBranch'], ${{join(',', parameters.TerraformPlanBranches)}}), variables['RUN_FLAG_TERRAFORM'], startsWith(variables['Build.SourceBranch'], ${{ parameters.TerraformReleaseBranchPrefix }})))
+  workingDirectory: $(System.DefaultWorkingDirectory)/terraform_resources
+  displayName: Ensure plan is unchanged
+
+- bash: |
+    set -eu
+    export ARM_CLIENT_SECRET=$(ARM_CLIENT_SECRET)
+    terraform ${{ parameters.action }} -input=false -auto-approve tfplan
+  condition: and(succeeded(), or(in(variables['Build.SourceBranch'], ${{join(',', parameters.TerraformPlanBranches)}}), variables['RUN_FLAG_TERRAFORM'], startsWith(variables['Build.SourceBranch'], ${{ parameters.TerraformReleaseBranchPrefix }})))
+  displayName: Terraform ${{ parameters.action }}
+  workingDirectory: $(System.DefaultWorkingDirectory)/terraform_resources
+
+- bash: |
+    set -eu
+    terraform output -json
+  name: EchoOutTerraformOutput
+  workingDirectory: $(System.DefaultWorkingDirectory)/terraform_resources
+
+- bash: |
+    set -eu
+    terraform output -json | jq -r '
+      . as $in
+      | keys[] 
+      | ["##vso[task.setvariable variable=" + . + ";isOutput=true;isSecret=" + ($in[.].sensitive | tostring) + "]" + ($in[.].value | tostring)]
+      | @tsv'
+  name: TerraformOutputs
+  displayName: Export terraform outputs
+  workingDirectory: $(System.DefaultWorkingDirectory)/terraform_resources
+
+- bash: |
+    set -eu
+    mkdir -p $(PipelineVariableDir)
+    mkdir -p $(PipelineBashScriptsDir)
+    ls -al $(PipelineVariableDir)
+  name: MakeDirectories
+
+# TODO: need to figure out how to filter out the sensitive=true data. Currently no sensitive data is passed to terraform output. and all sensitive data is supposed to be passed to key vault
+- bash: |
+    set -eu
+    terraform output -json | echo "$(jq 'map_values(.value)')" > $(PipelineVariableDir)/variables.json
+  name: ExportOutputValuesJsonToPipelineArtifact
+  workingDirectory: $(System.DefaultWorkingDirectory)/terraform_resources
+
+- bash: |
+    set -eu
+    terraform output -json | jq -r '
+      . as $in
+      | keys[] 
+      | ["echo \"" + ($in[.].value | tostring) + "\" > " + . + ";"] 
+      | @tsv' > $(PipelineVariableDir)/createVarFiles.sh
+  name: ExportOutputValuesCreateVarFilesToPipelineArtifact
+  workingDirectory: $(System.DefaultWorkingDirectory)/terraform_resources
+
+- bash: |
+    set -eu
+    terraform output -json | jq -r '
+      . as $in
+      | keys[] 
+      | ["export " + . + "=\"" + ($in[.].value | tostring) + "\";"] 
+      | @tsv' > $(PipelineVariableDir)/exportVars.sh
+  name: ExportOutputValuesExportVarsToPipelineArtifact
+  workingDirectory: $(System.DefaultWorkingDirectory)/terraform_resources
+
+- bash: |
+    set -eu
+    mkdir -p ./app_settings
+    mv ./app_settings $(PipelineVariableDir)/app_settings
+  name: ExportStorageAppSettingsToPipelineArtifact
+  workingDirectory: $(System.DefaultWorkingDirectory)/terraform_resources
+
+- publish: $(PipelineVariableDir)
+  artifact: variables_${{ parameters.environment }}_${{ parameters.stageSuffix }}
+
+- bash: |
+    set -eu
+    mkdir -p ./bash_scripts
+    [ "$(ls -A ./bash_scripts)" ] && mv ./bash_scripts/* $(PipelineBashScriptsDir)/ && echo "##vso[task.setvariable variable=publishBashScripts]true" || echo 'Nothing to publish'
+  name: ExportStorageBashScriptsToPipelineArtifact
+  workingDirectory: $(System.DefaultWorkingDirectory)/terraform_resources
+
+- publish: $(PipelineBashScriptsDir)
+  condition: eq(variables['publishBashScripts'], true)
+  artifact: bash_scripts_${{ parameters.environment }}

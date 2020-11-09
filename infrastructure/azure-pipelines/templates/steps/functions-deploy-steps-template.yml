@@ -1,0 +1,42 @@
+steps:
+- bash: echo "Deploy Started"
+  displayName: Start Functions Deploy
+
+- bash: 'ls -al $(Pipeline.Workspace)/${{parameters.artifactName}}'    
+  displayName: list out Pipeline.Workspace/artifactName
+
+- task: AzureFunctionApp@1 # Add this at the end of your file
+  inputs:
+    azureSubscription: '${{parameters.serviceConnection}}'
+    appType: functionApp
+    appName: '${{parameters.functionAppName}}'
+    deployToSlotOrASE: true
+    slotName: source-slot
+    package: '$(Pipeline.Workspace)/${{parameters.artifactName}}'
+    appSettings:
+      -APPNAME ${{parameters.applicationName}}
+      -DEPLOYMENT_ENVIRONMENT ${{parameters.environment}}
+      -DEPLOYMENT_ENVIRONMENT_TYPE ${{ parameters.deploymentEnvironmentType }}
+      -DEPLOYMENT_ENVIRONMENT_RUN_ID $(Build.BuildId)
+
+- task: AzureCLI@1
+  displayName: 'Update app settings with terraform values'
+  inputs:
+    azureSubscription: ${{ parameters.serviceConnection }}
+    scriptLocation: inlineScript
+    inlineScript: |
+      set -eu
+      for filename in $(Pipeline.Workspace)/variables_${{ parameters.environment }}_top/app_settings/*.json ; do
+        echo "Applying settings from $(basename ${filename}) into ${{parameters.functionAppName}}/source-slot with rg ${{parameters.functionAppResourceGroup}}"
+        az functionapp config appsettings set -g "${{parameters.functionAppResourceGroup}}" -s "source-slot" -n "${{parameters.functionAppName}}" --settings @"$(echo ${filename})" > /dev/null
+        echo "Settings applied for $(basename ${filename})"
+      done
+    addSpnToEnvironment: true
+
+- task: AzureAppServiceManage@0
+  inputs:
+    azureSubscription: '${{parameters.serviceConnection}}'
+    webAppName: '${{parameters.functionAppName}}'
+    resourceGroupName: '${{parameters.functionAppResourceGroup}}'
+    sourceSlot: source-slot
+    swapWithProduction: true

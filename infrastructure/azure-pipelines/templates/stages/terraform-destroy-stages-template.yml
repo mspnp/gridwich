@@ -1,0 +1,70 @@
+parameters:
+  TerraformArguments: {}
+  TerraformEnvVariables: {}
+  TerraformPlanBranches: 
+  - '''refs/heads/master'''
+  TerraformReleaseBranchPrefix: '''refs/heads/release/'''
+  LockedEnvironments: # Locked Environments are environments that cannot be removed by this pipeline
+  - prod
+  ProtectedEnvironments: # Protected Environments are Environments that require approval
+  - qa
+  - stg
+# Required parameters: environment
+
+stages:
+- stage: Terraform_Plan_Destroy
+  condition: not(eq(variables['ENVIRONMENT'], ''))
+  displayName: Terraform Plan Destroy
+  jobs:
+  - job: Terraform_Plan
+    displayName: Terraform Plan
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - bash: | 
+        echo 'ENVIRONMENT' $(ENVIRONMENT)
+        echo 'env var' $ENVIRONMENT
+      displayName: eching out $(ENVIRONMENT)
+
+    - template: ../steps/terraform-plan-steps-template.yml
+      parameters:
+        environment: $(ENVIRONMENT)
+        # environmentDisplayName: $(ENVIRONMENT)
+        TerraformArguments: >-
+          ${{ parameters.TerraformArguments }}
+          -destroy
+        TerraformEnvVariables: ${{ parameters.TerraformEnvVariables }}
+        TerraformPlanBranches: ${{ parameters.TerraformPlanBranches }}
+        stageSuffix: destroy
+        stageSuffixDisplayName: destroy
+        applicationName: ${{ parameters.applicationName }}
+        serviceConnection: a-ndrouin-Sandbox1 # We'll assume that when we want to destroy an env, it's in dev
+
+- stage: Terraform_Apply_Destroy
+  condition: not(eq(variables['ENVIRONMENT'], ''))
+  dependsOn:
+  - Terraform_Plan_Destroy
+  displayName: Destroy Environment
+  jobs:
+  - deployment: Destroy
+    environment: $(ENVIRONMENT)
+    displayName: Terraform Destroy
+    pool:
+      vmImage: ubuntu-latest
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - template: ../steps/terraform-action-steps-template.yml
+            parameters:
+              environment: $(ENVIRONMENT)
+              # environmentDisplayName: $(ENVIRONMENT)
+              TerraformArguments: >-
+                ${{ parameters.TerraformArguments }}
+                -destroy
+              TerraformEnvVariables: ${{ parameters.TerraformEnvVariables }}
+              TerraformPlanBranches: ${{ parameters.TerraformPlanBranches }}
+              stageSuffix: destroy
+              stageSuffixDisplayName: destroy
+              applicationName: ${{ parameters.applicationName }}
+              serviceConnection: a-ndrouin-Sandbox1 # We'll assume that when we want to destroy an env, it's in dev

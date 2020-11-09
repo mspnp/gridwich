@@ -1,0 +1,57 @@
+parameters:
+  serviceConnection: ''
+  environment: stage
+  # environmentDisplayName: Staging
+  TerraformArguments: {}
+  TerraformEnvVariables: {}
+  TerraformPlanBranches: 
+  - '''refs/heads/master'''
+  TerraformReleaseBranchPrefix: '''refs/heads/release/'''
+
+steps:
+- bash: |
+    cp infrastructure/terraform_backend/* infrastructure/terraform
+  displayName: Copy terraform backend config to terraform directory
+  workingDirectory: $(System.DefaultWorkingDirectory)
+
+- template: terraform-init-steps-template.yml
+  parameters:
+    TerraformDirectory: $(System.DefaultWorkingDirectory)/infrastructure/terraform
+    environment: ${{ parameters.environment }}
+    TerraformPlanBranches: ${{ parameters.TerraformPlanBranches }}
+    applicationName: ${{ parameters.applicationName }}
+    TerraformEnvironmentServiceConnection: ${{ parameters.serviceConnection }}
+    TerraformBackendServiceConnection: ${{ parameters.serviceConnection }}
+
+# Using AzureCLI instead of Terraform extension because of following issues:
+# - https://github.com/microsoft/azure-pipelines-extensions/issues/748
+# - https://github.com/microsoft/azure-pipelines-extensions/issues/725
+# - https://github.com/microsoft/azure-pipelines-extensions/issues/747
+
+- bash: |
+    set -eu
+    export ARM_CLIENT_SECRET=$(ARM_CLIENT_SECRET)
+    terraform plan -input=false -out=tfplan -var environment=${{ parameters.environment }} -var sp_client_secret=$(ARM_CLIENT_SECRET) ${{ parameters.TerraformArguments }}
+  displayName: Terraform plan
+  # Avoid concurrent Terraform runs on PRs, which would result in failures due to exclusive lock on remote state file.
+  condition: and(succeeded(), or(in(variables['Build.SourceBranch'], ${{join(',', parameters.TerraformPlanBranches)}}), variables['RUN_FLAG_TERRAFORM'], startsWith(variables['Build.SourceBranch'], ${{ parameters.TerraformReleaseBranchPrefix }})))
+  workingDirectory: $(System.DefaultWorkingDirectory)/infrastructure/terraform
+  env:
+    ${{ parameters.TerraformEnvVariables }}
+
+- bash: |
+    # Save a human-friendly version of the plan with passwords hidden
+    terraform show -no-color tfplan > plan${{ parameters.environment }}${{ parameters.stageSuffix }}.txt
+    # Remove terraform plan from published artifacts, as it contains clear-text secrets
+    rm tfplan
+    # Resource providers can be > 100MB large, we don't want them in the published artifacts.
+    rm -r .terraform
+  displayName: Save plan text representation
+  workingDirectory: $(System.DefaultWorkingDirectory)/infrastructure/terraform
+
+- task: PublishPipelineArtifact@1
+  displayName: Publish Pipeline Artifact
+  inputs:
+    targetPath: $(System.DefaultWorkingDirectory)/infrastructure/terraform
+    artifact: terraform_resources_${{ parameters.environment }}_${{ parameters.stageSuffix }}
+
