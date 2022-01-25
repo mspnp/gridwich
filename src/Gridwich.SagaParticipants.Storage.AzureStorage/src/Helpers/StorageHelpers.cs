@@ -237,6 +237,7 @@ namespace Gridwich.Core.Helpers
     {
         /// <summary>Start of time span, backed up to cover possible clock skew.</summary>
         public DateTimeOffset StartTime { get; private set; }
+
         /// <summary>End of time span, from Now + TTL</summary>
         public DateTimeOffset EndTime { get; private set; }
 

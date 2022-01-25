@@ -8,6 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Management.Media" Version="2.0.5" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.6" />
   </ItemGroup>
 
@@ -15,5 +19,5 @@
     <ProjectReference Include="..\..\Gridwich.Core\src\Gridwich.Core.csproj" />
     <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode\src\Gridwich.SagaParticipants.Encode.csproj" />
   </ItemGroup>
-
+ 
 </Project>

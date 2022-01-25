@@ -8,6 +8,10 @@
   <Import Project="..\..\Build\AllTestProjects.targets" />
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Telestream.Cloud.VantageCloudPort" Version="0.9.1-preview" />
   </ItemGroup>
 

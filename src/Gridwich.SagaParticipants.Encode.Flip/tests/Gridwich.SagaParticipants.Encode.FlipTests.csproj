@@ -8,6 +8,10 @@
   <Import Project="..\..\Build\AllTestProjects.targets" />
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Telestream.Cloud.Flip" Version="1.0.0.1" />
     <PackageReference Include="Telestream.Cloud.Notifications" Version="1.0.0" />
   </ItemGroup>

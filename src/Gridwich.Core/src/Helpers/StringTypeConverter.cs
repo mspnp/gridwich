@@ -10,6 +10,7 @@ namespace Gridwich.Core.Helpers
     {
         /// <inheritdoc/>
         public override bool CanRead => true;
+
         /// <inheritdoc/>
         public override bool CanWrite => true;
 

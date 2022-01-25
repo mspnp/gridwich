@@ -8,6 +8,13 @@
     <Import Project="..\..\Build\AllTestProjects.targets" />
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
       <ProjectReference Include="..\..\Gridwich.Core.Tests\src\Gridwich.Core.Tests.csproj" />
       <ProjectReference Include="..\src\Gridwich.SagaParticipants.Analysis.MediaInfo.csproj" />
     </ItemGroup>

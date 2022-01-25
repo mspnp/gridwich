@@ -75,12 +75,14 @@ namespace Gridwich.Core.Models
         /// ascending alphabetical order of properties when converting to strings.
         /// </remarks>
         internal const string MutedPropertyName = "~muted";
+
         /// <summary>
         /// The property name used when wrapping a bare GUID into a JObject.
         /// e.g. when the constructors see a GUID string instead of a proper
         /// JSON Object, this is how they wrap the GUID.
         /// </summary>
         internal const string GuidPropertyName = "~GUID";
+
         /// <summary>
         /// The property name used when wrapping a bare non-GUID/non-JSON
         /// "context" identifier into a JSON object.
@@ -93,6 +95,7 @@ namespace Gridwich.Core.Models
 
         /// <summary>The operation context</summary>
         private JObject contextObject;
+
         /// <summary>
         /// The string representation of the contextObject -
         /// a compressed JSON string.  If null, then getter takes care
@@ -102,6 +105,7 @@ namespace Gridwich.Core.Models
 
         #endregion
         #region "Private Helpers"
+
         /// <summary>
         /// True if the instance is one of the "read-only" special cases - None or NoneMuted.
         /// </summary>
@@ -227,6 +231,7 @@ namespace Gridwich.Core.Models
         }
         #endregion
         #region "Public Constants"
+
         /// <summary>A special instance representing a lack of context information, and not muted.</summary>
         public static readonly StorageClientProviderContext None
                 = StorageClientProviderContext.CreateSafe("{}", muteContext: false, trackETag: false);
@@ -236,6 +241,7 @@ namespace Gridwich.Core.Models
                 = StorageClientProviderContext.CreateSafe("{}", muteContext: true, trackETag: false);
         #endregion
         #region "Public Properties"
+
         /// <summary>
         /// Get/Set whether the context is muted.
         ///
@@ -366,6 +372,7 @@ namespace Gridwich.Core.Models
         }
         #endregion
         #region "Public Instance Methods"
+
         /// <summary>
         /// Reset the fields of the current instance to those in the argument context.
         /// </summary>
@@ -410,6 +417,7 @@ namespace Gridwich.Core.Models
         }
         #endregion
         #region "Public Static Methods"
+
         /// <summary>
         /// Create a context instance, being more lenient than the constructors regarding
         /// the input value.  In addition to the normal JSON input, this method will also
@@ -530,6 +538,7 @@ namespace Gridwich.Core.Models
         }
         #endregion
         #region "Constructors"
+
         /// <summary>
         /// Initializes a new instance of the <see cref="StorageClientProviderContext"/> class,
         /// based on the input JObject (usually from the operationContext in a DTO).

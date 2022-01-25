@@ -49,6 +49,7 @@ namespace Gridwich.Core.Constants
         public static readonly EventId OperationCancelException = EventHelpers.CreateEventId(
             LogEventIdSubsystem.App, LogEventIdLevel.Information, 7,
             "Received OperationCancelException.");
+
         /// <summary>Information: Received request to shutdown function app</summary>
         public static readonly EventId FunctionAppShuttingDown = EventHelpers.CreateEventId(
             LogEventIdSubsystem.App, LogEventIdLevel.Information, 8,
