@@ -51,7 +51,7 @@ namespace Gridwich.SagaParticipants.Storage.AzureStorageTests.EventGridHandlers
             var resultEvent = await _handler.HandleAsync(testEvent).ConfigureAwait(false);
 
             // Assert
-            resultEvent.ShouldNotBeNull();
+            resultEvent.ShouldBeFalse();
         }
     }
 }
