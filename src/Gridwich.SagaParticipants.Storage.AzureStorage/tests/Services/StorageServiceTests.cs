@@ -708,9 +708,9 @@ namespace Gridwich.SagaParticipants.Storage.AzureStorageTests.Services
 
         // Arrange
         [Theory]
-        [InlineData(true, "https://storeageaccountname.blob.core.windows.net/containername", "/filepath/filename.mp4", "https://storeageaccountname.blob.core.windows.net/containername/filepath%2Ffilename.mp4")]
-        [InlineData(true, "https://storeageaccountname.blob.core.windows.net/containername", "filepath/filename.mp4", "https://storeageaccountname.blob.core.windows.net/containername/filepath%2Ffilename.mp4")]
-        [InlineData(true, "https://storeageaccountname.blob.core.windows.net/containername/", "/filepath/filename.mp4", "https://storeageaccountname.blob.core.windows.net/containername/filepath%2Ffilename.mp4")]
+        [InlineData(true, "https://storeageaccountname.blob.core.windows.net/containername", "/filepath/filename.mp4", "https://storeageaccountname.blob.core.windows.net/containername/filepath/filename.mp4")]
+        [InlineData(true, "https://storeageaccountname.blob.core.windows.net/containername", "filepath/filename.mp4", "https://storeageaccountname.blob.core.windows.net/containername/filepath/filename.mp4")]
+        [InlineData(true, "https://storeageaccountname.blob.core.windows.net/containername/", "/filepath/filename.mp4", "https://storeageaccountname.blob.core.windows.net/containername/filepath/filename.mp4")]
         [InlineData(false, "https://storeageaccountname.blob.core.windows.net", "/filepath/filename.mp4", null)]
         public void CreateBlobUrl_ShouldAlwaysProduceExpectedValue(bool shouldBeValid, string containerName, string blobName, string expectedValue)
         {

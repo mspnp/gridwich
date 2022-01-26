@@ -7,8 +7,8 @@
   <Import Project="..\..\Build\AllNonTestProjects.targets" />
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.Management.Fluent" Version="1.34.0" />
-    <PackageReference Include="Microsoft.Azure.Management.ResourceManager.Fluent" Version="1.34.0" />
+    <PackageReference Include="Microsoft.Azure.Management.Fluent" Version="1.38.0" />
+    <PackageReference Include="Microsoft.Azure.Management.ResourceManager.Fluent" Version="1.38.0" />
     <PackageReference Include="Microsoft.Azure.Services.AppAuthentication" Version="1.5.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
