@@ -47,7 +47,7 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3Tests
 
         // NOTE: *.pfx is in .gitignore, if you rename folders this test file may not move correctly, or it may be ignored at it's new location.
         // This will cause this class to fail to instantiate.
-        private const string LocalFairPlayCert = "FakeFairPlayCert/FairPlay-out.bin";
+        private const string LocalFairPlayCert = "FakeFairPlayCert/FairPlay-out.pfx";
 
         private static readonly string PathCert = TestHelpers.GetPathRelativeToTests(LocalFairPlayCert);
         public static X509Certificate2 AmsDrmFairPlayCertificate => new X509Certificate2(PathCert, AmsDrmFairPlayPfxPassword, X509KeyStorageFlags.Exportable);
