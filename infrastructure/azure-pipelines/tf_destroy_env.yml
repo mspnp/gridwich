@@ -30,5 +30,5 @@ stages:
     TerraformArguments: $(TERRAFORM_VARS)
     TerraformEnvVariables: {}
     TerraformPlanBranches:
-    - '''refs/heads/master'''
+    - '''refs/heads/main'''
     TerraformReleaseBranchPrefix: '''refs/heads/release/'''

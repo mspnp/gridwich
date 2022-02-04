@@ -1,6 +1,6 @@
 parameters:
   provisionStorage: true
-  TerraformVersion: 0.12.20
+  TerraformVersion: 0.12.31
   TerraformBackendServiceConnection: ''
   TerraformEnvironmentServiceConnection: ''
   TerraformBackendResourceGroup: 'gridwich-terraform-rg'
@@ -8,7 +8,7 @@ parameters:
   TerraformBackendStorageContainer: terraformstate
   TerraformBackendLocation: 'West US'
   TerraformPlanBranches:
-  - '''refs/heads/master'''
+  - '''refs/heads/main'''
   TerraformReleaseBranchPrefix: '''refs/heads/release/'''
 # Expects parameters from parent:
 #   TerraformDirectory

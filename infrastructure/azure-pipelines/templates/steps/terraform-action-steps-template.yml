@@ -4,7 +4,7 @@ parameters:
   TerraformArguments: {}
   TerraformEnvVariables: {}
   TerraformPlanBranches: 
-  - '''refs/heads/master'''
+  - '''refs/heads/main'''
   TerraformReleaseBranchPrefix: '''refs/heads/release/'''
   action: apply
 
