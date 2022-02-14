@@ -59,34 +59,6 @@ steps:
     addSpnToEnvironment: true
 
 - task: AzureCLI@1
-  displayName: 'Set the scale of Azure Media Services reserved encoding infrastructure.'
-  inputs:
-    azureSubscription: '${{parameters.serviceConnection}}'
-    scriptLocation: inlineScript
-    inlineScript: |
-      set -eu
-      echo Set the scale of Azure Media Services reserved encoding infrastructure for $AZURERM_MEDIA_SERVICES_ACCOUNT_RESOURCE_ID
-      # Configurable values:
-      amsMediaReservedUnitCountDesired=1
-      amsMediaReservedUnitTypeDesired=S3
-      #
-      # Setup
-      amsMediaReservedUnitJson=$(az ams account mru show --ids $AZURERM_MEDIA_SERVICES_ACCOUNT_RESOURCE_ID)
-      amsMediaReservedUnitCountActual=$(echo $amsMediaReservedUnitJson | jq -r '.count')
-      amsMediaReservedUnitTypeActual=$(echo $amsMediaReservedUnitJson | jq -r '.type')
-      #
-      # Validate count and type, set if needed.
-      if [[ $amsMediaReservedUnitCountDesired -eq $amsMediaReservedUnitCountActual && $amsMediaReservedUnitTypeDesired == $amsMediaReservedUnitTypeActual ]]
-      then
-          echo Azure Media Services reserved encoding infrastructure does not required scaling, $AZURERM_MEDIA_SERVICES_ACCOUNT_RESOURCE_ID.
-      else
-          echo Azure Media Services reserved encoding infrastructure requires scaling from $amsMediaReservedUnitCountActual to $amsMediaReservedUnitCountDesired and/or $amsMediaReservedUnitTypeDesired to $amsMediaReservedUnitTypeActual.
-          echo az ams account mru set --count $amsMediaReservedUnitCountDesired --type $amsMediaReservedUnitTypeDesired --ids $AZURERM_MEDIA_SERVICES_ACCOUNT_RESOURCE_ID
-          az ams account mru set --count $amsMediaReservedUnitCountDesired --type $amsMediaReservedUnitTypeDesired --ids $AZURERM_MEDIA_SERVICES_ACCOUNT_RESOURCE_ID
-      fi
-    addSpnToEnvironment: true
-
-- task: AzureCLI@1
   displayName: 'Set the scale of Azure Media Services streaming endpoint infrastructure.'
   inputs:
     azureSubscription: '${{parameters.serviceConnection}}'
