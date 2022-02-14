@@ -10,7 +10,7 @@ terraform {
       # backward compatibility for commonly-used providers, but recommended for
       # explicitness.
       source  = "hashicorp/azurerm"
-      version = "~> 2.9"
+      version = "=2.96.0"
     }
     random = {
       # The "hashicorp" namespace is the new home for the HashiCorp-maintained
@@ -20,7 +20,7 @@ terraform {
       # backward compatibility for commonly-used providers, but recommended for
       # explicitness.
       source  = "hashicorp/random"
-      version = "~> 2.2"
+      version = "=2.3.1"
     }
   }
 }
