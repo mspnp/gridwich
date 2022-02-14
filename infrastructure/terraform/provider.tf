@@ -1,6 +1,6 @@
 #Set the terraform required version
 terraform {
-  required_version = ">= 0.13.0"
+  required_version = ">= 1.1.5"
   required_providers {
     azurerm = {
       # The "hashicorp" namespace is the new home for the HashiCorp-maintained
