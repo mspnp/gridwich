@@ -34,7 +34,7 @@ A framework for stateless workloads (batteries included for video on-demand oper
 ## Procedures
 
 * [Set up Azure Project and Azure Pipelines](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/set-up-azure-devops).
-* [Run pipeline-generated admin scripts](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/admin-scripts).
+* [Run pipeline-generated admin scripts](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/run-admin-scripts).
 * [Maintain and rotate keys and secrets](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/maintain-keys).
 * [Set up a local development environment](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/set-up-local-environment).
 * [Create or delete a cloud environment](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/create-delete-cloud-environment).
