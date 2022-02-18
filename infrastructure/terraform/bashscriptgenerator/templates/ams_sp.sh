@@ -14,10 +14,10 @@ echo 'Creating service principal for Azure Media Services'
 AZOUT=$(az ams account sp create --account-name ${mediaServicesName} --resource-group ${mediaServicesResourceGroupName} | jq '{AadClientId: .AadClientId, AadSecret:.AadSecret}')
 echo 'Adding access policy in KeyVault'
 USER_PRINCIPAL_NAME=$(az ad signed-in-user show | jq -r '.userPrincipalName')
-az keyvault set-policy --name ${keyVaultName} --upn $USER_PRINCIPAL_NAME --secret-permissions set get list delete --resource-group ${mediaServicesResourceGroupName} > /dev/null
+az keyvault set-policy --name ${keyVaultName} --upn $USER_PRINCIPAL_NAME --secret-permissions set get list delete > /dev/null
 echo 'Updating ams-sp-client-id and ams-sp-client-secret in KeyVault'
 az keyvault secret set --vault-name ${keyVaultName} --name 'ams-sp-client-id' --value $(echo $AZOUT | jq -r '.AadClientId') > /dev/null
 az keyvault secret set --vault-name ${keyVaultName} --name 'ams-sp-client-secret' --value $(echo $AZOUT | jq -r '.AadSecret')  > /dev/null
 echo 'Revoking access policy in KeyVault'
-az keyvault delete-policy --name ${keyVaultName} --upn $USER_PRINCIPAL_NAME --resource-group ${mediaServicesResourceGroupName} > /dev/null
+az keyvault delete-policy --name ${keyVaultName} --upn $USER_PRINCIPAL_NAME > /dev/null
 echo 'Done.'

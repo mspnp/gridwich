@@ -61,8 +61,8 @@ appId=$(az ad app create --display-name ${eventgridViewerAppName} \
 
 # set access policies
 print "Setting the keyvault access policies"
-az keyvault set-policy --name ${keyVaultName} --upn $signedInUserPrincipalName --secret-permissions set get list delete -o none --resource-group ${mediaServicesResourceGroupName}
-az keyvault set-policy --name ${keyVaultName} --object-id $managedIdentityPrincipalId --secret-permissions set get list -o none --resource-group ${mediaServicesResourceGroupName}
+az keyvault set-policy --name ${keyVaultName} --upn $signedInUserPrincipalName --secret-permissions set get list delete -o none
+az keyvault set-policy --name ${keyVaultName} --object-id $managedIdentityPrincipalId --secret-permissions set get list -o none
 
 # setting keyvault secrets
 print "Setting keyvault secrets"
