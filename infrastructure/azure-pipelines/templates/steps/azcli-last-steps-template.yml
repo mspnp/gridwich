@@ -33,10 +33,9 @@ steps:
     scriptLocation: inlineScript
     inlineScript: |
       set -eu
-      keyVaultName=${{ parameters.applicationName }}-kv-${{ parameters.environment }}
-      echo key vault : $keyVaultName
+      echo key vault : $SHARED_KV_NAME
       echo "Copying FairPlay certificate to key vault as secret"
-      az keyvault secret set --vault-name ${keyVaultName} -n ams-fairPlay-certificate-b64 -f $(FairPlayCertificate.secureFilePath) --output none
+      az keyvault secret set --vault-name $SHARED_KV_NAME -n ams-fairPlay-certificate-b64 -f $(FairPlayCertificate.secureFilePath) --output none
     addSpnToEnvironment: true
 
 - task: AzureCLI@1

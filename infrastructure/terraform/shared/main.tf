@@ -6,8 +6,16 @@
 # RESOURCES
 ##################################################################################
 
+resource "random_id" "server" {
+  byte_length = 2
+}
+
+locals {
+  unique_id = "${random_id.server.hex}"
+}
+
 resource "azurerm_key_vault" "shared_key_vault" {
-  name                = "${var.appname}-kv-${var.environment}"
+  name                = "${var.appname}-kv-${var.environment}-${local.unique_id}"
   location            = var.location
   resource_group_name = var.resource_group_name
   tenant_id           = var.key_vault_tenant_id
@@ -59,7 +67,7 @@ resource "azurerm_key_vault" "shared_key_vault" {
 #############################
 
 resource "azurerm_eventgrid_topic" "grw_topic" {
-  name                = "${var.appname}-grw-egt-${var.environment}"
+  name                = "${var.appname}-grw-egt-${var.environment}-${local.unique_id}"
   location            = var.location
   resource_group_name = var.resource_group_name
 }
@@ -185,7 +193,7 @@ output "secrets_in_shared_keyvault" {
 ###########################################################
 
 resource "azurerm_log_analytics_workspace" "loganalytics" {
-  name                = format("%s-%s-law-%s", var.appname, var.domainprefix, var.environment)
+  name                = format("%s-%s-law-%s-%s", var.appname, var.domainprefix, var.environment, local.unique_id)
   resource_group_name = var.resource_group_name
   location            = var.location
   sku                 = "PerGB2018"
@@ -193,7 +201,7 @@ resource "azurerm_log_analytics_workspace" "loganalytics" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "example" {
-  name                       = format("%s-%s-mds-%s", var.appname, var.domainprefix, var.environment)
+  name                       = format("%s-%s-mds-%s-%s", var.appname, var.domainprefix, var.environment, local.unique_id)
   target_resource_id         = azurerm_eventgrid_topic.grw_topic.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.loganalytics.id
 
