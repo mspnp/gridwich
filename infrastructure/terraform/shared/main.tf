@@ -19,8 +19,8 @@ resource "azurerm_key_vault" "shared_key_vault" {
   location            = var.location
   resource_group_name = var.resource_group_name
   tenant_id           = var.key_vault_tenant_id
-
   sku_name = "standard"
+  soft_delete_retention_days = 7
 
   dynamic "access_policy" {
     for_each = var.access_policy_object_ids
@@ -32,21 +32,27 @@ resource "azurerm_key_vault" "shared_key_vault" {
         "get",
         "list",
         "create",
-        "delete"
+        "delete",
+        "purge",
+        "recover"
       ]
 
       secret_permissions = [
         "get",
         "list",
         "set",
-        "delete"
+        "delete",
+        "purge",
+        "recover"
       ]
 
       certificate_permissions = [
         "get",
         "list",
         "import",
-        "delete"
+        "delete",
+        "purge",
+        "recover"
       ]
     }
   }
