@@ -6,9 +6,15 @@
 
   <!-- Unintuitively, import non-test targets -->
   <Import Project="..\..\Build\AllNonTestProjects.targets" />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Gridwich.Core\src\Gridwich.Core.csproj" />
   </ItemGroup>
-
+ 
 </Project>

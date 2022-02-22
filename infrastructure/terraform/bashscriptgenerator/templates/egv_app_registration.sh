@@ -54,7 +54,6 @@ secret=$(generateRandomPassword)
 # create app registration
 print "Create new app registration for ${eventgridViewerAppName}"
 appId=$(az ad app create --display-name ${eventgridViewerAppName} \
-    --identifier-uris https://${eventgridViewerAppName}.azurewebsites.net \
     --reply-urls https://${eventgridViewerAppName}.azurewebsites.net/signin-oidc \
     --password $secret \
     --required-resource-accesses @egv_app_registration_manifest.json \

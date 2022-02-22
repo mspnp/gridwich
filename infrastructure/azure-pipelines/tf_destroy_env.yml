@@ -12,7 +12,7 @@ variables:
 - name: TERRAFORM_VARS
   value: >-
     -var department=GridwichDevCrew
-    -var extsys_event_endpoint="**********"
+    -var extsys_event_endpoint="https://viewer-sb.azurewebsites.net/api/eventgrid"
     -var amsDrm_OpenIdConnectDiscoveryDocument_endpoint="**********"
     -var amsDrm_FairPlay_Pfx_Password="**********"
     -var amsDrm_FairPlay_Ask_Hex="**********"
@@ -30,5 +30,5 @@ stages:
     TerraformArguments: $(TERRAFORM_VARS)
     TerraformEnvVariables: {}
     TerraformPlanBranches:
-    - '''refs/heads/master'''
+    - '''refs/heads/main'''
     TerraformReleaseBranchPrefix: '''refs/heads/release/'''

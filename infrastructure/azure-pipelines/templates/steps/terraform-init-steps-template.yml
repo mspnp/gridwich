@@ -1,6 +1,6 @@
 parameters:
   provisionStorage: true
-  TerraformVersion: 0.12.20
+  TerraformVersion: 1.1.6
   TerraformBackendServiceConnection: ''
   TerraformEnvironmentServiceConnection: ''
   TerraformBackendResourceGroup: 'gridwich-terraform-rg'
@@ -8,7 +8,7 @@ parameters:
   TerraformBackendStorageContainer: terraformstate
   TerraformBackendLocation: 'West US'
   TerraformPlanBranches:
-  - '''refs/heads/master'''
+  - '''refs/heads/main'''
   TerraformReleaseBranchPrefix: '''refs/heads/release/'''
 # Expects parameters from parent:
 #   TerraformDirectory
@@ -53,14 +53,16 @@ steps:
       fi
     addSpnToEnvironment: true
 
-- task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
+- task: TerraformInstaller@0
   displayName: Install Terraform
   inputs:
     terraformVersion: ${{ parameters.TerraformVersion }}
 
-- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
+- task: TerraformTaskV2@2
   displayName: Terraform init
   inputs:
+    provider: "azurerm"
+    command: "init"
     workingDirectory: ${{ parameters.TerraformDirectory }}
     backendServiceArm: ${{ parameters.TerraformBackendServiceConnection }}
     backendAzureRmResourceGroupName: ${{ parameters.TerraformBackendResourceGroup }}

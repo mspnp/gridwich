@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -7,13 +7,17 @@
   <Import Project="..\..\Build\AllNonTestProjects.targets" />
 
   <ItemGroup>
-    <PackageReference Include="Azure.Storage.Blobs" Version="12.4.4" />
-    <PackageReference Include="MediaInfo.Wrapper.Core" Version="19.9.4" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.10.0" />
+    <PackageReference Include="MediaInfo.Wrapper.Core" Version="21.9.2" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.6" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Gridwich.Core\src\Gridwich.Core.csproj" />
   </ItemGroup>
-
+ 
 </Project>

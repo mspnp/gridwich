@@ -1,17 +1,34 @@
 #Set the terraform required version
 terraform {
-  required_version = ">= 0.12.6"
+  required_version = "~> 1.1"
+  required_providers {
+    azurerm = {
+      # The "hashicorp" namespace is the new home for the HashiCorp-maintained
+      # provider plugins.
+      #
+      # source is not required for the hashicorp/* namespace as a measure of
+      # backward compatibility for commonly-used providers, but recommended for
+      # explicitness.
+      source  = "hashicorp/azurerm"
+      version = "~> 2.97"
+    }
+    random = {
+      # The "hashicorp" namespace is the new home for the HashiCorp-maintained
+      # provider plugins.
+      #
+      # source is not required for the hashicorp/* namespace as a measure of
+      # backward compatibility for commonly-used providers, but recommended for
+      # explicitness.
+      source  = "hashicorp/random"
+      version = "~> 3.1"
+    }
+  }
 }
 
-# Configure the Azure Provider
+# Configure the Microsoft Azure Provider
 provider "azurerm" {
-  # It is recommended to pin to a given version of the Provider
-  version = "=2.9.0"
-  features {}
-}
-
-provider "random" {
-  version = "~> 2.2"
+  features {
+  }
 }
 
 # Data

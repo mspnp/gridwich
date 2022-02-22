@@ -8,6 +8,10 @@
   <Import Project="..\..\Build\AllTestProjects.targets" />
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Telestream.Cloud.VantageCloudPort" Version="0.9.1-preview" />
   </ItemGroup>
 
@@ -15,6 +19,26 @@
     <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode\src\Gridwich.SagaParticipants.Encode.csproj" />
     <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode.TelestreamCloud\src\Gridwich.SagaParticipants.Encode.TelestreamCloud.csproj" />
     <ProjectReference Include="..\src\Gridwich.SagaParticipants.Encode.CloudPort.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="coverlet.collector" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Update="coverlet.msbuild" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+    <PackageReference Update="Moq" Version="4.16.1" />
+    <PackageReference Update="MSTest.TestAdapter" Version="2.2.8" />
+    <PackageReference Update="MSTest.TestFramework" Version="2.2.8" />
+    <PackageReference Update="Shouldly" Version="4.0.3" />
+    <PackageReference Update="xunit.runner.visualstudio" Version="2.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

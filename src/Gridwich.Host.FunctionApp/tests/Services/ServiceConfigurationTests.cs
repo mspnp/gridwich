@@ -20,25 +20,25 @@ namespace Gridwich.Host.FunctionAppTests.Services
     [ExcludeFromCodeCoverage]
     public class ServiceConfigurationTests
     {
-        /// <summary>
-        /// This method sets up a Dependency-injection ServiceCollection that is
-        /// nearly identical to production Gridwich, but with necessary changes, such
+        // <summary>
+        // This method sets up a Dependency-injection ServiceCollection that is
+        // nearly identical to production Gridwich, but with necessary changes, such
         //  as removing the MSI authentication, needed to allow unit testing.
-        /// </summary>
-        /// <remarks>
-        /// Note: While it may seem like a lot of specialized setup, this stems from
-        /// the Dependency Injection needing to resolve dependencies and ensure that
-        /// they are also instantiated before the dependent.  For example, the
-        /// BlobCopy handler expects to be given a StorageService instance at a
-        /// constructor argument.  The code below is to work-around to the needed
-        /// dependent services to be instantiated, while inserting Mocks for singleton
-        /// services like Gridwich.Services.AddAzureStorageManagement which
-        /// will fall over in a test environment due to (in this case) a hard MSI dependency
-        /// and using a factory-based DI entry configuration when an instance-based
-        /// DI definition is needed.`
-        ///
-        /// Regardless, the end result below is a sufficient environment to let the
-        /// tests examine instances of configured EventGridHandlers as needed.
+        // </summary>
+        // <remarks>
+        // Note: While it may seem like a lot of specialized setup, this stems from
+        // the Dependency Injection needing to resolve dependencies and ensure that
+        // they are also instantiated before the dependent.  For example, the
+        // BlobCopy handler expects to be given a StorageService instance at a
+        // constructor argument.  The code below is to work-around to the needed
+        // dependent services to be instantiated, while inserting Mocks for singleton
+        // services like Gridwich.Services.AddAzureStorageManagement which
+        // will fall over in a test environment due to (in this case) a hard MSI dependency
+        // and using a factory-based DI entry configuration when an instance-based
+        // DI definition is needed.`
+        //
+        // Regardless, the end result below is a sufficient environment to let the
+        // tests examine instances of configured EventGridHandlers as needed.
         public static ServiceCollection SetUpBaseServiceCollection()
         {
             // Start with a base-level ("empty") service collection.
@@ -132,13 +132,13 @@ namespace Gridwich.Host.FunctionAppTests.Services
             _sc = SetUpBaseServiceCollection();
         }
 
-        /// These tests are checking:
-        ///     1. All IEventGridHandlers are set as Transient (some where scoped).
-        ///     2. All providers should be Singletons
-        ///     3. Check for singletons for: IEventGridPublisher, IEventGridDispatcher
-        ///     4. Check that all EventGridHandler Ids are unique. Initial run found 2 dupes.
-        /// Stretch:
-        ///     5. No duplicates in the DI list.
+        // These tests are checking:
+        //     1. All IEventGridHandlers are set as Transient (some where scoped).
+        //     2. All providers should be Singletons
+        //     3. Check for singletons for: IEventGridPublisher, IEventGridDispatcher
+        //     4. Check that all EventGridHandler Ids are unique. Initial run found 2 dupes.
+        // Stretch:
+        //     5. No duplicates in the DI list.
 
         [Fact]
         /// <summary>

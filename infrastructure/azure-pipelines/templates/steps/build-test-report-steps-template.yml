@@ -112,7 +112,7 @@ steps:
 #    gitHubConnection: gwsGHConnection
 #    comment: '$(comment)'
 
-- task: BuildQualityChecks@7
+- task: BuildQualityChecks@8
   displayName: 'Check code coverage'
   inputs:
     checkCoverage: true

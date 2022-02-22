@@ -26,6 +26,7 @@ namespace Gridwich.Core.DTO
         /// </summary>
         [JsonProperty("rehydratePriority")]
         public BlobRehydratePriority RehydratePriority { get; set; } = StorageServiceConstants.DefaultRehydratePriority;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseBlobTierChangeSuccessDTO"/> class.
         /// </summary>

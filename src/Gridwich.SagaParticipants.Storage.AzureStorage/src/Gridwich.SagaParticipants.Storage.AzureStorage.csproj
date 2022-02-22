@@ -7,12 +7,16 @@
   <Import Project="..\..\Build\AllNonTestProjects.targets" />
 
   <ItemGroup>
-    <PackageReference Include="LazyCache.AspNetCore" Version="2.0.4" />
+    <PackageReference Include="LazyCache.AspNetCore" Version="2.4.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="RangeTree" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Gridwich.Core\src\Gridwich.Core.csproj" />
   </ItemGroup>
-
+ 
 </Project>

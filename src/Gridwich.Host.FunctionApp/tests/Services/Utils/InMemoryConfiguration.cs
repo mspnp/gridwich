@@ -150,6 +150,7 @@ namespace Gridwich.Host.FunctionAppTests.Services.Utils
         }
 
         #region IConfiguration Implementation
+
         /// <summary>
         /// Part of IContext.
         /// Return a configuration section with the specified key as the Value property.

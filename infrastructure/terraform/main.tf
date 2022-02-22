@@ -159,7 +159,7 @@ module "shared" {
   domainprefix                 = var.domainprefix
   resource_group_name          = azurerm_resource_group.shared.name
   location                     = azurerm_resource_group.shared.location
-  telestream_cloud_api_key           = var.telestream_cloud_api_key
+  telestream_cloud_api_key     = var.telestream_cloud_api_key
   functions_principal_id       = module.functions.principal_id
   amsDrm_FairPlay_Pfx_Password = var.amsDrm_FairPlay_Pfx_Password
   amsDrm_FairPlay_Ask_Hex      = var.amsDrm_FairPlay_Ask_Hex

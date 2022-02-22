@@ -7,6 +7,10 @@
   <Import Project="..\..\Build\AllNonTestProjects.targets" />
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.6" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="Telestream.Cloud.Flip" Version="1.0.0.1" />
@@ -19,4 +23,4 @@
     <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode.TelestreamCloud\src\Gridwich.SagaParticipants.Encode.TelestreamCloud.csproj" />
   </ItemGroup>
 
-</Project>
+ </Project>

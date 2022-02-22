@@ -2,7 +2,7 @@ parameters:
   TerraformArguments: {}
   TerraformEnvVariables: {}
   TerraformPlanBranches: 
-  - '''refs/heads/master'''
+  - '''refs/heads/main'''
   TerraformReleaseBranchPrefix: '''refs/heads/release/'''
   LockedEnvironments: # Locked Environments are environments that cannot be removed by this pipeline
   - prod
