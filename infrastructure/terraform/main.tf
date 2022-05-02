@@ -57,7 +57,7 @@ module "sa_inbox" {
   source                  = "./storage-accounts"
   resource_group_name     = "inbox"
   only_one_resource_group = true
-  accounts_amount         = 3
+  accounts_amount         = 2
   accounts_details = [
     { account_name = "inbox", containers = ["onpremauto"], cors = [] },
     { account_name = "inboxpxy", containers = [], cors = local.default_cors }

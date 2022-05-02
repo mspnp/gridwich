@@ -115,7 +115,7 @@ locals {
   ]
 }
 
-resource "local_file" "media_services_app_settings_json" {
-  sensitive_content = jsonencode(local.media_services_app_settings)
-  filename          = "./app_settings/media_services_app_settings.json"
+resource "local_sensitive_file" "media_services_app_settings_json" {
+  content   = jsonencode(local.media_services_app_settings)
+  filename  = "./app_settings/media_services_app_settings.json"
 }

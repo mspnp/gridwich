@@ -39,7 +39,7 @@ locals {
   ]
 }
 
-resource "local_file" "app_settings" {
-  sensitive_content = jsonencode(local.functions_appsetting)
-  filename          = "./app_settings/appinsights_appsettings.json"
+resource "local_sensitive_file" "app_settings" {
+  content   = jsonencode(local.functions_appsetting)
+  filename  = "./app_settings/appinsights_appsettings.json"
 }

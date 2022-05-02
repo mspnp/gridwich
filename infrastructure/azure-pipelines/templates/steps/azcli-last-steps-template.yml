@@ -26,10 +26,11 @@ steps:
   inputs:
     secureFile: 'FairPlay-out-base64.txt'
 
-- task: AzureCLI@1
+- task: AzureCLI@2
   displayName: 'Copy FairPlay certificate to key vault'
   inputs:
     azureSubscription: ${{parameters.serviceConnection}}
+    scriptType: bash
     scriptLocation: inlineScript
     inlineScript: |
       set -eu
@@ -38,10 +39,11 @@ steps:
       az keyvault secret set --vault-name $SHARED_KV_NAME -n ams-fairPlay-certificate-b64 -f $(FairPlayCertificate.secureFilePath) --output none
     addSpnToEnvironment: true
 
-- task: AzureCLI@1
+- task: AzureCLI@2
   displayName: 'Turn on Storage Analytics for all Storage accounts'
   inputs:
     azureSubscription: ${{parameters.serviceConnection}}
+    scriptType: bash
     scriptLocation: inlineScript
     inlineScript: |
       set -eu
@@ -57,10 +59,11 @@ steps:
       }
     addSpnToEnvironment: true
 
-- task: AzureCLI@1
+- task: AzureCLI@2
   displayName: 'Set the scale of Azure Media Services streaming endpoint infrastructure.'
   inputs:
     azureSubscription: '${{parameters.serviceConnection}}'
+    scriptType: bash
     scriptLocation: inlineScript
     inlineScript: |
       set -eu

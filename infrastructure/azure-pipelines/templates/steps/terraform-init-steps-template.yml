@@ -1,6 +1,6 @@
 parameters:
   provisionStorage: true
-  TerraformVersion: 1.1.6
+  TerraformVersion: 1.1.8
   TerraformBackendServiceConnection: ''
   TerraformEnvironmentServiceConnection: ''
   TerraformBackendResourceGroup: 'gridwich-terraform-rg'
@@ -17,11 +17,12 @@ parameters:
 
 steps:
 
-- task: AzureCLI@1
+- task: AzureCLI@2
   displayName: Set up Terraform backend
   condition: and(succeeded(), ${{ parameters.provisionStorage }})
   inputs:
     azureSubscription: ${{ parameters.TerraformBackendServiceConnection }}
+    scriptType: bash
     scriptLocation: inlineScript
     inlineScript: |
       set -eu  # fail on error
@@ -70,11 +71,12 @@ steps:
     backendAzureRmContainerName: ${{ parameters.TerraformBackendStorageContainer }}
     backendAzureRmKey: ${{ parameters.applicationName }}${{ parameters.environment }}.tfstate
 
-- task: AzureCLI@1
+- task: AzureCLI@2
   displayName: Get ARM credentials for Terraform
   condition: and(succeeded(), or(in(variables['Build.SourceBranch'], ${{join(',', parameters.TerraformPlanBranches)}}), variables['RUN_FLAG_TERRAFORM'], startsWith(variables['Build.SourceBranch'], ${{ parameters.TerraformReleaseBranchPrefix }})))
   inputs:
     azureSubscription: ${{ parameters.TerraformEnvironmentServiceConnection }}
+    scriptType: bash
     scriptLocation: inlineScript
     inlineScript: |
       set -eu

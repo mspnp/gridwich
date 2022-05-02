@@ -1,6 +1,9 @@
 parameters:
   - name: 'checkWarnings'
     type: boolean
+  - name: 'codeCoverageWarningTreshold'
+    type: number
+    default: 2
 
 steps:
 - task: UseDotNet@2
@@ -123,7 +126,7 @@ steps:
     warningFailOption: 'fixed'
     showStatistics: true
     evaluateTaskWarnings: true
-    warningThreshold: 2 # Changed to 2 -- SE... was: Zero warnings are accepted
+    warningThreshold: ${{ parameters. codeCoverageWarningTreshold }}
     warningTaskFilters: |
       /^dotnet\sbuild.*$/i
     buildConfiguration: '$(BuildConfiguration)'

@@ -21,10 +21,11 @@ steps:
       -DEPLOYMENT_ENVIRONMENT_RUN_ID $(Build.BuildId)
     deploymentMethod: auto
 
-- task: AzureCLI@1
+- task: AzureCLI@2
   displayName: 'Update app settings with terraform values'
   inputs:
     azureSubscription: ${{ parameters.serviceConnection }}
+    scriptType: bash
     scriptLocation: inlineScript
     inlineScript: |
       set -eu

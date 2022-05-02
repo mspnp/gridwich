@@ -10,7 +10,7 @@ terraform {
       # backward compatibility for commonly-used providers, but recommended for
       # explicitness.
       source  = "hashicorp/azurerm"
-      version = "~> 2.97"
+      version = "~> 3.0"
     }
     random = {
       # The "hashicorp" namespace is the new home for the HashiCorp-maintained
@@ -28,6 +28,9 @@ terraform {
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
   features {
+    resource_group {
+      prevent_deletion_if_contains_resources = false
+    }
   }
 }
 
