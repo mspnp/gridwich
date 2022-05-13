@@ -29,23 +29,23 @@ parameters:
         label: external
         # environment here is empty so that we can then pass the runtime externalEnvironment value instead
         environment: ''
-        serviceConnection: a-ndrouin-Sandbox1
+        serviceConnection: gridwich-connection
       dev:
         label: dev
         environment: sb
-        serviceConnection: a-ndrouin-Sandbox1
+        serviceConnection: gridwich-connection
       qa:
         label: prod
         environment: qa
-        serviceConnection: a-ndrouin-Sandbox1
+        serviceConnection: gridwich-connection
       uat:
         label: prod
         environment: stg
-        serviceConnection: a-ndrouin-Sandbox1
+        serviceConnection: gridwich-connection
       prod:
         label: prod
         environment: prd
-        serviceConnection: a-ndrouin-Sandbox1
+        serviceConnection: gridwich-connection
 
 stages:
   - stage: BuildFunctionsArtifact

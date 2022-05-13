@@ -29,30 +29,30 @@ resource "azurerm_key_vault" "shared_key_vault" {
       object_id = access_policy.value
 
       key_permissions = [
-        "get",
-        "list",
-        "create",
-        "delete",
-        "purge",
-        "recover"
+        "Get",
+        "List",
+        "Create",
+        "Delete",
+        "Purge",
+        "Recover"
       ]
 
       secret_permissions = [
-        "get",
-        "list",
-        "set",
-        "delete",
-        "purge",
-        "recover"
+        "Get",
+        "List",
+        "Set",
+        "Delete",
+        "Purge",
+        "Recover"
       ]
 
       certificate_permissions = [
-        "get",
-        "list",
-        "import",
-        "delete",
-        "purge",
-        "recover"
+        "Get",
+        "List",
+        "Import",
+        "Delete",
+        "Purge",
+        "Recover"
       ]
     }
   }
@@ -62,7 +62,7 @@ resource "azurerm_key_vault" "shared_key_vault" {
     tenant_id = var.key_vault_tenant_id
 
     secret_permissions = [
-      "get",
+      "Get",
     ]
 
   }
@@ -271,7 +271,7 @@ locals {
   ]
 }
 
-resource "local_file" "app_settings_keyvault_refs_json" {
-  sensitive_content = jsonencode(local.functions_appsetting_keyvault_refs)
-  filename          = "./app_settings/shared_keyvault_refs.json"
+resource "local_sensitive_file" "app_settings_keyvault_refs_json" {
+  content   = jsonencode(local.functions_appsetting_keyvault_refs)
+  filename  = "./app_settings/shared_keyvault_refs.json"
 }

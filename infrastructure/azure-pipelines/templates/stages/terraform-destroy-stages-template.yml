@@ -38,7 +38,7 @@ stages:
         stageSuffix: destroy
         stageSuffixDisplayName: destroy
         applicationName: ${{ parameters.applicationName }}
-        serviceConnection: a-ndrouin-Sandbox1 # We'll assume that when we want to destroy an env, it's in dev
+        serviceConnection: gridwich-connection # We'll assume that when we want to destroy an env, it's in dev
 
 - stage: Terraform_Apply_Destroy
   condition: not(eq(variables['ENVIRONMENT'], ''))
@@ -67,4 +67,4 @@ stages:
               stageSuffix: destroy
               stageSuffixDisplayName: destroy
               applicationName: ${{ parameters.applicationName }}
-              serviceConnection: a-ndrouin-Sandbox1 # We'll assume that when we want to destroy an env, it's in dev
+              serviceConnection: gridwich-connection # We'll assume that when we want to destroy an env, it's in dev
