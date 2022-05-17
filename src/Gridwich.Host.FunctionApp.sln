@@ -37,10 +37,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gridwich.SagaParticipants.E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gridwich.SagaParticipants.Encode.FlipTests", "Gridwich.SagaParticipants.Encode.Flip\tests\Gridwich.SagaParticipants.Encode.FlipTests.csproj", "{5FF04FFA-6563-4A1D-B707-F32377DDE4DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gridwich.SagaParticipants.Encode.MediaServicesV2", "Gridwich.SagaParticipants.Encode.MediaServicesV2\src\Gridwich.SagaParticipants.Encode.MediaServicesV2.csproj", "{BD4C4C19-C89B-4A8C-85E7-7DD98712E625}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gridwich.SagaParticipants.Encode.MediaServicesV2Tests", "Gridwich.SagaParticipants.Encode.MediaServicesV2\tests\Gridwich.SagaParticipants.Encode.MediaServicesV2Tests.csproj", "{ABAF42A1-E35C-4724-8FC4-237CA9C86B47}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gridwich.SagaParticipants.Encode.MediaServicesV3", "Gridwich.SagaParticipants.Encode.MediaServicesV3\src\Gridwich.SagaParticipants.Encode.MediaServicesV3.csproj", "{4ACBA0A0-4F39-4C0C-B436-8649F05D0330}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gridwich.SagaParticipants.Encode.MediaServicesV3Tests", "Gridwich.SagaParticipants.Encode.MediaServicesV3\tests\Gridwich.SagaParticipants.Encode.MediaServicesV3Tests.csproj", "{407448F2-0874-405E-82C8-30C61DA4BBFB}"
@@ -136,14 +132,6 @@ Global
 		{5FF04FFA-6563-4A1D-B707-F32377DDE4DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FF04FFA-6563-4A1D-B707-F32377DDE4DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FF04FFA-6563-4A1D-B707-F32377DDE4DC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BD4C4C19-C89B-4A8C-85E7-7DD98712E625}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD4C4C19-C89B-4A8C-85E7-7DD98712E625}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD4C4C19-C89B-4A8C-85E7-7DD98712E625}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD4C4C19-C89B-4A8C-85E7-7DD98712E625}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ABAF42A1-E35C-4724-8FC4-237CA9C86B47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ABAF42A1-E35C-4724-8FC4-237CA9C86B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ABAF42A1-E35C-4724-8FC4-237CA9C86B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ABAF42A1-E35C-4724-8FC4-237CA9C86B47}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4ACBA0A0-4F39-4C0C-B436-8649F05D0330}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4ACBA0A0-4F39-4C0C-B436-8649F05D0330}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ACBA0A0-4F39-4C0C-B436-8649F05D0330}.Release|Any CPU.ActiveCfg = Release|Any CPU

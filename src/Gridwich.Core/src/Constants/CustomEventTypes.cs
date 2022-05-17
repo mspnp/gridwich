@@ -135,52 +135,6 @@ namespace Gridwich.Core.Constants
         public const string ResponseEncodeCloudportSuccess = ResponseCommonPrefix + "encode.cloudport.success";
 
         /// <summary>
-        /// request.encode.mediaservicesv2.create
-        /// </summary>
-        public const string RequestEncodeMediaServicesV2Create = RequestCommonPrefix + "encode.mediaservicesv2.create";
-
-        /// <summary>
-        /// response.encode.mediaservicesv2.dispatched
-        /// </summary>
-        public const string ResponseEncodeMediaServicesV2Dispatched = ResponseCommonPrefix + "encode.mediaservicesv2.dispatched";
-
-        /// <summary>
-        /// response.encode.mediaservicesv2.scheduled
-        /// </summary>
-        public const string ResponseEncodeMediaServicesV2Scheduled = ResponseCommonPrefix + "encode.mediaservicesv2.scheduled";
-
-        /// <summary>
-        /// response.encode.mediaservicesv2.processing
-        /// </summary>
-        public const string ResponseEncodeMediaServicesV2Processing = ResponseCommonPrefix + "encode.mediaservicesv2.processing";
-
-        /// <summary>
-        /// response.encode.mediaservicesv2.success
-        /// </summary>
-        public const string ResponseEncodeMediaServicesV2Success = ResponseCommonPrefix + "encode.mediaservicesv2.success";
-
-        /// <summary>
-        /// response.encode.mediaservicesv2.canceled
-        /// </summary>
-        public const string ResponseEncodeMediaServicesV2Canceled = ResponseCommonPrefix + "encode.mediaservicesv2.canceled";
-
-        /// <summary>
-        /// response.encode.mediaservicesv2.status.progress
-        /// </summary>
-        public const string ResponseEncodeMediaServicesV2StatusProgress = ResponseCommonPrefix + "encode.mediaservicesv2.status.progress";
-
-        /// <summary>
-        /// response.encode.mediaservicesv2.status.unknown
-        /// </summary>
-        public const string ResponseEncodeMediaServicesV2UnknownStatus = ResponseCommonPrefix + "encode.mediaservicesv2.status.unknown";
-
-        /// <summary>
-        /// response.encode.mediaservicesv2.status.unknown
-        /// Used for "mapping" an AMSv2 webhook into an event we can handle with EventGrid
-        /// </summary>
-        public const string ResponseEncodeMediaServicesV2TranslateCallback = ResponseCommonPrefix + "encode.mediaservicesv2.translate.callback";
-
-        /// <summary>
         /// request.encode.mediaservicesv3.create
         /// </summary>
         public const string RequestEncodeMediaServicesV3Create = RequestCommonPrefix + "encode.mediaservicesv3.create";

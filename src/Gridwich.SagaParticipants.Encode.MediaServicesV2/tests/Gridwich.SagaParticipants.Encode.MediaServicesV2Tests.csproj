@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode\src\Gridwich.SagaParticipants.Encode.csproj" />
-    <ProjectReference Include="..\src\Gridwich.SagaParticipants.Encode.MediaServicesV2.csproj" />
   </ItemGroup>
 
   <ItemGroup>

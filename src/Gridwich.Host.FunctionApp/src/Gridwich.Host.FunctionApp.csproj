@@ -28,7 +28,6 @@
     <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode.TelestreamCloud\src\Gridwich.SagaParticipants.Encode.TelestreamCloud.csproj" />
     <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode.CloudPort\src\Gridwich.SagaParticipants.Encode.CloudPort.csproj" />
     <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode.Flip\src\Gridwich.SagaParticipants.Encode.Flip.csproj" />
-    <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode.MediaServicesV2\src\Gridwich.SagaParticipants.Encode.MediaServicesV2.csproj" />
     <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode.MediaServicesV3\src\Gridwich.SagaParticipants.Encode.MediaServicesV3.csproj" />
     <ProjectReference Include="..\..\Gridwich.SagaParticipants.Analysis.MediaInfo\src\Gridwich.SagaParticipants.Analysis.MediaInfo.csproj" />
     <ProjectReference Include="..\..\Gridwich.SagaParticipants.Publication.MediaServicesV3\src\Gridwich.SagaParticipants.Publication.MediaServicesV3.csproj" />

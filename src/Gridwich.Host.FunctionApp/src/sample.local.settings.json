@@ -14,8 +14,6 @@
     "AmsAadTenantId": "22220000-0000-0000-0000-111122223333",
     "AmsArmEndpoint": "https://management.azure.com",
     "AmsSubscriptionId": "11110000-0000-0000-0000-111122223333",
-    "AmsV2RestApiEndpoint": "https://gridwichamsENV.restv2.REGION.media.azure.net/api/",
-    "AmsV2CallbackEndpoint": "https://gridwich-grw-fxn-ENV.azurewebsites.net/api/AmsV2Callback?code=000000000000000000000000000000000000000000000000000000==",
     "KeyVaultBaseUrl": "https://gridwich-kv-ENV.vault.azure.net/",
     "AmsDrmOpenIdConnectDiscoveryDocument": "https://domain.com/.well-known/OpenIdConfiguration",
     "AmsAadClientId": "33330000-0000-0000-0000-111122223333",
