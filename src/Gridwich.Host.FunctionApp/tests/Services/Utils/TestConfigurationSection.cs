@@ -1,7 +1,8 @@
 using System.Collections.Generic;
-
+using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
+using Newtonsoft.Json.Linq;
 
 namespace Gridwich.Host.FunctionAppTests.Services.Utils
 {
@@ -11,14 +12,23 @@ namespace Gridwich.Host.FunctionAppTests.Services.Utils
     /// </summary>
     internal class TestConfigurationSection : IConfigurationSection
     {
-        public TestConfigurationSection(string value)
+        public TestConfigurationSection(string value, string key = "")
         {
+            Key = key;
             Value = value;
         }
 
         public IEnumerable<IConfigurationSection> GetChildren()
         {
-            throw new System.NotImplementedException();
+            var result = new List<IConfigurationSection>();
+
+            var section = JObject.Parse(Value);
+            foreach (var element in section)
+            {
+                result.Add(new TestConfigurationSection((string)element.Value, element.Key));
+            }
+
+            return result;
         }
 
         public IChangeToken GetReloadToken()
@@ -28,7 +38,9 @@ namespace Gridwich.Host.FunctionAppTests.Services.Utils
 
         public IConfigurationSection GetSection(string key)
         {
-            throw new System.NotImplementedException();
+            var section = JObject.Parse(Value);
+            var value = section[key];
+            return new TestConfigurationSection((string)value, key);
         }
 
         public string this[string key]
