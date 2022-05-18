@@ -64,11 +64,6 @@ variable "event_grid_function_name" {
   description = "The name of the Function which handles Event Grid messages"
 }
 
-variable "amsv2callback_function_name" {
-  type        = string
-  description = "The name of the Function which handles AMS V2 Callback Notification messages"
-}
-
 variable "pipeline_build_id" {
   type        = string
   description = "The ID of the build in the CICD Pipeline. This is used to ensure certain resource deployments run on every build"

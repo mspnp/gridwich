@@ -30,10 +30,6 @@ variable "key_vault_name" {
   type = string
 }
 
-variable "ams_v2_callback_endpoint" {
-  type = string
-}
-
 variable "amsDrm_OpenIdConnectDiscoveryDocument_endpoint" {
   type = string
 }

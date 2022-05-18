@@ -78,16 +78,6 @@ locals {
       slotSetting = false
     },
     {
-      name        = "AmsV2RestApiEndpoint"
-      value       = format("https://%s.restv2.%s.media.azure.net/api/", azurerm_media_services_account.mediaservices.name, var.location)
-      slotSetting = false
-    },
-    {
-      name        = "AmsV2CallbackEndpoint"
-      value       = var.ams_v2_callback_endpoint
-      slotSetting = false
-    },
-    {
       name        = "AmsDrmOpenIdConnectDiscoveryDocument"
       value       = var.amsDrm_OpenIdConnectDiscoveryDocument_endpoint
       slotSetting = false
