@@ -14,7 +14,7 @@ A framework for stateless workloads (batteries included for video on-demand oper
 * [Set up the Azure DevOps Project and Azure Pipelines](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/set-up-azure-devops).
 * [Set up content protection policies and DRM](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-content-protection-drm).
 * To add functionality to Gridwich, [set up a local dev environment](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/set-up-local-environment).
-* To smoke-test Gridwich, [test Azure Media Services V3 encoding](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/test-encoding).
+* To smoke-test Gridwich, [test Azure Media Services encoding](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/test-encoding).
 
 ## Concepts
 
@@ -40,7 +40,7 @@ A framework for stateless workloads (batteries included for video on-demand oper
 * [Create or delete a cloud environment](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/create-delete-cloud-environment).
 * [Set up content protection and DRM](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-content-protection-drm).
 * [Set up and scale Azure Media Services](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/media-services-setup-scale).
-* [Test Azure Media Services V3 Encoding](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/test-encoding).
+* [Test Azure Media Services Encoding](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/test-encoding).
 
 ## Resources
 
