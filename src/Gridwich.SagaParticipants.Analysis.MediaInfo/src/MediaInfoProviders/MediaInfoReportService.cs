@@ -44,6 +44,9 @@ namespace Gridwich.SagaParticipants.Analysis.MediaInfo.MediaInfoProviders
             _logger = logger;
         }
 
+        /// <summary>
+        /// MediaInfo status
+        /// </summary>
         public enum MediaInfoStatus
         {
             None = 0x00,

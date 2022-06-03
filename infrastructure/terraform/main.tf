@@ -302,7 +302,6 @@ module "mediaservices" {
   tenant_id                                      = data.azurerm_client_config.current.tenant_id
   key_vault_name                                 = module.shared.shared_kv_name
   scope_ids                                      = local.all_storage_accounts_ids
-  ams_v2_callback_endpoint                       = "https://${module.functions.functionapp_endpoint_base}/api/${var.amsv2callback_function_name}?code=${module.functionKeys.host_key}"
   amsDrm_OpenIdConnectDiscoveryDocument_endpoint = var.amsDrm_OpenIdConnectDiscoveryDocument_endpoint
   amsDrm_EnableContentKeyPolicyUpdate            = var.amsDrm_EnableContentKeyPolicyUpdate
 }

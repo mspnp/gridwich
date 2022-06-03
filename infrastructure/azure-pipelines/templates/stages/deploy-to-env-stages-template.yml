@@ -34,7 +34,6 @@ stages:
         -var amsDrm_EnableContentKeyPolicyUpdate="$(amsDrmEnableContentKeyPolicyUpdate)"
         -var telestream_cloud_api_key=$(telestreamCloudApiKey)
         -var event_grid_function_name='EventGrid'
-        -var amsv2callback_function_name='AmsV2Callback'
         -var pipeline_build_id="$(Build.BuildId)"
         -target module.sa_inbox
         -target module.sa_main
@@ -122,7 +121,6 @@ stages:
         -var amsDrm_EnableContentKeyPolicyUpdate="$(amsDrmEnableContentKeyPolicyUpdate)"
         -var telestream_cloud_api_key=$(telestreamCloudApiKey)
         -var event_grid_function_name='EventGrid'
-        -var amsv2callback_function_name='AmsV2Callback'
         -var pipeline_build_id="$(Build.BuildId)"
 
   - stage: Azure_CLI_Last_Stage_${{ parameters.environmentName }}

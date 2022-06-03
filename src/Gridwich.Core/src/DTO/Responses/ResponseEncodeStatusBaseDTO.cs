@@ -90,22 +90,6 @@ namespace Gridwich.Core.DTO
     }
 
     /// <summary>
-    /// Canceled DTO
-    /// </summary>
-    /// <seealso cref="Gridwich.Core.DTO.ResponseEncodeStatusBaseDTO" />
-    [JsonObject(ItemRequired = Required.Always)]
-    public class ResponseEncodeCanceledDTO : ResponseEncodeStatusBaseDTO
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ResponseEncodeCanceledDTO"/> class.
-        /// </summary>
-        public ResponseEncodeCanceledDTO()
-            : base(CustomEventTypes.ResponseEncodeMediaServicesV2Canceled)
-        {
-        }
-    }
-
-    /// <summary>
     /// Success DO
     /// </summary>
     /// <seealso cref="Gridwich.Core.DTO.ResponseEncodeStatusBaseDTO" />
@@ -135,36 +119,6 @@ namespace Gridwich.Core.DTO
         /// <param name="returnEventType">The event type to publish on Event Grid.</param>
         public ResponseEncodeSuccessDTO(string returnEventType)
             : base(returnEventType)
-        {
-        }
-    }
-
-    /// <summary>
-    /// Status progress DTO
-    /// </summary>
-    /// <seealso cref="Gridwich.Core.DTO.ResponseEncodeStatusBaseDTO" />
-    public class ResponseEncodeProgressDTO : ResponseEncodeStatusBaseDTO
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ResponseEncodeProgressDTO"/> class.
-        /// </summary>
-        public ResponseEncodeProgressDTO()
-            : base(CustomEventTypes.ResponseEncodeMediaServicesV2StatusProgress)
-        {
-        }
-    }
-
-    /// <summary>
-    /// Progress status DTO
-    /// </summary>
-    /// <seealso cref="Gridwich.Core.DTO.ResponseEncodeStatusBaseDTO" />
-    public class ResponseEncodeUnknownStatusDTO : ResponseEncodeStatusBaseDTO
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ResponseEncodeUnknownStatusDTO"/> class.
-        /// </summary>
-        public ResponseEncodeUnknownStatusDTO()
-            : base(CustomEventTypes.ResponseEncodeMediaServicesV2UnknownStatus)
         {
         }
     }

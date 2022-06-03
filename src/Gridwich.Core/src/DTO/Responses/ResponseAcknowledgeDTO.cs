@@ -17,7 +17,7 @@ namespace Gridwich.Core.DTO
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAcknowledgeDTO"/> class.
         /// </summary>
-        /// <param name="eventType"></param>
+        /// <param name="eventType">Event type.</param>
         public ResponseAcknowledgeDTO(string eventType)
             : base(CustomEventTypes.ResponseAcknowledge)
         {

@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
+using System.Linq;
+using System.Text.Json;
 using Gridwich.Core.Helpers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Primitives;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Gridwich.Host.FunctionAppTests.Services.Utils
@@ -38,6 +40,7 @@ namespace Gridwich.Host.FunctionAppTests.Services.Utils
         private Dictionary<string, string> _variables = new Dictionary<string, string>(100);
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="InMemoryConfiguration"/> class.
         /// Private constructor -- nothing to do, but restrict to static ConfigFromJSONSettingsFile for creation.
         /// </summary>
         private InMemoryConfiguration()
@@ -167,8 +170,21 @@ namespace Gridwich.Host.FunctionAppTests.Services.Utils
         public IConfigurationSection GetSection(string key)
         {
             var theValue = this[key];
-            var result = new TestConfigurationSection(theValue);
-            return result;
+            if (theValue != null)
+            {
+                return new TestConfigurationSection(theValue, key);
+            }
+            else
+            {
+                // check if this is a nested object (in the form { "abc:test" : "value" })
+                var items = _variables
+                                .Where((kvp) => kvp.Key.StartsWith(key))
+                                .Select((kvp) => new KeyValuePair<string, string>(kvp.Key.Split(':')[1], kvp.Value))
+                                .ToDictionary(x => x.Key, x => x.Value);
+
+                theValue = JsonConvert.SerializeObject(items);
+                return new TestConfigurationSection(theValue, key);
+            }
         }
 
         /// <summary>Part of IConfiguration</summary>

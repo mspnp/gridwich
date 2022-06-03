@@ -18,7 +18,6 @@ variables:
     -var amsDrm_FairPlay_Ask_Hex="**********"
     -var telestream_cloud_api_key="************"
     -var event_grid_function_name='EventGrid'
-    -var amsv2callback_function_name='AmsV2Callback'
     -var pipeline_build_id="$(Build.BuildId)"
     -var run_flag_subscriptions_disabled=$(RUN_FLAG_SUBSCRIPTIONS_DISABLED)
     -var run_flag_subscriptions_fail_gracefully=$(RUN_FLAG_SUBSCRIPTIONS_FAIL_GRACEFULLY)
