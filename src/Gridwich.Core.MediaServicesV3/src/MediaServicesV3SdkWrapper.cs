@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Azure.Core;
+using Azure.Identity;
 using Gridwich.Core.Interfaces;
+using Microsoft.Azure.Management.ContainerRegistry.Fluent.Models;
 using Microsoft.Azure.Management.Media;
 using Microsoft.Azure.Management.Media.Models;
+using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using Microsoft.Rest;
 using Microsoft.Rest.Azure;
 using Microsoft.Rest.Azure.Authentication;
+using Newtonsoft.Json.Linq;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace Gridwich.Core.MediaServicesV3
 {
@@ -26,6 +33,7 @@ namespace Gridwich.Core.MediaServicesV3
         private readonly string _amsArmEndpoint;
         private readonly string _amsSubscriptionId;
         private AzureMediaServicesClient _client;
+        private static readonly string TokenType = "Bearer";
 
         /// <summary>
         /// Dispose the Media Services V3 client.
@@ -68,16 +76,50 @@ namespace Gridwich.Core.MediaServicesV3
             _amsSubscriptionId = _settingsProvider.GetAppSettingsValue("AmsSubscriptionId");
         }
 
+        private static readonly Lazy<TokenCredential> _msiCredential = new(() =>
+        {
+            // https://docs.microsoft.com/en-us/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet
+            // Using DefaultAzureCredential allows for local dev by setting environment variables for the current user, provided said user
+            // has the necessary credentials to perform the operations the MSI of the Function app needs in order to do its work. Including
+            // interactive credentials will allow browser-based login when developing locally.
+
+            return new DefaultAzureCredential(includeInteractiveCredentials: true);
+        });
+
         /// <inheritdoc/>
         public async Task ConnectAsync()
         {
-            var clientCredential = new ClientCredential(_amsAadClientId, _amsAadClientSecret);
-            var serviceClientCredentials = await ApplicationTokenProvider.LoginSilentAsync(_amsAadTenantId, clientCredential, ActiveDirectoryServiceSettings.Azure).ConfigureAwait(false);
+            var armAadAudience = "https://management.core.windows.net";
+            var scopes = new[] { armAadAudience + "/.default" };
+            string token;
+            if (_amsAadClientId != null)
+            {
+                // Service Principal
+                var app = ConfidentialClientApplicationBuilder.Create(_amsAadClientId)
+                .WithClientSecret(_amsAadClientSecret)
+                .WithAuthority(AzureCloudInstance.AzurePublic, _amsAadTenantId)
+                .Build();
+
+                var authResult = await app.AcquireTokenForClient(scopes)
+                                                        .ExecuteAsync()
+                                                        .ConfigureAwait(false);
+                token = authResult.AccessToken;
+            }
+            else
+            {
+                // managed identity
+                TokenCredential tokenCred = _msiCredential.Value;
+                AccessToken accesToken = await tokenCred.GetTokenAsync(new TokenRequestContext(scopes), CancellationToken.None);
+                token = accesToken.Token;
+            }
+
+            ServiceClientCredentials serviceClientCredentials = new TokenCredentials(token, TokenType);
             _client = new AzureMediaServicesClient(new Uri(_amsArmEndpoint), serviceClientCredentials)
             {
                 SubscriptionId = _amsSubscriptionId,
             };
         }
+
 
         /// <inheritdoc/>
         public Task<Asset> AssetCreateOrUpdateAsync(string assetName, Asset parameters, CancellationToken cancellationToken = default) => _client.Assets.CreateOrUpdateAsync(_amsResourceGroup, _amsAccountName, assetName, parameters, cancellationToken);

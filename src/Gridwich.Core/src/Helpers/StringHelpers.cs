@@ -28,6 +28,7 @@ namespace Gridwich.Core.Helpers
         /// Camelizes the specified name.
         /// </summary>
         /// <param name="name">The name to be camel-ized (swap first letter to lower case).</param>
+        /// <returns>Camel-ized name</returns>
         public static string Camelize(string name)
         {
             if (string.IsNullOrEmpty(name))
@@ -113,7 +114,9 @@ namespace Gridwich.Core.Helpers
         /// The usual string.ToLowerInvariant(), but without the code analysis
         /// complaint about how it's better to force to upper-case before comparing.
         /// </summary>
-        [method:System.Diagnostics.CodeAnalysis.SuppressMessage(
+        /// <param name="s">string</param>
+        /// <returns>Lowercased string</returns>
+        [method: System.Diagnostics.CodeAnalysis.SuppressMessage(
             "Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase",
             Justification = "Strictly checking if all lowercase, so exactly as desired")]
         public static string ToLowerInvariant(string s)

@@ -109,9 +109,11 @@ namespace Gridwich.SagaParticipants.Encode.MediaServicesV3
 
             CheckArgumentNotNullOrEmpty(transformName, nameof(transformName));
 
-            var transform = await this.MediaServicesV3SdkWrapper.TransformGetAsync(transformName).ConfigureAwait(false);
-
-            if (transform == null)
+            try
+            {
+                var transform = await this.MediaServicesV3SdkWrapper.TransformGetAsync(transformName).ConfigureAwait(false);
+            }
+            catch (ErrorResponseException ex) when (ex.Response.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
                 // Attempt to find the transform in the Media Services V3 Dictionary
                 var mediaServicesV3Transform = _mediaServicesV3TransformService.GetTransform(transformName);

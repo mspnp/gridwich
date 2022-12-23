@@ -26,9 +26,6 @@
       "type": "process",
       "group": "none",
       "options": {
-        // the reason we execute this command on THIS project is because --interactive will pick up
-        // that the deviceflow auth needs to happen; if we do 'restore' on all /src, the deviceflow
-        // login is lost among other restoring other projects
         "cwd": "${workspaceFolder}/src/Gridwich.SagaParticipants.Encode.CloudPort/src"
       }
     },
@@ -58,7 +55,7 @@
         "build"
       ],
       "options": {
-        "cwd": "${workspaceFolder}/src/Gridwich.Host.FunctionApp/src/bin/Debug/netcoreapp3.1"
+        "cwd": "${workspaceFolder}/src/Gridwich.Host.FunctionApp/src/bin/Debug/net6"
       },
       "command": "host start",
       "isBackground": true,

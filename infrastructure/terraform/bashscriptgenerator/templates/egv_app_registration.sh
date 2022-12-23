@@ -19,15 +19,6 @@ set -eu
 # Per Microsoft, best practice to use a manifest file
 # https://github.com/Azure/azure-cli/issues/6023#issuecomment-400011467
 
-###############################################################
-#- function used to create a random password
-###############################################################
-function generateRandomPassword() {
-    local password=$(openssl rand -base64 16 | colrm 17 | sed 's/$/!/')
-
-    echo $password
-}
-
 #######################################################
 #- function used to print messages
 #######################################################
@@ -47,26 +38,27 @@ fi
 
 # get configuration value
 print "Creating Managed Identity & Azure AD App Registration secret"
-managedIdentityPrincipalId=$(az webapp identity assign -n ${eventgridViewerAppName} -g ${eventgridViewerResourceGroupName} --query 'principalId' -o tsv)
-signedInUserPrincipalName=$(az ad signed-in-user show --query 'userPrincipalName' -o tsv)
-secret=$(generateRandomPassword)
+managedIdentityPrincipalId=$(az webapp identity assign -n ${eventgridViewerAppName} -g ${eventgridViewerResourceGroupName} -o json | jq -r '.principalId')
+signedInUserPrincipalName=$(az ad signed-in-user show -o json | jq -r '.userPrincipalName')
 
 # create app registration
 print "Create new app registration for ${eventgridViewerAppName}"
 appId=$(az ad app create --display-name ${eventgridViewerAppName} \
-    --reply-urls https://${eventgridViewerAppName}.azurewebsites.net/signin-oidc \
-    --password $secret \
+    --web-redirect-uris https://${eventgridViewerAppName}.azurewebsites.net/signin-oidc \
+    --enable-id-token-issuance \
+    --key-type Password \
     --required-resource-accesses @egv_app_registration_manifest.json \
-    --query 'appId' -o tsv)
+    -o json \
+    | jq -r '.appId')
 
 # set access policies
 print "Setting the keyvault access policies"
-az keyvault set-policy --name ${keyVaultName} --upn $signedInUserPrincipalName --secret-permissions set get list delete -o none
-az keyvault set-policy --name ${keyVaultName} --object-id $managedIdentityPrincipalId --secret-permissions set get list -o none
+az keyvault set-policy --name ${keyVaultName} --upn "$signedInUserPrincipalName" --secret-permissions set get list delete -o none
+az keyvault set-policy --name ${keyVaultName} --object-id "$managedIdentityPrincipalId" --secret-permissions set get list -o none
 
 # setting keyvault secrets
 print "Setting keyvault secrets"
-az keyvault secret set --vault-name ${keyVaultName} -n $secretName --value $appId -o none
+az keyvault secret set --vault-name ${keyVaultName} -n "$secretName" --value "$appId" -o none
 
 # restart the web app
 print "Restart ${eventgridViewerAppName} web app"
@@ -80,4 +72,3 @@ az webapp start  --name ${eventgridViewerAppName} \
 
 # provide output
 print "App Registration AppId: $appId"
-print "App Registration Secret: $secret"

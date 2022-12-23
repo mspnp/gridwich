@@ -1,3 +1,3 @@
-output "logging_application_insights_instrumentation_key" {
-  value = azurerm_application_insights.logging.instrumentation_key
+output "logging_application_insights_connection_string" {
+  value = azurerm_application_insights.logging.connection_string
 }

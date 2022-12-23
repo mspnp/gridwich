@@ -14,17 +14,17 @@ namespace Gridwich.CoreTests
     {
         [Theory]
         [InlineData(null,
-                    "/home/vsts/work/1/s/src/Gridwich.Host.FunctionAppTests/bin/Release/netcoreapp3.1",
+                    "/home/vsts/work/1/s/src/Gridwich.Host.FunctionAppTests/bin/Release/net6",
                     "src", '/',
                     "Gridwich.Host.FunctionApp/sx.json",
                     "/home/vsts/work/1/s/src/Gridwich.Host.FunctionApp/sx.json")]
         [InlineData(null,
-                    "C:/users/fred/home/vsts/work/1/s/src/Gridwich.Host.FunctionAppTests/bin/Release/netcoreapp3.1/bin",
+                    "C:/users/fred/home/vsts/work/1/s/src/Gridwich.Host.FunctionAppTests/bin/Release/net6/bin",
                     "src", '\\',
                     "Gridwich.Host.FunctionApp/sx.json",
                     @"C:\users\fred\home\vsts\work\1\s\src\Gridwich.Host.FunctionApp\sx.json")]
         [InlineData(null,
-                    "C:/users/fred/home/vsts/work/1/s/src/Gridwich.Host.FunctionAppTests/bin/Release/netcoreapp3.1/bin",
+                    "C:/users/fred/home/vsts/work/1/s/src/Gridwich.Host.FunctionAppTests/bin/Release/net6/bin",
                     "src", '/',
                     "Gridwich.Host.FunctionApp/sx.json",
                     @"C:/users/fred/home/vsts/work/1/s/src/Gridwich.Host.FunctionApp/sx.json")]

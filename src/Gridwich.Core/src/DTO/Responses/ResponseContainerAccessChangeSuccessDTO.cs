@@ -29,7 +29,7 @@ namespace Gridwich.Core.DTO
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseContainerAccessChangeSuccessDTO"/> class.
         /// </summary>
-        /// <param name="eventType"></param>
+        /// <param name="eventType">eventType</param>
         public ResponseContainerAccessChangeSuccessDTO()
             : base(CustomEventTypes.ResponseBlobContainerAccessChangeSuccess)
         {

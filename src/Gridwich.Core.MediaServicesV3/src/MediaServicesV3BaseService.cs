@@ -136,19 +136,23 @@ namespace Gridwich.Core.MediaServicesV3
             var assetName = $"{storageName}-{containerName}";
 
             Asset newAsset = null;
+            bool createAsset = false;
             try
             {
                 // Let's see if the asset exists already
                 newAsset = await MediaServicesV3SdkWrapper.AssetGetAsync(assetName).ConfigureAwait(false);
             }
+            catch (ErrorResponseException ex) when (ex.Response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                createAsset = true;
+            }
             catch
             {
-                // if asset does not exist, newAsset is null but no exception thrown.
                 // if exception is thrown, it means there is a critical issue.
                 throw;
             }
 
-            if (newAsset == null)
+            if (createAsset)
             {
                 try
                 {
@@ -166,7 +170,7 @@ namespace Gridwich.Core.MediaServicesV3
                     throw;
                 }
             }
-            return newAsset.Name;
+            return newAsset?.Name;
         }
     }
 }

@@ -7,10 +7,10 @@ parameters:
 
 steps:
 - task: UseDotNet@2
-  displayName: 'Use .NET Core sdk 3.1'
+  displayName: 'Use .NET 6'
   inputs:
     packageType: sdk
-    version: 3.1.x
+    version: 6.x
 
 # *** DEBUG ***
 # - script: 'find .'

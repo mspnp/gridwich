@@ -235,12 +235,18 @@ namespace Gridwich.Core.Helpers
     /// <summary>Just a "DTO" with a pair of DateTimeOfsets</summary>
     public class TimeRange
     {
-        /// <summary>Start of time span, backed up to cover possible clock skew.</summary>
+        /// <summary>Gets start of time span, backed up to cover possible clock skew.</summary>
         public DateTimeOffset StartTime { get; private set; }
 
-        /// <summary>End of time span, from Now + TTL</summary>
+        /// <summary>Gets end of time span, from Now + TTL</summary>
         public DateTimeOffset EndTime { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TimeRange"/> class.
+        /// </summary>
+        /// <param name="backUpSecondsFromNow">backUpSecondsFromNow</param>
+        /// <param name="startTime">startTime</param>
+        /// <param name="ttl">ttl</param>
         internal TimeRange(int backUpSecondsFromNow, DateTimeOffset startTime, TimeSpan ttl)
         {
             this.StartTime = startTime.AddSeconds(-backUpSecondsFromNow);

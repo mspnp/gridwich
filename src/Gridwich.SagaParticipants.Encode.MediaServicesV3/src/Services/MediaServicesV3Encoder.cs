@@ -10,6 +10,7 @@ using Gridwich.Core.MediaServicesV3.Exceptions;
 using Gridwich.Core.Models;
 using Gridwich.SagaParticipants.Encode;
 using Gridwich.SagaParticipants.Encode.Exceptions;
+using Microsoft.Azure.Management.Media.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -75,7 +76,7 @@ namespace Gridwich.SagaParticipants.Encode.MediaServicesV3
             }
             catch (Exception e)
             {
-                throw new GridwichMediaServicesV3CreateTransformException($"Error creating AMS V3 Transform: {encodeCreateDTO.TransformName}", LogEventIds.MediaServicesV3TransformError, operationContext, e);
+                throw new GridwichMediaServicesV3CreateTransformException(AddDetailedAMSMessage(e, $"Error creating AMS V3 Transform: {encodeCreateDTO.TransformName}"), LogEventIds.MediaServicesV3TransformError, operationContext, e);
             }
 
             // 2. Create input asset
@@ -116,9 +117,13 @@ namespace Gridwich.SagaParticipants.Encode.MediaServicesV3
             {
                 inputAssetName = await _amsV3Service.CreateOrUpdateAssetForContainerAsync(sourceUris).ConfigureAwait(false);
             }
+            catch (ErrorResponseException ex) when (ex.Response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                // no problem, let's create the output asset in step 4
+            }
             catch (Exception e)
             {
-                throw new GridwichMediaServicesV3CreateAssetException("Error creating/getting AMS V3 Asset.", LogEventIds.MediaServicesV3InputAssetError, operationContext, e);
+                throw new GridwichMediaServicesV3CreateAssetException(AddDetailedAMSMessage(e, "Error creating/getting AMS V3 Asset."), LogEventIds.MediaServicesV3InputAssetError, operationContext, e);
             }
 
             // 4. Create output asset.
@@ -139,7 +144,7 @@ namespace Gridwich.SagaParticipants.Encode.MediaServicesV3
             }
             catch (Exception e)
             {
-                throw new GridwichMediaServicesV3CreateAssetException($"Error creating/getting AMS V3 output Asset: {outputUri}.", LogEventIds.MediaServicesV3OutputError, operationContext, e);
+                throw new GridwichMediaServicesV3CreateAssetException(AddDetailedAMSMessage(e, $"Error creating/getting AMS V3 output Asset: {outputUri}."), LogEventIds.MediaServicesV3OutputError, operationContext, e);
             }
 
             // 5. Execute Encode
@@ -164,7 +169,7 @@ namespace Gridwich.SagaParticipants.Encode.MediaServicesV3
             }
             catch (Exception e)
             {
-                throw new GridwichEncodeCreateJobException($"Error creating AMS V3 job: {jobName}", operationContext, e, LogEventIds.MediaServicesV3CreateJobApiError);
+                throw new GridwichEncodeCreateJobException(AddDetailedAMSMessage(e, $"Error creating AMS V3 job: {jobName}"), operationContext, e, LogEventIds.MediaServicesV3CreateJobApiError);
             }
 
             // 6. Confirm success to base class
@@ -173,6 +178,25 @@ namespace Gridwich.SagaParticipants.Encode.MediaServicesV3
                 workflowJobName: jobName,
                 null,
                 encodeCreateDTO.OperationContext);
+        }
+
+        /// <summary>
+        /// Add the AMS message to text of the exception
+        /// </summary>
+        /// <param name="e">exception</param>
+        /// <param name="message">message from Gridwich</param>
+        /// <returns>extended message</returns>
+        private static string AddDetailedAMSMessage(Exception e, string message)
+        {
+            if (e != null && e is ErrorResponseException eApi)
+            {
+                {
+                    dynamic error = JsonConvert.DeserializeObject(eApi.Response.Content);
+                    message += " Reason : " + (string)error?.error?.message;
+                }
+            }
+
+            return message;
         }
     }
 }

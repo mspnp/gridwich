@@ -1,20 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net6</TargetFramework>
   </PropertyGroup>
 
   <Import Project="..\..\Build\AllNonTestProjects.targets" />
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.Management.Fluent" Version="1.38.0" />
-    <PackageReference Include="Microsoft.Azure.Management.ResourceManager.Fluent" Version="1.38.0" />
-    <PackageReference Include="Microsoft.Azure.Services.AppAuthentication" Version="1.5.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
+    <PackageReference Include="Microsoft.Azure.Management.Fluent" Version="1.38.1" />
+    <PackageReference Include="Microsoft.Azure.Management.ResourceManager.Fluent" Version="1.38.1" />
+    <PackageReference Include="Microsoft.Azure.Services.AppAuthentication" Version="1.6.2" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.6" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="Telestream.Cloud.Flip" Version="1.0.0.1" />
     <PackageReference Include="Telestream.Cloud.Notifications" Version="1.0.0" />

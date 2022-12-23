@@ -9,14 +9,14 @@ namespace Gridwich.Core.DTO
     public class ExceptionChainDetailDTO
     {
         /// <summary>
-        /// Exception data.
+        /// Gets or sets exception data.
         /// </summary>
         [property:System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Not applicable to DTOs")]
         [JsonProperty("data")]
         public IDictionary Data { get; set; }
 
         /// <summary>
-        /// Exception message.
+        /// Gets or sets exception message.
         /// </summary>
         [JsonProperty("message")]
         public string Message { get; set; }

@@ -41,8 +41,8 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3Tests
                 new StreamingPath(StreamingPolicyStreamingProtocol.Hls, EncryptionScheme.CommonEncryptionCbcs, new List<string>() { "https://test.azure.net/ffhg/test.ism/manifest(format=m3u8)" })
             });
 
-        private static readonly StreamingEndpoint StreamingEndpoint1 = new StreamingEndpoint(name: "default", hostName: "test.azure.net", scaleUnits: 0);
-        private static readonly StreamingEndpoint StreamingEndpoint2 = new StreamingEndpoint(name: "customname", hostName: "testcustom.azure.net", scaleUnits: 1);
+        private static readonly StreamingEndpoint StreamingEndpoint1 = new StreamingEndpoint(location: "westus", name: "default", hostName: "test.azure.net", scaleUnits: 0);
+        private static readonly StreamingEndpoint StreamingEndpoint2 = new StreamingEndpoint(location: "westus", name: "customname", hostName: "testcustom.azure.net", scaleUnits: 1);
 
         private static readonly MockPageCollection<StreamingEndpoint> MockPageSe = new MockPageCollection<StreamingEndpoint>(new List<StreamingEndpoint>() { StreamingEndpoint1 }.ToList());
         private static readonly MockPageCollection<StreamingEndpoint> MockPageSe2 = new MockPageCollection<StreamingEndpoint>(new List<StreamingEndpoint>() { StreamingEndpoint1, StreamingEndpoint2 }.ToList());
@@ -102,7 +102,7 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3Tests
             var settingsProvider = Mock.Of<ISettingsProvider>();
 
             string assetName = "myassetname";
-            var amsAccount = new MediaService(storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = MediaServicesV3PublicationTestData.DefaultStorageId } });
+            var amsAccount = new MediaService(location: "westus", storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = MediaServicesV3PublicationTestData.DefaultStorageId } });
 
             // Arrange Mocks
             Mock.Get(amsV3SdkWrapper)
@@ -242,7 +242,7 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3Tests
 
             // Arrange
             string assetName = "myassetname";
-            var amsAccount = new MediaService(storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = MediaServicesV3PublicationTestData.DefaultStorageId } });
+            var amsAccount = new MediaService(location: "westus", storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = MediaServicesV3PublicationTestData.DefaultStorageId } });
 
             // Arrange Mocks
             Mock.Get(amsV3SdkWrapper)
@@ -347,7 +347,7 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3Tests
             var amsContentKeyPolService = Mock.Of<IMediaServicesV3ContentKeyPolicyService>();
             var settingsProvider = Mock.Of<ISettingsProvider>();
             string assetName = "myassetname";
-            var amsAccount = new MediaService(storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = MediaServicesV3PublicationTestData.DefaultStorageId } });
+            var amsAccount = new MediaService(location: "westus", storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = MediaServicesV3PublicationTestData.DefaultStorageId } });
 
             // Arrange Mocks
             Mock.Get(settingsProvider)
@@ -495,8 +495,8 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3Tests
             var amsStreamingPolService = Mock.Of<IMediaServicesV3CustomStreamingPolicyService>();
             var settingsProvider = Mock.Of<ISettingsProvider>();
             string assetName = "myassetname";
-            var amsAccount = new MediaService(storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = MediaServicesV3PublicationTestData.DefaultStorageId } });
-            var streamingEndpoint = new StreamingEndpoint(name: "default", hostName: "test.azure.net", scaleUnits: 0);
+            var amsAccount = new MediaService(location: "westus", storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = MediaServicesV3PublicationTestData.DefaultStorageId } });
+            var streamingEndpoint = new StreamingEndpoint(location: "westus", name: "default", hostName: "test.azure.net", scaleUnits: 0);
 
             var mockPageSe = new MockPageCollection<StreamingEndpoint>(new List<StreamingEndpoint>() { streamingEndpoint }.ToList());
 
@@ -551,8 +551,8 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3Tests
             var amsStreamingPolService = Mock.Of<IMediaServicesV3CustomStreamingPolicyService>();
             var settingsProvider = Mock.Of<ISettingsProvider>();
             string assetName = "myassetname";
-            var amsAccount = new MediaService(storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = MediaServicesV3PublicationTestData.DefaultStorageId } });
-            var streamingEndpoint = new StreamingEndpoint(name: "default", hostName: "test.azure.net", scaleUnits: 0);
+            var amsAccount = new MediaService(location: "westus", storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = MediaServicesV3PublicationTestData.DefaultStorageId } });
+            var streamingEndpoint = new StreamingEndpoint(location: "westus", name: "default", hostName: "test.azure.net", scaleUnits: 0);
 
             var mockPageSe = new MockPageCollection<StreamingEndpoint>(new List<StreamingEndpoint>() { streamingEndpoint }.ToList());
 
@@ -606,8 +606,8 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3Tests
             var amsStreamingPolService = Mock.Of<IMediaServicesV3CustomStreamingPolicyService>();
             var settingsProvider = Mock.Of<ISettingsProvider>();
             string assetName = "myassetname";
-            var amsAccount = new MediaService(storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = MediaServicesV3PublicationTestData.DefaultStorageId } });
-            var streamingEndpoint = new StreamingEndpoint(name: "default", hostName: "test.azure.net", scaleUnits: 0);
+            var amsAccount = new MediaService(location: "westus", storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = MediaServicesV3PublicationTestData.DefaultStorageId } });
+            var streamingEndpoint = new StreamingEndpoint(location: "westus", name: "default", hostName: "test.azure.net", scaleUnits: 0);
 
             var mockPageSe = new MockPageCollection<StreamingEndpoint>(new List<StreamingEndpoint>() { streamingEndpoint }.ToList());
 
