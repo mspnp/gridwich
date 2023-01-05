@@ -75,6 +75,12 @@ resource "azurerm_storage_account" "storage_accounts" {
 
   location = var.location
   tags     = var.tags
+ 
+  lifecycle {
+    ignore_changes = [
+      allow_nested_items_to_be_public
+    ]
+  }
 }
 
 resource "azurerm_storage_container" "storage_containers" {

@@ -96,7 +96,6 @@ namespace Gridwich.SagaParticipants.Analysis.MediaInfoTests.MediaInfoProviders
             await Assert.ThrowsAsync<GridwichMediaInfoLibException>(async () => await _service.GetMediaInfoCompleteInformForUriAsync(uri, context).ConfigureAwait(true)).ConfigureAwait(true);
             Mock.Get(_logger).Verify(x => x.LogEventObject(LogEventIds.InvalidBlobContentLength, uri), Times.Once);
         }
-       
 
         [Fact]
         public async Task GetMediaInfoCompleteInformForUriAsync_Throws_InvalidContentException()

@@ -3,16 +3,29 @@
 ##################################################################################
 
 # Get the functions keys out of the app
-resource "azurerm_template_deployment" "function_keys" {
+resource "azurerm_resource_group_template_deployment" "function_keys" {
   name = "getFunctionAppHostKey"
-  parameters = {
-    "functionApp"  = var.function_app_name
-    "cacheBusting" = var.cache_busting
-  }
+ 
+  parameters_content = jsonencode({
+    "functionApp" = {
+      value = var.function_app_name
+    },
+    "cacheBusting" = {
+      value = var.cache_busting
+    }
+  })
+  
   resource_group_name = var.resource_group_name
   deployment_mode     = "Incremental"
 
-  template_body = <<BODY
+  lifecycle {
+    ignore_changes = [
+      template_content,
+      parameters_content
+    ]
+  }
+
+  template_content = <<BODY
   {
       "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
       "contentVersion": "1.0.0.0",

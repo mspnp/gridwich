@@ -1,4 +1,4 @@
 output "host_key" {
-  value     = lookup(azurerm_template_deployment.function_keys.outputs, "functionkey")
+  value     = jsondecode(azurerm_resource_group_template_deployment.function_keys.output_content).functionkey.value
   sensitive = true
 }

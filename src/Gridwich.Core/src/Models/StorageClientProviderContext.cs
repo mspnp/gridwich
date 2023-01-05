@@ -243,7 +243,7 @@ namespace Gridwich.Core.Models
         #region "Public Properties"
 
         /// <summary>
-        /// Get/Set whether the context is muted.
+        /// Gets or sets a value indicating whether get/Set whether the context is muted.
         ///
         /// Muted corresponds to whether related output events are expected
         /// to be published -- i.e., muted events are not published.
@@ -307,7 +307,7 @@ namespace Gridwich.Core.Models
         public bool TrackingETag { get; set; }
 
         /// <summary>
-        /// Holds the last value extracted from an HTTP response, which is also
+        /// Gets or sets the last value extracted from an HTTP response, which is also
         /// (if TrackingETag is true) the value to include with the next HTTP request.
         ///
         /// On processing an HTTP response, if the ETag HTTP header is present,
@@ -458,7 +458,7 @@ namespace Gridwich.Core.Models
         /// occur in processing operationContextString. Second argument to this callback is string that
         /// was being parsed.</param>
         /// <param name="logOtherError">A callback invoked (if non-null) should an exception, other
-        ///  than a JSON parse error occur in processing operationContextString.</param>
+        /// than a JSON parse error occur in processing operationContextString.</param>
         /// <returns>An instance of StorageProviderContext.</returns>
         public static StorageClientProviderContext CreateSafe(
                         string operationContextString,

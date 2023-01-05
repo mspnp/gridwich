@@ -13,9 +13,9 @@ resource "azurerm_application_insights" "logging" {
 # Secrets
 #############################
 
-resource "azurerm_key_vault_secret" "logging_app_insights_key" {
-  name         = "appinsights-instrumentationkey"
-  value        = azurerm_application_insights.logging.instrumentation_key
+resource "azurerm_key_vault_secret" "logging_app_insights_connection_string" {
+  name         = "appinsights-connectionstring"
+  value        = azurerm_application_insights.logging.connection_string
   key_vault_id = var.key_vault_id
 }
 
@@ -27,8 +27,8 @@ resource "azurerm_key_vault_secret" "logging_app_insights_key" {
 locals {
   functions_appsetting = [
     {
-      name        = "APPINSIGHTS_INSTRUMENTATIONKEY"
-      value       = format("@Microsoft.KeyVault(SecretUri=https://%s.vault.azure.net/secrets/%s/)", var.key_vault_name, azurerm_key_vault_secret.logging_app_insights_key.name)
+      name        = "APPLICATIONINSIGHTS_CONNECTION_STRING"
+      value       = format("@Microsoft.KeyVault(SecretUri=https://%s.vault.azure.net/secrets/%s/)", var.key_vault_name, azurerm_key_vault_secret.logging_app_insights_connection_string.name)
       slotSetting = false
     },
     {
@@ -42,4 +42,8 @@ locals {
 resource "local_sensitive_file" "app_settings" {
   content   = jsonencode(local.functions_appsetting)
   filename  = "./app_settings/appinsights_appsettings.json"
+
+  lifecycle {
+    ignore_changes = all
+  }
 }

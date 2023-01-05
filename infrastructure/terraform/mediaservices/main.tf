@@ -16,7 +16,10 @@ resource "azurerm_media_services_account" "mediaservices" {
   name                = format("%sams%s", var.appname, var.environment)
   location            = var.location
   resource_group_name = var.resource_group_name
-
+   identity {
+    type ="SystemAssigned"
+  }
+  
   storage_account {
     id         = azurerm_storage_account.ams_primary_storage.id
     is_primary = true
@@ -50,16 +53,6 @@ locals {
     {
       name        = "AmsLocation"
       value       = var.location
-      slotSetting = false
-    },
-    {
-      name        = "AmsAadClientId"
-      value       = format("@Microsoft.KeyVault(SecretUri=https://%s.vault.azure.net/secrets/%s/)", var.key_vault_name, "ams-sp-client-id")
-      slotSetting = false
-    },
-    {
-      name        = "AmsAadClientSecret"
-      value       = format("@Microsoft.KeyVault(SecretUri=https://%s.vault.azure.net/secrets/%s/)", var.key_vault_name, "ams-sp-client-secret")
       slotSetting = false
     },
     {
@@ -108,4 +101,8 @@ locals {
 resource "local_sensitive_file" "media_services_app_settings_json" {
   content   = jsonencode(local.media_services_app_settings)
   filename  = "./app_settings/media_services_app_settings.json"
+
+  lifecycle {
+    ignore_changes = all
+  }
 }

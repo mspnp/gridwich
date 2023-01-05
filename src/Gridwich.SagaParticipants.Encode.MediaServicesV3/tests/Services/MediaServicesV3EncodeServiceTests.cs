@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading;
 using Gridwich.Core.DTO;
 using Gridwich.Core.Interfaces;
@@ -9,6 +10,7 @@ using Gridwich.SagaParticipants.Encode.MediaServicesV3;
 using Gridwich.SagaParticipants.Encode.MediaServicesV3.Transforms;
 using Gridwich.Services.Core.Exceptions;
 using Microsoft.Azure.Management.Media.Models;
+using Microsoft.Rest;
 using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -65,7 +67,7 @@ namespace Gridwich.SagaParticipants.Encode.MediaServicesV3Tests
             // Arrange
             RequestEncodeCreateDTO encodeRequestData = JsonConvert.DeserializeObject<RequestEncodeCreateDTO>(jData);
             string assetName = "myassetname";
-            var amsAccount = new MediaService(storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = DefaultStorageId } });
+            var amsAccount = new MediaService(location: "westus", storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = DefaultStorageId } });
             // TODO
             var amsV3TransformService = Mock.Of<IMediaServicesV3TransformService>();
 
@@ -73,6 +75,10 @@ namespace Gridwich.SagaParticipants.Encode.MediaServicesV3Tests
             Mock.Get(AmsV3SdkWrapper)
                 .Setup(x => x.AssetCreateOrUpdateAsync(It.IsAny<string>(), It.IsAny<Asset>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new Asset(name: assetName));
+
+            Mock.Get(AmsV3SdkWrapper)
+               .Setup(x => x.AssetGetAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+               .ReturnsAsync(new Asset(name: assetName));
 
             Mock.Get(AmsV3SdkWrapper)
                 .Setup(x => x.MediaservicesGetAsync(It.IsAny<CancellationToken>()))
@@ -102,7 +108,7 @@ namespace Gridwich.SagaParticipants.Encode.MediaServicesV3Tests
         public async void MediaServicesV3ServiceCanGetExistingTransformTest()
         {
             // Arrange
-            var storage = new MediaService(storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = DefaultStorageId } });
+            var storage = new MediaService(location: "uswest", storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = DefaultStorageId } });
             var tOutputs = new List<TransformOutput>();
             string tNameExisting = "transformwhichexists";
             var amsV3TransformService = Mock.Of<IMediaServicesV3TransformService>();
@@ -131,17 +137,17 @@ namespace Gridwich.SagaParticipants.Encode.MediaServicesV3Tests
         public async void MediaServicesV3ServiceCanCreateTransformTest()
         {
             // Arrange
-            var storage = new MediaService(storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = DefaultStorageId } });
+            var storage = new MediaService(location: "westus", storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = DefaultStorageId } });
             var tOutputs = new List<TransformOutput>();
             string tNameNotExisting = "transformwhichdoesnotexist";
             var amsV3TransformService = Mock.Of<IMediaServicesV3TransformService>();
-            Transform nullTransform = null;
             MediaServicesV3TransformBase amsV3Transform = new MediaServicesV3PresetTransform(EncoderNamedPreset.AdaptiveStreaming);
+            var response = new HttpResponseMessageWrapper(new HttpResponseMessage(System.Net.HttpStatusCode.NotFound), "AMS object not found");
 
             // Arrange Mocks
             Mock.Get(AmsV3SdkWrapper)
                .Setup(x => x.TransformGetAsync(tNameNotExisting, It.IsAny<CancellationToken>()))
-               .ReturnsAsync(nullTransform);
+               .Throws(new ErrorResponseException() { Response = response });
 
             Mock.Get(amsV3TransformService)
                 .Setup(x => x.GetTransform(tNameNotExisting))
@@ -163,17 +169,17 @@ namespace Gridwich.SagaParticipants.Encode.MediaServicesV3Tests
         public async void MediaServicesV3ServiceCreateTransformThrowsExceptionWhenTransformNotInDictionaryTest()
         {
             // Arrange
-            var storage = new MediaService(storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = DefaultStorageId } });
+            var storage = new MediaService(location: "westus", storageAccounts: new List<StorageAccount>() { new StorageAccount() { Id = DefaultStorageId } });
             var tOutputs = new List<TransformOutput>();
             string tNameNotExisting = "transformwhichdoesnotexist";
             var amsV3TransformService = Mock.Of<IMediaServicesV3TransformService>();
-            Transform nullTransform = null;
             MediaServicesV3TransformBase nullAmsV3Transform = null;
+            var response = new HttpResponseMessageWrapper(new HttpResponseMessage(System.Net.HttpStatusCode.NotFound), "AMS object not found");
 
             // Arrange Mocks
             Mock.Get(AmsV3SdkWrapper)
                .Setup(x => x.TransformGetAsync(tNameNotExisting, It.IsAny<CancellationToken>()))
-               .ReturnsAsync(nullTransform);
+               .Throws(new ErrorResponseException() { Response = response });
 
             Mock.Get(amsV3TransformService)
                 .Setup(x => x.GetTransform(tNameNotExisting))

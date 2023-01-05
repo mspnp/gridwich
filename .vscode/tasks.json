@@ -58,7 +58,7 @@
         "build"
       ],
       "options": {
-        "cwd": "${workspaceFolder}/src/Gridwich.Host.FunctionApp/src/bin/Debug/netcoreapp3.1"
+        "cwd": "${workspaceFolder}/src/Gridwich.Host.FunctionApp/src/bin/Debug/net6"
       },
       "command": "host start",
       "isBackground": true,

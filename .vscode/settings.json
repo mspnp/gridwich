@@ -12,10 +12,11 @@
   "cSpell.words": [
     "gridwich"
   ],
-  "azureFunctions.deploySubpath": "src/Gridwich.Host.FunctionApp/src/bin/Release/netcoreapp3.1/publish",
+  "azureFunctions.deploySubpath": "src/Gridwich.Host.FunctionApp/src/bin/Release/net6/publish",
   "azureFunctions.projectLanguage": "C#",
-  "azureFunctions.projectRuntime": "~3",
+  "azureFunctions.projectRuntime": "~4",
   "debug.internalConsoleOptions": "neverOpen",
   "azureFunctions.preDeployTask": "publish",
   "azureFunctions.pickProcessTimeout": 300,
+  "azureFunctions.projectSubpath": "src\\Gridwich.Host.FunctionApp\\src"
 }

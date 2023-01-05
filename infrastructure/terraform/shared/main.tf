@@ -66,6 +66,12 @@ resource "azurerm_key_vault" "shared_key_vault" {
     ]
 
   }
+
+  lifecycle {
+    ignore_changes = [
+      access_policy
+    ]
+  }
 }
 
 #############################
@@ -87,6 +93,12 @@ resource "azurerm_storage_account" "topic_dead_letter_sa" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
   account_kind             = "StorageV2"
+  
+  lifecycle {
+    ignore_changes = [
+      allow_nested_items_to_be_public
+    ]
+  }
 }
 
 resource "azurerm_storage_container" "topic_dead_letter_container" {
@@ -116,30 +128,6 @@ resource "azurerm_key_vault_secret" "telestream_cloud_api_key_secret" {
   value        = var.telestream_cloud_api_key
   key_vault_id = azurerm_key_vault.shared_key_vault.id
 
-  lifecycle {
-    ignore_changes = [
-      value,
-      tags
-    ]
-  }
-}
-
-resource "azurerm_key_vault_secret" "ams_sp_client_id" {
-  name         = "ams-sp-client-id"
-  value        = "placeholder"
-  key_vault_id = azurerm_key_vault.shared_key_vault.id
-  lifecycle {
-    ignore_changes = [
-      value,
-      tags
-    ]
-  }
-}
-
-resource "azurerm_key_vault_secret" "ams_sp_client_secret" {
-  name         = "ams-sp-client-secret"
-  value        = "placeholder"
-  key_vault_id = azurerm_key_vault.shared_key_vault.id
   lifecycle {
     ignore_changes = [
       value,
@@ -191,7 +179,7 @@ resource "azurerm_key_vault_secret" "ams_fair_play_certificate_b64" {
 # and elsewhere or if one of the values for those secrets changes, the Function App using them won't be updated to
 # utilize the new value
 output "secrets_in_shared_keyvault" {
-  value = ["telestream-cloud-api-key", "grw-topic-end-point", "grw-topic-key", "ams-sp-client-id", "ams-sp-client-secret", "appinsights-instrumentationkey", "ams-fairplay-pfx-password", "ams-fairplay-ask-hex", "ams-fairPlay-certificate-b64"]
+  value = ["telestream-cloud-api-key", "grw-topic-end-point", "grw-topic-key", "appinsights-connectionstring", "ams-fairplay-pfx-password", "ams-fairplay-ask-hex", "ams-fairPlay-certificate-b64"]
 }
 
 ###########################################################
@@ -240,6 +228,12 @@ resource "azurerm_monitor_diagnostic_setting" "example" {
       days    = 30
     }
   }
+
+  lifecycle {
+    ignore_changes = [
+      log
+    ]
+  }
 }
 
 ##################################################################################
@@ -274,4 +268,8 @@ locals {
 resource "local_sensitive_file" "app_settings_keyvault_refs_json" {
   content   = jsonencode(local.functions_appsetting_keyvault_refs)
   filename  = "./app_settings/shared_keyvault_refs.json"
+
+  lifecycle {
+    ignore_changes = all
+  }
 }

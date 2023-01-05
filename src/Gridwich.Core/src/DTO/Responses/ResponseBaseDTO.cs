@@ -32,7 +32,7 @@ namespace Gridwich.Core.DTO
         public JObject OperationContext { get; set; }
 
         /// <summary>
-        /// If true, do not published the event to EventGrid.  This is to allow
+        /// Gets or sets a value indicating whether if true, do not published the event to EventGrid.  This is to allow
         /// handlers like BlobCreated/BlobDeleted to return a meaningful result
         /// type from DoWorkAsync(), but control whether  the EventGridHandlerBase
         /// republishes the event to EventGrid.
@@ -48,7 +48,6 @@ namespace Gridwich.Core.DTO
         /// <li>The awkward double-negative naming (DoNotPublish == false => DoPublish) is intentional to
         /// ensure that the default initialization of false covers the 99% case which is "yes, do publish".
         /// </ul>
-        /// <remarks>
         [JsonIgnore]
         public bool DoNotPublish { get; set; }
     }

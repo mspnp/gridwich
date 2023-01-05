@@ -1,10 +1,10 @@
-// The following are the expected application settings for the funciton app.
+// The following are the expected application settings for the function app.
 // To test locally, follow the instructions in /docs/GettingStarted_Create_Local_Settings_json.md
 
 {
   "IsEncrypted": false,
   "Values": {
-    "FUNCTIONS_EXTENSION_VERSION": "~3",
+    "FUNCTIONS_EXTENSION_VERSION": "~4",
     "APPNAME": "Gridwich",
     "DEPLOYMENT_ENVIRONMENT": "ENV",
     "AppInsights_ResourceId": "urlEncodedResourceUri",

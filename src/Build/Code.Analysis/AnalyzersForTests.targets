@@ -11,7 +11,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-         <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.113" />
+         <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435" />
         <!-- TODO: To be added/enabled in secondary PR.
             <PackageReference Include="StyleCop.CSharp.Async.Rules" Version="6.1.41">
                 <PrivateAssets>all</PrivateAssets>

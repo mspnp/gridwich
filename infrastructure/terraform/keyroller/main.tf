@@ -35,12 +35,12 @@ locals {
   }
 }
 
-resource "azurerm_template_deployment" "keyroller_logicapp" {
+resource "azurerm_resource_group_template_deployment" "keyroller_logicapp" {
   name                = "${local.keyroller_parameters_body.workflow_name.value}-${var.cache_busting}"
   resource_group_name = var.resource_group_name
   deployment_mode     = "Incremental"
-  parameters_body     = jsonencode(local.keyroller_parameters_body)
-  template_body       = <<DEPLOY
+  parameters_content  = jsonencode(local.keyroller_parameters_body)
+  template_content    = <<DEPLOY
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",

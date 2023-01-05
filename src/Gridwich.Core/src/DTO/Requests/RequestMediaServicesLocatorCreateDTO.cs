@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
 namespace Gridwich.Core.DTO

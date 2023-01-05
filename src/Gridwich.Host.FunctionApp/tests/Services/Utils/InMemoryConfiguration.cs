@@ -35,6 +35,11 @@ namespace Gridwich.Host.FunctionAppTests.Services.Utils
     internal class InMemoryConfiguration : IConfiguration
     {
         /// <summary>
+        /// The token
+        /// </summary>
+        private readonly ConfigurationReloadToken _token;
+
+        /// <summary>
         /// The key/value (string/string) pairs of values for the IConfiguration to present.
         /// </summary>
         private Dictionary<string, string> _variables = new Dictionary<string, string>(100);
@@ -45,7 +50,7 @@ namespace Gridwich.Host.FunctionAppTests.Services.Utils
         /// </summary>
         private InMemoryConfiguration()
         {
-            // nothing to do.
+            _token = new ConfigurationReloadToken();
         }
 
         /// <summary>
@@ -167,6 +172,8 @@ namespace Gridwich.Host.FunctionAppTests.Services.Utils
         /// ultimately calls GetSection here.  This is why there is no overt GetValue
         /// method implementation herein.
         /// </remarks>
+        /// <param name="key">key</param>
+        /// <returns>configuration section</returns>
         public IConfigurationSection GetSection(string key)
         {
             var theValue = this[key];
@@ -187,7 +194,12 @@ namespace Gridwich.Host.FunctionAppTests.Services.Utils
             }
         }
 
-        /// <summary>Part of IConfiguration</summary>
+
+        /// <summary>
+        /// Part of IConfiguration
+        /// </summary>
+        /// <param name="key">key</param>
+        /// <returns>variable</returns>
         public string this[string key]
         {
             get
@@ -213,7 +225,7 @@ namespace Gridwich.Host.FunctionAppTests.Services.Utils
         /// <summary>Part of IConfiguration</summary>
         public IChangeToken GetReloadToken()
         {
-            return null;
+            return _token;
         }
         #endregion /* IConfiguration */
     }

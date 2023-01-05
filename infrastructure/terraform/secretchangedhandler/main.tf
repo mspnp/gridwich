@@ -35,12 +35,20 @@ locals {
   }
 }
 
-resource "azurerm_template_deployment" "logicapp" {
+resource "azurerm_resource_group_template_deployment" "logicapp" {
   name                = format("%s-%s-la-secretchangedhandler-%s", var.appname, var.domainprefix, var.environment)
   resource_group_name = var.resource_group_name
   deployment_mode     = "Incremental"
-  parameters_body     = jsonencode(local.parameters_body)
-  template_body       = <<DEPLOY
+  parameters_content     = jsonencode(local.parameters_body)
+
+  lifecycle {
+    ignore_changes = [
+      parameters_content,
+	  template_content
+    ]
+  }
+
+  template_content       = <<DEPLOY
 {
 	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
 	"contentVersion": "1.0.0.0",

@@ -6,8 +6,6 @@ using Gridwich.Core.DTO;
 
 using Microsoft.Azure.EventGrid.Models;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Gridwich.Core.Exceptions

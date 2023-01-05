@@ -23,6 +23,7 @@ using Microsoft.Azure.Management.Media;
 using Microsoft.Azure.Management.Media.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Rest.Azure;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Gridwich.SagaParticipants.Publication.MediaServicesV3.Services
@@ -142,10 +143,14 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3.Services
 
                 // let's try to find the policy in AMS
                 StreamingPolicy streamingPolicy;
-
+                bool createStreamingPolicy = false;
                 try
                 {
                     streamingPolicy = await this.MediaServicesV3SdkWrapper.StreamingPolicyGetAsync(streamingPolicyAmsName).ConfigureAwait(false);
+                }
+                catch (ErrorResponseException ex) when (ex.Response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    createStreamingPolicy = true;
                 }
                 catch (Exception ex)
                 {
@@ -157,7 +162,7 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3.Services
                 }
 
                 // If the streaming policy does not exist, let's create it.
-                if (streamingPolicy == null)
+                if (createStreamingPolicy)
                 {
                     try
                     {
@@ -165,9 +170,14 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3.Services
                         await SemaphoreCreateStreamingPolicy.WaitAsync().ConfigureAwait(false);
 
                         // Pattern : Double-checked locking
+                        createStreamingPolicy = false;
                         try
                         {
                             streamingPolicy = await this.MediaServicesV3SdkWrapper.StreamingPolicyGetAsync(streamingPolicyAmsName).ConfigureAwait(false);
+                        }
+                        catch (ErrorResponseException ex) when (ex.Response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                        {
+                            createStreamingPolicy = true;
                         }
                         catch (Exception ex)
                         {
@@ -177,7 +187,7 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3.Services
                                 msg,
                                 ex);
                         }
-                        if (streamingPolicy == null)
+                        if (createStreamingPolicy)
                         {
                             try
                             {
@@ -655,13 +665,18 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3.Services
 
             // let's try to find the policy in AMS
             ContentKeyPolicy contentKeyPolicy;
+            bool createStreamingPolicy = false;
             try
             {
                 contentKeyPolicy = await this.MediaServicesV3SdkWrapper.ContentKeyPolicyGetAsync(contentKeyPolicyName).ConfigureAwait(false);
             }
+            catch (ErrorResponseException ex) when (ex.Response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                createStreamingPolicy = true;
+            }
             catch (Exception ex)
             {
-                var msg = "AMS v3 Publish. Error when getting the content key policy.";
+                var msg = AddDetailedAMSMessage(ex, "AMS v3 Publish. Error when getting the content key policy.");
                 throw new GridwichPublicationContentKeyPolicyException(
                     contentKeyPolicyName,
                     msg,
@@ -670,7 +685,7 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3.Services
 
 
             // If the content key policy does not exist, or if it has not been updated in the current Azure function session, let's create / update it.
-            if ((!mediaServicesV3ContentKeyPolicyServicePolicy.CreatedOrUpdatedDone && enableContentKeyPolicyAutomaticUpdate) || contentKeyPolicy == null)
+            if ((!mediaServicesV3ContentKeyPolicyServicePolicy.CreatedOrUpdatedDone && enableContentKeyPolicyAutomaticUpdate) || createStreamingPolicy)
             {
                 // Create or update the content key policy
                 // This is done each time the first locator is done in the session (as DRM secrets may have been changed).
@@ -680,14 +695,19 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3.Services
                     await SemaphoreUpdateContentKeyPolicy.WaitAsync().ConfigureAwait(false);
 
                     // Pattern : Double-checked locking
+                    createStreamingPolicy = false;
                     try
                     {
                         contentKeyPolicy = await this.MediaServicesV3SdkWrapper
                             .ContentKeyPolicyGetAsync(contentKeyPolicyName).ConfigureAwait(false);
                     }
+                    catch (ErrorResponseException ex) when (ex.Response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                    {
+                        createStreamingPolicy = true;
+                    }
                     catch (Exception ex)
                     {
-                        var msg = "AMS v3 Publish. Error when getting the content key policy.";
+                        var msg = AddDetailedAMSMessage(ex, "AMS v3 Publish. Error when getting the content key policy.");
                         throw new GridwichPublicationContentKeyPolicyException(
                             contentKeyPolicyName,
                             msg,
@@ -695,7 +715,7 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3.Services
                     }
 
                     // Pattern : Double-checked locking
-                    if ((!mediaServicesV3ContentKeyPolicyServicePolicy.CreatedOrUpdatedDone && enableContentKeyPolicyAutomaticUpdate) || contentKeyPolicy == null)
+                    if ((!mediaServicesV3ContentKeyPolicyServicePolicy.CreatedOrUpdatedDone && enableContentKeyPolicyAutomaticUpdate) || createStreamingPolicy)
                     {
                         try
                         {
@@ -705,18 +725,18 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3.Services
                                 .ConfigureAwait(false);
                             mediaServicesV3ContentKeyPolicyServicePolicy.CreatedOrUpdatedDone = true;
                         }
-                        catch (ApiErrorException ex)
+                        catch (ErrorResponseException ex)
                         {
                             // if there is a conflict... But this should not happen thanks to the Semaphore.
                             if (ex.Response.StatusCode == System.Net.HttpStatusCode.Conflict &&
-                                contentKeyPolicy != null)
+                                createStreamingPolicy)
                             {
                                 EventId id = LogEventIds.MediaServicesV3ContentKeyPolicyConflict;
                                 Log.LogEvent(id, "Conflict when updating the content key policy", contentKeyPolicyName);
                             }
                             else
                             {
-                                var msg = "AMS v3 Publish. Error when creating/updating the content key policy.";
+                                var msg = AddDetailedAMSMessage(ex, "AMS v3 Publish. Error when creating/updating the content key policy.");
                                 throw new GridwichPublicationContentKeyPolicyException(
                                     contentKeyPolicyName,
                                     msg,
@@ -727,7 +747,7 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3.Services
                 }
                 catch (Exception ex)
                 {
-                    var msg = "AMS v3 Publish. Error in creating/updating the content key policy.";
+                    var msg = AddDetailedAMSMessage(ex, "AMS v3 Publish. Error in creating/updating the content key policy.");
                     throw new GridwichPublicationContentKeyPolicyException(
                         contentKeyPolicyName,
                         msg,
@@ -739,6 +759,25 @@ namespace Gridwich.SagaParticipants.Publication.MediaServicesV3.Services
                 }
             }
             return contentKeyPolicyName;
+        }
+
+        /// <summary>
+        /// Add the AMS message to text of the exception
+        /// </summary>
+        /// <param name="e">exception</param>
+        /// <param name="message">message from Gridwich</param>
+        /// <returns>extended message</returns>
+        private static string AddDetailedAMSMessage(Exception e, string message)
+        {
+            if (e != null && e is ErrorResponseException eApi)
+            {
+                {
+                    dynamic error = JsonConvert.DeserializeObject(eApi.Response.Content);
+                    message += " Reason : " + (string)error?.error?.message;
+                }
+            }
+
+            return message;
         }
     }
 }

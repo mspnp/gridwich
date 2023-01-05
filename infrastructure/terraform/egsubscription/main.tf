@@ -19,6 +19,12 @@ resource "azurerm_eventgrid_event_subscription" "eventgrid_subscription" {
   webhook_endpoint {
     url = var.endpoint
   }
+  
+  lifecycle {
+    ignore_changes = [
+      webhook_endpoint
+    ]
+  }
 
   dynamic "storage_blob_dead_letter_destination" {
     # We just need a way of deciding if we want to add the dead letter, so "["1"]" works

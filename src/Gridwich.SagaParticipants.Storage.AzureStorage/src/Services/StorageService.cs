@@ -5,20 +5,18 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Azure;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Azure.Storage.Sas;
-
 using Gridwich.Core.Constants;
 using Gridwich.Core.Helpers;
 using Gridwich.Core.Interfaces;
 using Gridwich.Core.Models;
 using Gridwich.SagaParticipants.Storage.AzureStorage.Exceptions;
 using Gridwich.SagaParticipants.Storage.AzureStorage.Interfaces;
+using IntervalTree;
 using Newtonsoft.Json.Linq;
-using RangeTree;
 
 namespace Gridwich.SagaParticipants.Storage.AzureStorage.Services
 {
@@ -59,7 +57,7 @@ namespace Gridwich.SagaParticipants.Storage.AzureStorage.Services
         /// A cache of byte range data previously retrieved from Azure Storage for
         /// the blob named by LastUriCached.
         /// </summary>
-        private readonly RangeTree<int, CachedHttpRangeContent> cachedContentTree = new RangeTree<int, CachedHttpRangeContent>();
+        private readonly IntervalTree<int, CachedHttpRangeContent> cachedContentTree = new IntervalTree<int, CachedHttpRangeContent>();
 
         /// <summary>
         /// The URI for which cachedContentTree was holding entries.  When we change Uris
