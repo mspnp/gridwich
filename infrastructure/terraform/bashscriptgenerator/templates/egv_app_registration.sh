@@ -37,7 +37,7 @@ if [ ! -f "$FILE" ]; then
 fi
 
 # get configuration value
-print "Creating Managed Identity & Azure AD App Registration secret"
+print "Creating Managed Identity & Microsoft Entra ID App Registration secret"
 managedIdentityPrincipalId=$(az webapp identity assign -n ${eventgridViewerAppName} -g ${eventgridViewerResourceGroupName} -o json | jq -r '.principalId')
 signedInUserPrincipalName=$(az ad signed-in-user show -o json | jq -r '.userPrincipalName')
 

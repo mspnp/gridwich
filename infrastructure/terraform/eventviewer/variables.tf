@@ -10,7 +10,7 @@ variable "create_resource" {
   type = bool
 }
 
-variable "az_ad_domain" {
+variable "entraid_domain" {
   type = string
 }
 

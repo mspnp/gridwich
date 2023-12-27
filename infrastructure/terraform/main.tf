@@ -215,7 +215,7 @@ module "event_viewer" {
   create_resource      = true # always true for now, we won't want to create in prod
   event_viewer_appname = format("%s-%s-wa-viewer-%s", var.appname, var.domainprefix, var.environment)
   resource_group_name  = azurerm_resource_group.shared.name
-  az_ad_domain         = var.az_ad_domain
+  entraid_domain         = var.entraid_domain
   key_vault_name       = module.shared.shared_kv_name
   key_vault_id         = module.shared.shared_key_vault_id
 }

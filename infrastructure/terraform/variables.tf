@@ -86,8 +86,8 @@ variable "run_flag_subscriptions_disabled" {
   description = "Flag to signal how subscriptions should behave. When true, subscriptions won't be created."
 }
 
-variable "az_ad_domain" {
+variable "entraid_domain" {
   type        = string
-  description = "The Azure AD Primary Domain.  Used by the EventGrid Viewer Blazor application to enable Azure AD authentication."
+  description = "The Microsoft Entra ID Primary Domain.  Used by the EventGrid Viewer Blazor application to enable Microsoft Entra ID authentication."
   default     = "microsoft.onmicrosoft.com"
 }
