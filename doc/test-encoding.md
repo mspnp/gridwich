@@ -57,11 +57,11 @@ You can test your deployed application in Azure or locally, and in both cases, y
 
 ## How to test Gridwich projects locally
 
-Make sure your Gridwich project and pipelines are in place, and developer permissions are set up. For more information, see [Gridwich Azure DevOps setup](set-up-azure-devops).
+Make sure your Gridwich project and pipelines are in place, and developer permissions are set up. For more information, see [Gridwich Azure DevOps setup](set-up-azure-devops.md).
 
-To create a new cloud development environment, see [Create a new environment](create-delete-cloud-environment). Verify that you have the correct settings for the environment you're targeting.
+To create a new cloud development environment, see [Create a new environment](create-delete-cloud-environment.md). Verify that you have the correct settings for the environment you're targeting.
 
-To set up your local environment, see [Gridwich local development environment](set-up-local-environment).
+To set up your local environment, see [Gridwich local development environment](set-up-local-environment.md).
 
 1. Run the Function App. In the command window, you should see the Event Grid function listening locally.
 
@@ -183,7 +183,7 @@ Microsoft Learn modules:
 
 ## Related resources
 
-- [Gridwich content protection and DRM](gridwich-content-protection-drm)
-- [Gridwich Media Services setup and scaling](media-services-setup-scale)
+- [Gridwich content protection and DRM](gridwich-content-protection-drm.md)
+- [Gridwich Media Services setup and scaling](media-services-setup-scale.md)
 - [Gridwich operations for Azure Storage](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-storage-service)
-- [How to create a Gridwich environment](create-delete-cloud-environment)
+- [How to create a Gridwich environment](create-delete-cloud-environment.md)

@@ -1,4 +1,4 @@
-
+# Gridwich Media Services setup and scaling
 
 Gridwich uses the Azure Media Services Platform as a Service (PaaS) for media processing.
 
@@ -66,12 +66,12 @@ The Function App settings use a reference to the Azure Key Vault. The script cre
 
 ```terraform
     {
-      name        = "AmsAadClientId"
+      name        = "AmsEntraClientId"
       value       = format("@Microsoft.KeyVault(SecretUri=https://%s.vault.azure.net/secrets/%s/)", var.key_vault_name, "ams-sp-client-id")
       slotSetting = false
     },
     {
-      name        = "AmsAadClientSecret"
+      name        = "AmsEntraClientSecret"
       value       = format("@Microsoft.KeyVault(SecretUri=https://%s.vault.azure.net/secrets/%s/)", var.key_vault_name, "ams-sp-client-secret")
       slotSetting = false
     },
@@ -148,19 +148,19 @@ To set the Media Services *streaming endpoint* infrastructure scale, run:
 
 Product documentation:
 
-- [Gridwich cloud media system](gridwich-architecture.yml)
-- [About Azure Key Vault](/azure/key-vault/general/overview)
-- [Azure Media Services v3 overview](/azure/media-services/latest/media-services-overview)
-- [Introduction to Azure Functions](/azure/azure-functions/functions-overview)
+- [Gridwich cloud media system](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-architecture)
+- [About Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/overview)
+- [Azure Media Services v3 overview](https://learn.microsoft.com/azure/media-services/latest/media-services-overview)
+- [Introduction to Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview)
 
 Microsoft Learn modules:
 
-- [Configure and manage secrets in Azure Key Vault](/training/modules/configure-and-manage-azure-key-vault)
-- [Explore Azure Functions](/training/modules/explore-azure-functions)
+- [Configure and manage secrets in Azure Key Vault](https://learn.microsoft.com/training/modules/configure-and-manage-azure-key-vault)
+- [Explore Azure Functions](https://learn.microsoft.com/training/modules/explore-azure-functions)
 
 ## Related resources
 
-- [Gridwich content protection and DRM](gridwich-content-protection-drm.yml)
-- [Gridwich request-response messages](gridwich-message-formats.yml)
-- [Gridwich saga orchestration](gridwich-saga-orchestration.yml)
-- [Gridwich variable flow](variable-group-terraform-flow.yml)
+- [Gridwich content protection and DRM](gridwich-content-protection-drm.md)
+- [Gridwich request-response messages](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-message-formats)
+- [Gridwich saga orchestration](ghttps://learn.microsoft.com/azure/architecture/reference-architectures/media-services/ridwich-saga-orchestration)
+- [Gridwich variable flow](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/variable-group-terraform-flow)

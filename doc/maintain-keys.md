@@ -4,7 +4,7 @@ Gridwich uses two types of Azure Key Vault keys, storage keys and third-party ke
 
 ## Run admin scripts
 
-To give the Azure Functions App and the two Logic Apps permissions to take Azure Storage Account and Key Vault actions, run the pipeline-generated admin scripts. For instructions, see [Pipeline-generated admin scripts](run-admin-scripts.yml).
+To give the Azure Functions App and the two Logic Apps permissions to take Azure Storage Account and Key Vault actions, run the pipeline-generated admin scripts. For instructions, see [Pipeline-generated admin scripts](run-admin-scripts.md).
 
 ## Key Roller Logic App for storage keys
 
@@ -49,7 +49,7 @@ On success, the Logic App sends the following response back through Event Grid:
 }
 ```
 
-While the request message accepts an `operationContext` value, the response doesn't include it. See [Roll key message format](gridwich-message-formats.yml#requester-asks-gridwich-to-rotate-to-a-new-storage-key) for details about this message and response.
+While the request message accepts an `operationContext` value, the response doesn't include it. See [Roll key message format](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-message-formats#requester-asks-gridwich-to-rotate-to-a-new-storage-key) for details about this message and response.
 
 ## Secret Changed Handler Logic App for third-party keys
 
@@ -120,7 +120,7 @@ To add or change a key:
 
 Product documentation:
 
-- [Gridwich cloud media system](gridwich-architecture.yml)
+- [Gridwich cloud media system](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-architecture)
 - [About Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/overview)
 - [Introduction to Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview)
 - [What is Azure Blob storage?](https://learn.microsoft.com/azure/storage/blobs/storage-blobs-overview)
@@ -138,6 +138,6 @@ Microsoft Learn modules:
 
 ## Related resources
 
-- [Gridwich content protection and DRM](gridwich-content-protection-drm)
-- [Gridwich operations for Azure Storage](gridwich-storage-service)
-- [Test Media Services v3 encoding](test-encoding)
+- [Gridwich content protection and DRM](gridwich-content-protection-drm.md)
+- [Gridwich operations for Azure Storage](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-storage-service)
+- [Test Media Services v3 encoding](test-encoding.md)

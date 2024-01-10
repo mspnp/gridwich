@@ -137,7 +137,7 @@ Content key policy updates can occur only if the Azure Pipelines pipeline variab
 
 This variable specifies whether Azure Functions should automatically update the content key policy at startup, which lets you decide when to force the update after a code change. Force the update to occur after the Azure Function instance restarts and when the next publication process runs.
 
-Run the pipeline to update the Azure deployment with new settings, secrets, or code. See [Azure Pipelines variable group to Terraform variables flow](variable-group-terraform-flow.yml) for more information about the variable flow.
+Run the pipeline to update the Azure deployment with new settings, secrets, or code. See [Azure Pipelines variable group to Terraform variables flow](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/variable-group-terraform-flow) for more information about the variable flow.
 
 After the update, make sure to delete and purge any copies of source certificates and intermediate files.
 
@@ -145,7 +145,7 @@ After the update, make sure to delete and purge any copies of source certificate
 
 The following sections describe how to configure the DRM settings that Gridwich uses to create and update the content key policy. The variables to update are in the Gridwich Azure Pipelines **Library** > **Variable groups** > **gridwich-cicd-variables.global** variable group.
 
-For instructions on setting up the Azure DevOps project, pipelines, and variable groups, see [Gridwich Azure DevOps setup](set-up-azure-devops.yml).
+For instructions on setting up the Azure DevOps project, pipelines, and variable groups, see [Gridwich Azure DevOps setup](set-up-azure-devops.md).
 
 ### OpenID Connect Discovery Document endpoint
 
@@ -163,7 +163,7 @@ Gridwich processes and ingests the FairPlay package from Apple as settings. Hand
 
 #### FairPlay certificate
 
-1. Follow the [Azure Media Services documentation](/azure/media-services/latest/drm-fairplay-license-overview#requirements) to create a PFX certificate with a private key from the files that Apple delivers.
+1. Follow the [Azure Media Services documentation](https://learn.microsoft.com/azure/media-services/latest/drm-fairplay-license-overview#requirements) to create a PFX certificate with a private key from the files that Apple delivers.
    1. Install OpenSSL.
    1. Convert the *FairPlay.cer* file to a *.pem* file.
    1. Convert the *.pem* file to a *.pfx* file with a password-protected private key.
@@ -189,21 +189,21 @@ Select **Permit** to approve the pipeline by using the FairPlay Secure File you 
 
 Product documentation:
 
-- [Gridwich cloud media system](gridwich-architecture.yml)
-- [Azure Media Services v3 overview](/azure/media-services/latest/media-services-overview)
-- [Introduction to Azure Functions](/azure/azure-functions/functions-overview)
-- [What is Azure DevOps?](/azure/devops/user-guide/what-is-azure-devops)
-- [What is Azure Pipelines?](/azure/devops/pipelines/get-started/what-is-azure-pipelines)
+- [Gridwich cloud media system](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-architecture)
+- [Azure Media Services v3 overview](https://learn.microsoft.com/azure/media-services/latest/media-services-overview)
+- [Introduction to Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview)
+- [What is Azure DevOps?](https://learn.microsoft.com/azure/devops/user-guide/what-is-azure-devops)
+- [What is Azure Pipelines?](https://learn.microsoft.com/azure/devops/pipelines/get-started/what-is-azure-pipelines)
 
-For more information about Media Services content protection, see [Protect your content with Media Services dynamic encryption](/azure/media-services/latest/drm-content-protection-concept).
+For more information about Media Services content protection, see [Protect your content with Media Services dynamic encryption](https://learn.microsoft.com/azure/media-services/latest/drm-content-protection-concept).
 
 Microsoft Learn modules:
 
-- [Create a build pipeline with Azure Pipelines](/training/modules/create-a-build-pipeline)
-- [Explore Azure Functions](/training/modules/explore-azure-functions)
-- [Introduction to Azure DevOps](/training/modules/get-started-with-devops)
+- [Create a build pipeline with Azure Pipelines](https://learn.microsoft.com/training/modules/create-a-build-pipeline)
+- [Explore Azure Functions](https://learn.microsoft.com/training/modules/explore-azure-functions)
+- [Introduction to Azure DevOps](https://learn.microsoft.com/training/modules/get-started-with-devops)
 
 ## Related resources
 
-- [Gridwich request-response messages](gridwich-message-formats.yml)
-- [Gridwich variable flow](variable-group-terraform-flow.yml)
+- [Gridwich request-response messages](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-message-formats)
+- [Gridwich variable flow](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/variable-group-terraform-flow)

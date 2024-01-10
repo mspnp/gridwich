@@ -4,7 +4,7 @@ An environment is a collection of resources that can be targeted by deployment j
 
 This article describes how to use the `ci_cd_ext_release` or `tf_destroy_env` pipeline to create or delete a new cloud development or testing environment. The `ci_cd_ext_release` pipeline uses the **gridwich-cicd-variables.single_env** variable group.
 
-To create the Azure DevOps project, pipelines, and variable groups, see [Gridwich Azure DevOps setup](set-up-azure-devops.yml).
+To create the Azure DevOps project, pipelines, and variable groups, see [Gridwich Azure DevOps setup](set-up-azure-devops.md).
 
 The following procedures use placeholder project name `gridwich-clone`, app name `cl1grw`, and environment name `f233`. Replace these placeholders with your own values as appropriate.
 
@@ -22,7 +22,7 @@ The following procedures use placeholder project name `gridwich-clone`, app name
 
    ![Screenshot of the Variables dialog with the environment variable selected.](media/select-variables.png)
 
-1. In the **Update variable** dialog, enter a value with a four-character maximum length, and then select **Update**. The four-character limitation ensures that your full Gridwich Storage Account name won't exceed the [24-character maximum](/azure/storage/common/storage-account-overview#naming-storage-accounts) for Azure Storage Accounts.
+1. In the **Update variable** dialog, enter a value with a four-character maximum length, and then select **Update**. The four-character limitation ensures that your full Gridwich Storage Account name won't exceed the [24-character maximum](https://learn.microsoft.com/azure/storage/common/storage-account-overview#naming-storage-accounts) for Azure Storage Accounts.
 
    ![Screenshot of updating the environment variable.](media/update-variable.png)
 
@@ -34,13 +34,13 @@ The following procedures use placeholder project name `gridwich-clone`, app name
 
    ![Screenshot of the pipeline dialog with Run highlighted.](media/run-pipeline.png)
 
-The pipeline steps deploy the application into Azure, but they don't set up any of the identity principals or their access rights to Azure resources. An admin must follow the instructions in [Pipeline-generated admin scripts](run-admin-scripts.yml) to complete the setup.
+The pipeline steps deploy the application into Azure, but they don't set up any of the identity principals or their access rights to Azure resources. An admin must follow the instructions in [Pipeline-generated admin scripts](run-admin-scripts.md) to complete the setup.
 
 To verify that your environment is up and running, in the Azure portal, confirm that resource groups exist with your environment name.
 
 You should now be able to reach the Event Grid Viewer endpoint and see the web app. Use the endpoint without the `api/eventgrid` URI segment in a web browser to open a URL like: `https://cl1grw-grw-wa-viewer-f233.azurewebsites.net`.
 
-Follow [Test Azure Media Services v3 encoding](test-encoding.yml) to fully test your environment.
+Follow [Test Azure Media Services v3 encoding](test-encoding.md) to fully test your environment.
 
 ## Azure resources
 
@@ -77,7 +77,7 @@ Microsoft Learn modules:
 
 ## Related resources
 
-- [Gridwich keys and secrets management](maintain-keys)
+- [Gridwich keys and secrets management](maintain-keys.md)
 - [Gridwich operations for Azure Storage](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-storage-service)
 - [Gridwich project naming and namespaces](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-project-names)
-- [Test Media Services v3 encoding](test-encoding)
+- [Test Media Services v3 encoding](test-encoding.md)

@@ -105,12 +105,12 @@ Or, you can use the following Azure CLI commands:
    az ad signed-in-user show
    ```
 
-1. In the output, find and copy `userPrincipalName`, which may look like: `<your username_yourdomain>.com#EXT#@<an Azure Active Directory>.onmicrosoft.com`.
+1. In the output, find and copy `userPrincipalName`, which may look like: `<your username_yourdomain>.com#EXT#@<a Microsoft Entra ID>.onmicrosoft.com`.
 
 1. Run the following command, using the `userPrincipalName` value you copied:
 
    ```azurecli
-   az keyvault set-policy --name gridwich-kv-sb --secret-permissions list get --upn "<your username_yourdomain>.com#EXT#@<an Azure Active Directory>.onmicrosoft.com"
+   az keyvault set-policy --name gridwich-kv-sb --secret-permissions list get --upn "<your username_yourdomain>.com#EXT#@<a Microsoft Entra ID>.onmicrosoft.com"
    ```
 
 To replace the `@Microsoft.KeyVault` secrets in *local.settings.sb.json* with actual values, run:
@@ -142,5 +142,5 @@ Manually add the following two values to *local.settings.json*:
 
 ## Next steps
 
-- [Create or delete a Gridwich cloud sandbox or test environment](create-delete-cloud-environment)
-- [Test a deployed Gridwich app locally](test-encoding#how-to-test-gridwich-projects-locally)
+- [Create or delete a Gridwich cloud sandbox or test environment](create-delete-cloud-environment.md)
+- [Test a deployed Gridwich app locally](test-encoding.md#how-to-test-gridwich-projects-locally)
