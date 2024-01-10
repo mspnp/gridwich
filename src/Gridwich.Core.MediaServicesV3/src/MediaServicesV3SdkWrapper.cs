@@ -89,8 +89,8 @@ namespace Gridwich.Core.MediaServicesV3
         /// <inheritdoc/>
         public async Task ConnectAsync()
         {
-            var armArmAudience = "https://management.core.windows.net";
-            var scopes = new[] { armArmAudience + "/.default" };
+            var armEntraAudience = "https://management.core.windows.net";
+            var scopes = new[] { armEntraAudience + "/.default" };
             string token;
             if (_amsEntraClientId != null)
             {
