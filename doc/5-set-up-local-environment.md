@@ -5,9 +5,9 @@ This article describes how to set up a local Gridwich development environment in
 ## Prerequisites
 
 - Up-to-date [Visual Studio Code](https://code.visualstudio.com/) or [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/).
-- [Azure CLI](/cli/azure/install-azure-cli)
-- [.NET 6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
-- [PowerShell](/powershell/scripting/overview)
+- [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli)
+- [.NET 6.0](https://dotnet.microsoft.com/download/dotnet/6.0)
+- [PowerShell](https://learn.microsoft.com/powershell/scripting/overview)
 - [Git](https://git-scm.com/downloads) installed, and your organization's Azure DevOps Gridwich repository cloned to your local machine. If you're using Windows [GitHub Desktop](https://desktop.github.com/), avoid cloning into user directories.
 
 Optional:
