@@ -27,9 +27,9 @@ namespace Gridwich.Core.MediaServicesV3
         private readonly ISettingsProvider _settingsProvider;
         private readonly string _amsResourceGroup;
         private readonly string _amsAccountName;
-        private readonly string _AmsEntraClientId;
-        private readonly string _AmsEntraClientSecret;
-        private readonly string _AmsEntraTenantId;
+        private readonly string _amsEntraClientId;
+        private readonly string _amsEntraClientSecret;
+        private readonly string _amsEntraTenantId;
         private readonly string _amsArmEndpoint;
         private readonly string _amsSubscriptionId;
         private AzureMediaServicesClient _client;
@@ -69,9 +69,9 @@ namespace Gridwich.Core.MediaServicesV3
             _settingsProvider = settingsProvider ?? throw new ArgumentNullException(nameof(settingsProvider));
             _amsResourceGroup = settingsProvider.GetAppSettingsValue("AmsResourceGroup");
             _amsAccountName = settingsProvider.GetAppSettingsValue("AmsAccountName");
-            _AmsEntraClientId = _settingsProvider.GetAppSettingsValue("AmsEntraClientId");
-            _AmsEntraClientSecret = _settingsProvider.GetAppSettingsValue("AmsEntraClientSecret");
-            _AmsEntraTenantId = _settingsProvider.GetAppSettingsValue("AmsEntraTenantId");
+            _amsEntraClientId = _settingsProvider.GetAppSettingsValue("AmsEntraClientId");
+            _amsEntraClientSecret = _settingsProvider.GetAppSettingsValue("AmsEntraClientSecret");
+            _amsEntraTenantId = _settingsProvider.GetAppSettingsValue("AmsEntraTenantId");
             _amsArmEndpoint = _settingsProvider.GetAppSettingsValue("AmsArmEndpoint");
             _amsSubscriptionId = _settingsProvider.GetAppSettingsValue("AmsSubscriptionId");
         }
@@ -89,15 +89,15 @@ namespace Gridwich.Core.MediaServicesV3
         /// <inheritdoc/>
         public async Task ConnectAsync()
         {
-            var armArmAudience = "https://management.core.windows.net";
-            var scopes = new[] { armArmAudience + "/.default" };
+            var armEntraAudience = "https://management.core.windows.net";
+            var scopes = new[] { armEntraAudience + "/.default" };
             string token;
-            if (_AmsEntraClientId != null)
+            if (_amsEntraClientId != null)
             {
                 // Service Principal
-                var app = ConfidentialClientApplicationBuilder.Create(_AmsEntraClientId)
-                .WithClientSecret(_AmsEntraClientSecret)
-                .WithAuthority(AzureCloudInstance.AzurePublic, _AmsEntraTenantId)
+                var app = ConfidentialClientApplicationBuilder.Create(_amsEntraClientId)
+                .WithClientSecret(_amsEntraClientSecret)
+                .WithAuthority(AzureCloudInstance.AzurePublic, _amsEntraTenantId)
                 .Build();
 
                 var authResult = await app.AcquireTokenForClient(scopes)
