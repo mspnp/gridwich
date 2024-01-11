@@ -337,14 +337,6 @@ Local debugging uses user impersonation, and developers sign in with their brows
    - **Reader and Data Access**
    - **Storage Blob Data Contributor**
 
-## Next steps
+## Next step
 
 - Configure [content protection policies and DRM settings](2-gridwich-content-protection-drm.md).
-
-
-- Run the [admin scripts](run-admin-scripts.md).
-- Manage [Key Vault keys](maintain-keys.md).
-- Set up a [local development environment](set-up-local-environment.md).
-- Create or delete a [cloud sandbox or test environment](create-delete-cloud-environment.md).
-- Follow [Test Azure Media Services v3 encoding](test-encoding.md) to fully test the setup.
-- Scale [Media Services resources](media-services-setup-scale.md#scale-media-services-resources).

@@ -131,5 +131,6 @@ To run the script:
 
 - Manage [Key Vault keys](4-maintain-keys.md).
 
-## Resource
+## Gridwich resource
+
 - [Variable group to Terraform flow](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/variable-group-terraform-flow)

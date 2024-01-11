@@ -140,7 +140,7 @@ Microsoft Learn modules:
 - [Explore Azure Storage services](https://learn.microsoft.com/training/modules/azure-storage-fundamentals)
 - [Introduction to Azure Logic Apps](https://learn.microsoft.com/training/modules/intro-to-logic-apps)
 
-## Related resources
+## Gridwich resources
 
 - [Gridwich content protection and DRM](gridwich-content-protection-drm.md)
 - [Gridwich operations for Azure Storage](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-storage-service)

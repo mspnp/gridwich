@@ -79,7 +79,7 @@ Microsoft Learn modules:
 - [Explore Azure Storage services](https://learn.microsoft.com/training/modules/azure-storage-fundamentals)
 - [Introduction to Azure DevOps](https://learn.microsoft.com/training/modules/get-started-with-devops)
 
-## Related resources
+## Gridwich resources
 
 - [Gridwich keys and secrets management](maintain-keys.md)
 - [Gridwich operations for Azure Storage](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-storage-service)

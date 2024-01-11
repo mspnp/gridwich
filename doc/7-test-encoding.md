@@ -185,7 +185,7 @@ Microsoft Learn modules:
 - [Explore Azure Functions](https://learn.microsoft.com/training/modules/explore-azure-functions)
 - [Explore Azure Storage services](https://learn.microsoft.com/training/modules/azure-storage-fundamentals)
 
-## Related resources
+## Gridwich resources
 
 - [Gridwich content protection and DRM](gridwich-content-protection-drm.md)
 - [Gridwich Media Services setup and scaling](media-services-setup-scale.md)

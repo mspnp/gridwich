@@ -158,7 +158,7 @@ Microsoft Learn modules:
 - [Configure and manage secrets in Azure Key Vault](https://learn.microsoft.com/training/modules/configure-and-manage-azure-key-vault)
 - [Explore Azure Functions](https://learn.microsoft.com/training/modules/explore-azure-functions)
 
-## Related resources
+## Gridwich resources
 
 - [Gridwich content protection and DRM](gridwich-content-protection-drm.md)
 - [Gridwich request-response messages](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-message-formats)

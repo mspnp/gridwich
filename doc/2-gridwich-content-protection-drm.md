@@ -207,7 +207,7 @@ Microsoft Learn modules:
 - [Explore Azure Functions](https://learn.microsoft.com/training/modules/explore-azure-functions)
 - [Introduction to Azure DevOps](https://learn.microsoft.com/training/modules/get-started-with-devops)
 
-## Related resources
+## Gridwich resources
 
 - [Gridwich request-response messages](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-message-formats)
 - [Gridwich variable flow](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/variable-group-terraform-flow)
