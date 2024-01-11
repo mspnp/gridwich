@@ -127,7 +127,9 @@ To run the script:
    chmod +x logic_app_sp.sh && ./logic_app_sp.sh
    ```
 
-## Next steps
+## Next step
 
-- [Maintain and rotate Key Vault keys](maintain-keys.md)
+- Manage [Key Vault keys](4-maintain-keys.md).
+
+## Resource
 - [Variable group to Terraform flow](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/variable-group-terraform-flow)

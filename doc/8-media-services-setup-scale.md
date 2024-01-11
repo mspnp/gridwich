@@ -144,7 +144,7 @@ To set the Media Services *streaming endpoint* infrastructure scale, run:
     addSpnToEnvironment: true
 ```
 
-## Next steps
+## Resources
 
 Product documentation:
 

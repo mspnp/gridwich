@@ -116,7 +116,11 @@ To add or change a key:
 
    ![Screenshot of the environment Library.](media/environment-library.png)
 
-## Next steps
+## Next step
+
+- Set up a [local development environment](5-set-up-local-environment.md).
+
+## Resources
 
 Product documentation:
 

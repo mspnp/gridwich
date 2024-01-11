@@ -165,7 +165,11 @@ To set up your local environment, see [Gridwich local development environment](s
 
    ![Screenshot showing the Storage Account Output Container.](media/output-container.png)
 
-## Next steps
+## Next step
+
+- Scale [Media Services resources](8-media-services-setup-scale.md#scale-media-services-resources).
+
+## Resources
 
 Product documentation:
 

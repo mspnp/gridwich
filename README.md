@@ -33,14 +33,14 @@ A framework for stateless workloads (batteries included for video on-demand oper
 
 ## Procedures
 
-* [Set up Azure Project and Azure Pipelines](doc/set-up-azure-devops.md).
-* [Run pipeline-generated admin scripts](doc/run-admin-scripts.md).
-* [Maintain and rotate keys and secrets](doc/maintain-keys.md).
-* [Set up a local development environment](doc/set-up-local-environment.md).
-* [Create or delete a cloud environment](doc/create-delete-cloud-environment.md).
-* [Set up content protection and DRM](doc/gridwich-content-protection-drm.md).
-* [Set up and scale Azure Media Services](doc/media-services-setup-scale.md).
-* [Test Azure Media Services Encoding](doc/test-encoding.md).
+* [Set up Azure Project and Azure Pipelines](doc/1-set-up-azure-devops.md).
+* [Set up content protection and DRM](doc/2-gridwich-content-protection-drm.md).
+* [Run pipeline-generated admin scripts](doc/3-run-admin-scripts.md).
+* [Maintain and rotate keys and secrets](doc/4-maintain-keys.md).
+* [Set up a local development environment](doc/5-set-up-local-environment.md).
+* [Create or delete a cloud environment](doc/6-create-delete-cloud-environment.md).
+* [Test Azure Media Services Encoding](doc/7-test-encoding.md).
+* [Set up and scale Azure Media Services](doc/8-media-services-setup-scale.md).
 
 ## Resources
 

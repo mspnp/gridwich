@@ -339,7 +339,9 @@ Local debugging uses user impersonation, and developers sign in with their brows
 
 ## Next steps
 
-- Configure [content protection policies and DRM settings](gridwich-content-protection-drm.md).
+- Configure [content protection policies and DRM settings](2-gridwich-content-protection-drm.md).
+
+
 - Run the [admin scripts](run-admin-scripts.md).
 - Manage [Key Vault keys](maintain-keys.md).
 - Set up a [local development environment](set-up-local-environment.md).

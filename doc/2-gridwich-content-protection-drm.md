@@ -185,7 +185,11 @@ Select **Permit** to approve the pipeline by using the FairPlay Secure File you 
 
 ![Screenshot showing the Permit button to grant approval.](media/select-permit.png)
 
-## Next steps
+## Next step
+
+- Run the [admin scripts](3-run-admin-scripts.md).
+
+## Resources
 
 Product documentation:
 

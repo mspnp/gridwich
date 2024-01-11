@@ -60,7 +60,11 @@ To delete an environment:
 
 1. In the Azure portal, go to the Azure Storage Account that stores your **.tfstate**, and delete the environment file, for example **f233.tfstate**. The Gridwich Storage Account is **gridwichtfstate** in the **gridwich-terraform-rg** resource group.
 
-## Next steps
+## Next step
+
+- Follow [Test Azure Media Services v3 encoding](7-test-encoding.md) to fully test the setup.
+
+## Resources
 
 Product documentation:
 
