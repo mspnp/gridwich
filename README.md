@@ -11,10 +11,10 @@ A framework for stateless workloads (batteries included for video on-demand oper
 
 ## Getting started
 
-* [Set up the Azure DevOps Project and Azure Pipelines](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/set-up-azure-devops).
-* [Set up content protection policies and DRM](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-content-protection-drm).
-* To add functionality to Gridwich, [set up a local dev environment](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/set-up-local-environment).
-* To smoke-test Gridwich, [test Azure Media Services encoding](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/test-encoding).
+* [Set up the Azure DevOps Project and Azure Pipelines](doc/set-up-azure-devops.md).
+* [Set up content protection policies and DRM](doc/gridwich-content-protection-drm.md).
+* To add functionality to Gridwich, [set up a local dev environment](doc/set-up-local-environment.md).
+* To smoke-test Gridwich, [test Azure Media Services encoding](doc/test-encoding.md).
 
 ## Concepts
 
@@ -33,14 +33,14 @@ A framework for stateless workloads (batteries included for video on-demand oper
 
 ## Procedures
 
-* [Set up Azure Project and Azure Pipelines](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/set-up-azure-devops).
-* [Run pipeline-generated admin scripts](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/run-admin-scripts).
-* [Maintain and rotate keys and secrets](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/maintain-keys).
-* [Set up a local development environment](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/set-up-local-environment).
-* [Create or delete a cloud environment](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/create-delete-cloud-environment).
-* [Set up content protection and DRM](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-content-protection-drm).
-* [Set up and scale Azure Media Services](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/media-services-setup-scale).
-* [Test Azure Media Services Encoding](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/test-encoding).
+1. [Set up Azure Project and Azure Pipelines](doc/1-set-up-azure-devops.md).
+1. [Set up content protection and DRM](doc/2-gridwich-content-protection-drm.md).
+1. [Run pipeline-generated admin scripts](doc/3-run-admin-scripts.md).
+1. [Maintain and rotate keys and secrets](doc/4-maintain-keys.md).
+1. [Set up a local development environment](doc/5-set-up-local-environment.md).
+1. [Create or delete a cloud environment](doc/6-create-delete-cloud-environment.md).
+1. [Test Azure Media Services Encoding](doc/7-test-encoding.md).
+1. [Set up and scale Azure Media Services](doc/8-media-services-setup-scale.md).
 
 ## Resources
 
