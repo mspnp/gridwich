@@ -32,10 +32,10 @@ namespace Gridwich.Core.Constants
             LogEventIdSubsystem.MediaServicesV3Encoder, LogEventIdLevel.Error, 2,
             "Error connecting to Media Services V3.");
 
-        /// <summary>Error: Error connecting to Media Services V3 with Active Directory (ADAL)</summary>
+        /// <summary>Error: Error connecting to Media Services V3 with Active Directory Authentication Library (ADAL)</summary>
         public static readonly EventId MediaServicesV3ConnectionAdalError = EventHelpers.CreateEventId(
             LogEventIdSubsystem.MediaServicesV3Encoder, LogEventIdLevel.Error, 3,
-            "Error connecting to Media Services V3 with Active Directory (ADAL).");
+            "Error connecting to Media Services V3 with Active Directory Authentication Library (ADAL).");
 
         /// <summary>Error: Error when updating/creating Media Services V3 input asset</summary>
         public static readonly EventId MediaServicesV3InputAssetError = EventHelpers.CreateEventId(

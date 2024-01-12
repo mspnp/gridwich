@@ -205,8 +205,7 @@ resource "azurerm_monitor_diagnostic_setting" "example" {
 
     retention_policy {
       enabled = true
-      days    = 30
-    }
+     }
   }
 
   log {
@@ -215,7 +214,6 @@ resource "azurerm_monitor_diagnostic_setting" "example" {
 
     retention_policy {
       enabled = true
-      days    = 30
     }
   }
 
@@ -225,7 +223,6 @@ resource "azurerm_monitor_diagnostic_setting" "example" {
 
     retention_policy {
       enabled = true
-      days    = 30
     }
   }
 

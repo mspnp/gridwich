@@ -26,7 +26,7 @@ resource "azurerm_resource_group_template_deployment" "event_grid_deploy" {
       value = var.key_vault_name
     },
     "azAdDomain" = {
-      value = var.az_ad_domain
+      value = var.entraid_domain
     }
   })
 

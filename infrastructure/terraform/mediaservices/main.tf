@@ -56,7 +56,7 @@ locals {
       slotSetting = false
     },
     {
-      name        = "AmsAadTenantId"
+      name        = "AmsEntraTenantId"
       value       = var.tenant_id
       slotSetting = false
     },
