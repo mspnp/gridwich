@@ -11,10 +11,7 @@ A framework for stateless workloads (batteries included for video on-demand oper
 
 ## Getting started
 
-* [Set up the Azure DevOps Project and Azure Pipelines](doc/set-up-azure-devops.md).
-* [Set up content protection policies and DRM](doc/gridwich-content-protection-drm.md).
-* To add functionality to Gridwich, [set up a local dev environment](doc/set-up-local-environment.md).
-* To smoke-test Gridwich, [test Azure Media Services encoding](doc/test-encoding.md).
+* [Set up the Azure DevOps Project and Azure Pipelines](doc/1-set-up-azure-devops.md).
 
 ## Concepts
 
