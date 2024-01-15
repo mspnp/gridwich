@@ -25,7 +25,3 @@ output "shared_kv_name" {
 output "event_viewer_base" {
   value = module.event_viewer.event_viewer_base_endpoint
 }
-
-output "azurerm_media_services_account_resource_id" {
-  value = module.mediaservices.azurerm_media_services_account_resource_id
-}

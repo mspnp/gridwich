@@ -10,7 +10,7 @@
     <PackageReference Include="Microsoft.Azure.Management.Fluent" Version="1.38.1" />
     <PackageReference Include="Microsoft.Azure.Management.ResourceManager.Fluent" Version="1.38.1" />
     <PackageReference Include="Microsoft.Azure.Services.AppAuthentication" Version="1.6.2" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0.0">
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

@@ -135,31 +135,6 @@ namespace Gridwich.Core.Constants
         public const string ResponseEncodeCloudportSuccess = ResponseCommonPrefix + "encode.cloudport.success";
 
         /// <summary>
-        /// request.encode.mediaservicesv3.create
-        /// </summary>
-        public const string RequestEncodeMediaServicesV3Create = RequestCommonPrefix + "encode.mediaservicesv3.create";
-
-        /// <summary>
-        /// response.encode.mediaservicesv3.dispatched
-        /// </summary>
-        public const string ResponseEncodeMediaServicesV3Dispatched = ResponseCommonPrefix + "encode.mediaservicesv3.dispatched";
-
-        /// <summary>
-        /// response.encode.mediaservicesv3.scheduled
-        /// </summary>
-        public const string ResponseEncodeMediaServicesV3Scheduled = ResponseCommonPrefix + "encode.mediaservicesv3.scheduled";
-
-        /// <summary>
-        /// response.encode.mediaservicesv3.processing
-        /// </summary>
-        public const string ResponseEncodeMediaServicesV3Processing = ResponseCommonPrefix + "encode.mediaservicesv3.processing";
-
-        /// <summary>
-        /// response.encode.mediaservicesv3.success
-        /// </summary>
-        public const string ResponseEncodeMediaServicesV3Success = ResponseCommonPrefix + "encode.mediaservicesv3.success";
-
-        /// <summary>
         /// request.blob.tier.change
         /// </summary>
         public const string RequestBlobTierChange = RequestCommonPrefix + "blob.tier.change";
@@ -198,27 +173,6 @@ namespace Gridwich.Core.Constants
         /// response.blob.container.access.change.success
         /// </summary>
         public const string ResponseBlobContainerAccessChangeSuccess = ResponseCommonPrefix + "blob.container.access.change.success";
-
-
-        /// <summary>
-        /// request.mediaservices.locator.create
-        /// </summary>
-        public const string RequestMediaservicesLocatorCreate = RequestCommonPrefix + "mediaservices.locator.create";
-
-        /// <summary>
-        /// response.mediaservices.locator.create.success
-        /// </summary>
-        public const string ResponseMediaservicesLocatorCreateSuccess = ResponseCommonPrefix + "mediaservices.locator.create.success";
-
-        /// <summary>
-        /// request.mediaservices.locator.delete
-        /// </summary>
-        public const string RequestMediaservicesLocatorDelete = RequestCommonPrefix + "mediaservices.locator.delete";
-
-        /// <summary>
-        /// response.mediaservices.locator.delete.success
-        /// </summary>
-        public const string ResponseMediaservicesLocatorDeleteSuccess = ResponseCommonPrefix + "mediaservices.locator.delete.success";
 
         /// <summary>
         /// request.switchkey.storage

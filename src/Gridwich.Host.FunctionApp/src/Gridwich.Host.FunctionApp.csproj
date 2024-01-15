@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0.0">
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -28,9 +28,7 @@
     <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode.TelestreamCloud\src\Gridwich.SagaParticipants.Encode.TelestreamCloud.csproj" />
     <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode.CloudPort\src\Gridwich.SagaParticipants.Encode.CloudPort.csproj" />
     <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode.Flip\src\Gridwich.SagaParticipants.Encode.Flip.csproj" />
-    <ProjectReference Include="..\..\Gridwich.SagaParticipants.Encode.MediaServicesV3\src\Gridwich.SagaParticipants.Encode.MediaServicesV3.csproj" />
     <ProjectReference Include="..\..\Gridwich.SagaParticipants.Analysis.MediaInfo\src\Gridwich.SagaParticipants.Analysis.MediaInfo.csproj" />
-    <ProjectReference Include="..\..\Gridwich.SagaParticipants.Publication.MediaServicesV3\src\Gridwich.SagaParticipants.Publication.MediaServicesV3.csproj" />
   </ItemGroup>
 
   <ItemGroup>

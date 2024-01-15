@@ -136,50 +136,11 @@ resource "azurerm_key_vault_secret" "telestream_cloud_api_key_secret" {
   }
 }
 
-resource "azurerm_key_vault_secret" "ams_fairplay_pfx_password" {
-  name         = "ams-fairplay-pfx-password"
-  value        = var.amsDrm_FairPlay_Pfx_Password
-  key_vault_id = azurerm_key_vault.shared_key_vault.id
-
-  lifecycle {
-    ignore_changes = [
-      value,
-      tags
-    ]
-  }
-}
-
-resource "azurerm_key_vault_secret" "ams_fairplay_ask_hex" {
-  name         = "ams-fairplay-ask-hex"
-  value        = var.amsDrm_FairPlay_Ask_Hex
-  key_vault_id = azurerm_key_vault.shared_key_vault.id
-
-  lifecycle {
-    ignore_changes = [
-      value,
-      tags
-    ]
-  }
-}
-
-resource "azurerm_key_vault_secret" "ams_fair_play_certificate_b64" {
-  name         = "ams-fairPlay-certificate-b64"
-  value        = "KEY_VAULT_SECRET_NOT_SET"
-  key_vault_id = azurerm_key_vault.shared_key_vault.id
-
-  lifecycle {
-    ignore_changes = [
-      value,
-      tags
-    ]
-  }
-}
-
 # These are the values watched by the Secret Changed Handler; keep these up to date with what is put in KeyVault above
 # and elsewhere or if one of the values for those secrets changes, the Function App using them won't be updated to
 # utilize the new value
 output "secrets_in_shared_keyvault" {
-  value = ["telestream-cloud-api-key", "grw-topic-end-point", "grw-topic-key", "appinsights-connectionstring", "ams-fairplay-pfx-password", "ams-fairplay-ask-hex", "ams-fairPlay-certificate-b64"]
+  value = ["telestream-cloud-api-key", "grw-topic-end-point", "grw-topic-key", "appinsights-connectionstring"]
 }
 
 ###########################################################

@@ -16,29 +16,6 @@ steps:
   displayName: Export variables outputs
   workingDirectory: $(Pipeline.Workspace)/variables_${{ parameters.environment }}_top
 
-- bash: |
-    echo '$AZURERM_MEDIA_SERVICES_ACCOUNT_RESOURCE_ID: ' $AZURERM_MEDIA_SERVICES_ACCOUNT_RESOURCE_ID
-  displayName: Validate the needed variables are available.
-
-- task: DownloadSecureFile@1
-  name: FairPlayCertificate
-  displayName: 'Download FairPlay certificate'
-  inputs:
-    secureFile: 'FairPlay-out-base64.txt'
-
-- task: AzureCLI@2
-  displayName: 'Copy FairPlay certificate to key vault'
-  inputs:
-    azureSubscription: ${{parameters.serviceConnection}}
-    scriptType: bash
-    scriptLocation: inlineScript
-    inlineScript: |
-      set -eu
-      echo key vault : $SHARED_KV_NAME
-      echo "Copying FairPlay certificate to key vault as secret"
-      az keyvault secret set --vault-name $SHARED_KV_NAME -n ams-fairPlay-certificate-b64 -f $(FairPlayCertificate.secureFilePath) --output none
-    addSpnToEnvironment: true
-
 - task: AzureCLI@2
   displayName: 'Turn on Storage Analytics for all Storage accounts'
   inputs:
@@ -57,62 +34,4 @@ steps:
           echo "Ignored Storage Analytics for $acct"
         fi
       }
-    addSpnToEnvironment: true
-
-- task: AzureCLI@2
-  displayName: 'Set the scale of Azure Media Services streaming endpoint infrastructure.'
-  inputs:
-    azureSubscription: '${{parameters.serviceConnection}}'
-    scriptType: bash
-    scriptLocation: inlineScript
-    inlineScript: |
-      set -eu
-      echo Set the scale of Azure Media Services streaming endpoint infrastructure for $AZURERM_MEDIA_SERVICES_ACCOUNT_RESOURCE_ID
-      # Configurable values:
-      amsStreamingEndpointScaleUnitsDesired=0
-      #
-      # Setup
-      amsStreamingEndpointName=${{ parameters.applicationName }}amsse01${{ parameters.environment }}
-      amsStreamingEndpointName=$(echo $amsStreamingEndpointName | tr '[:upper:]' '[:lower:]')
-      amsaccount=$(az ams account show --ids $AZURERM_MEDIA_SERVICES_ACCOUNT_RESOURCE_ID)
-      amsAccountName=$(echo $amsaccount | jq -r '.name')
-      amsAccountResourceGroupName=$(echo $amsaccount | jq -r '.resourceGroup')
-      amsStreamingEndpointListJson=$(az ams streaming-endpoint list --resource-group $amsAccountResourceGroupName --account-name $amsAccountName)
-      amsStreamingEndpointJson=$(echo $amsStreamingEndpointListJson | jq --arg amssename $amsStreamingEndpointName -r '.[] | select(.name == $amssename)')
-      amsDefaultJson=$(echo $amsStreamingEndpointListJson | jq -r '.[] | select(.name == "default")')
-      #
-      # If there is an endpoint, check and update the scale and run-state, otherwise create it.
-      if [[ -n "$amsStreamingEndpointJson" ]]
-      then
-        scaleUnitsActual=$(echo $amsStreamingEndpointJson | jq -r '.scaleUnits')
-        if [[ $scaleUnitsActual -ne $amsStreamingEndpointScaleUnitsDesired ]]
-        then
-          echo Azure Media Services streaming endpoint $amsStreamingEndpointName will be scaled
-          echo az ams streaming-endpoint scale --resource-group $amsAccountResourceGroupName --account-name $amsAccountName --name $amsStreamingEndpointName --scale-units $amsStreamingEndpointScaleUnitsDesired --no-wait
-          az ams streaming-endpoint scale --resource-group $amsAccountResourceGroupName --account-name $amsAccountName --name $amsStreamingEndpointName --scale-units $amsStreamingEndpointScaleUnitsDesired --no-wait
-        fi
-        resourceStateActual=$(echo $amsStreamingEndpointJson | jq -r '.resourceState')
-        if [[ $resourceStateActual == "Stopped"  ]]
-        then 
-          echo Starting the $amsStreamingEndpointName endpoint
-          echo az ams streaming-endpoint start --resource-group $amsAccountResourceGroupName --account-name $amsAccountName --name $amsStreamingEndpointName --no-wait
-          az ams streaming-endpoint start --resource-group $amsAccountResourceGroupName --account-name $amsAccountName --name $amsStreamingEndpointName --no-wait
-        fi
-      else
-        echo Azure Media Services streaming endpoint $amsStreamingEndpointName will be created
-        echo az ams streaming-endpoint create --resource-group $amsAccountResourceGroupName --account-name $amsAccountName --name $amsStreamingEndpointName --auto-start --scale-units $amsStreamingEndpointScaleUnitsDesired --no-wait
-        az ams streaming-endpoint create --resource-group $amsAccountResourceGroupName --account-name $amsAccountName --name $amsStreamingEndpointName --auto-start --scale-units $amsStreamingEndpointScaleUnitsDesired --no-wait
-      fi
-      #
-      # If there is a default endpoint, stop it.
-      if [[ -n "$amsDefaultJson" ]]
-      then
-        resourceStateActual=$(echo $amsDefaultJson | jq -r '.resourceState')
-        if [[ $resourceStateActual != "Stopped"  ]]
-        then 
-          echo Stopping the default endpoint
-          echo az ams streaming-endpoint stop --resource-group $amsAccountResourceGroupName --account-name $amsAccountName --name default --no-wait
-          az ams streaming-endpoint stop --resource-group $amsAccountResourceGroupName --account-name $amsAccountName --name default --no-wait
-        fi
-      fi
     addSpnToEnvironment: true

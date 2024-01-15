@@ -128,23 +128,11 @@ Add Azure Pipelines *variable groups* to store secrets and values to pass into t
 1. Under **Variables**, select **Add**, and add the following **Name** and **Value** pairs.
 
    ```text
-   amsDrmEnableContentKeyPolicyUpdate = false
-   amsDrmFairPlayAskHex = 8D49FD8E59E19F69A52F0E9E0D5742F8
-   amsDrmFairPlayPfxPassword = Password!2020
-   amsDrmOpenIdConnectDiscoveryDocumentEndpoint = <https://qa.api.something.com/asset/video/.well-known/OpenIdConfiguration>
    applicationName = cl1grw
    deploymentEnvironmentType = DEV
    inboxCORS = <localhost:9002;extsysqa.something.com;extsysuat.something.com;extsys.something.com>
    telestreamCloudApiKey = tcs_000000000000000000000000
    ```
-
-   - The **amsDrmEnableContentKeyPolicyUpdate** variable controls whether to push content policy updates. The variable must be set to `true` for updates to occur. For more information, see [Content key policy update](gridwich-content-protection-drm.yml#content-key-policy-update).
-
-   - For Apple FairPlay **amsDrmFairPlayAskHex** and **amsDrmFairPlayPfxPassword**, use the values from the *FairPlay-out-base64.txt* certificate file that you create and upload. For instructions, see [Apple FairPlay settings](gridwich-content-protection-drm.yml#apple-fairplay-settings).
-
-     Or, for development purposes, you can use the FairPlay values in the preceding example, which are from the fake FairPlay certificate file [FairPlay-out-base64.txt](https://github.com/mspnp/gridwich/blob/main/src/Gridwich.SagaParticipants.Publication.MediaServicesV3/tests/FakeFairPlayCert/FairPlay-out-base64.txt). Upload this fake file to **Library** > **+ Secure file**.
-
-   - For **amsDrmOpenIdConnectDiscoveryDocumentEndpoint**, use the OpenID Connect Discovery Document endpoint URL that exposes the public signature keys in Azure Media Services.
 
    - The **inboxCORS** entry should match the `allowed_origins` list in [terraform/main.tf](https://github.com/mspnp/gridwich/blob/main/infrastructure/terraform/main.tf).
 
@@ -198,11 +186,7 @@ This pipeline creates the sandbox (SB) developer environment.
 
 1. Select **Run** to run the pipeline.
 
-   - On first run, you must select **Permit** to approve the pipeline using the FairPlay Secure File you uploaded.
-
-     ![Select Permit to approve.](media/approve-secure-file.png)
-
-   - For the first run, an admin must [run the bash scripts](run-admin-scripts.yml) to set up authorization.
+   - For the first run, an admin must [run the bash scripts](2-run-admin-scripts.md) to set up authorization.
 
 ### Add the ci_cd_ext_release.yml pipeline
 
@@ -242,9 +226,9 @@ Use this pipeline to create a new single cloud developer environment with a cust
 
    - On first run, you must select **Permit** to approve the pipeline using the FairPlay Secure File you uploaded.
 
-   - For the first run, an admin must [run the bash scripts](run-admin-scripts.yml) to set up authorization.
+   - For the first run, an admin must [run the bash scripts](2-run-admin-scripts.md) to set up authorization.
 
-For more information about how to run this pipeline and set up a new environment, see [Create or delete an environment](create-delete-cloud-environment.yml).
+For more information about how to run this pipeline and set up a new environment, see [Create or delete an environment](5-create-delete-cloud-environment.md).
 
 ### Add the tf_destroy_env.yml pipeline
 
@@ -273,7 +257,7 @@ Use this pipeline to delete an environment, like one that the `ci_cd_ext_release
    applicationName = cl1grw <or your app name>
    ```
 
-   You can also use Azure CLI to add the variables. Run the following command for each variable respectively, after signing in to the Azure subscription and installing the [Pipelines extension](/azure/devops/pipelines/create-first-pipeline):
+   You can also use Azure CLI to add the variables. Run the following command for each variable respectively, after signing in to the Azure subscription and installing the [Pipelines extension](https://learn.microsoft.com/azure/devops/pipelines/create-first-pipeline):
 
    ```azurecli
    az pipelines variable create \
@@ -339,4 +323,4 @@ Local debugging uses user impersonation, and developers sign in with their brows
 
 ## Next step
 
-- Configure [content protection policies and DRM settings](2-gridwich-content-protection-drm.md).
+- [Run pipeline-generated admin scripts](2-run-admin-scripts.md).

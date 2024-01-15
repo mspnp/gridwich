@@ -33,13 +33,3 @@ variable "location" {
 variable "telestream_cloud_api_key" {
   type = string
 }
-
-variable "amsDrm_FairPlay_Pfx_Password" {
-  type        = string
-  description = "The password of the FairPlay Pfx password"
-}
-
-variable "amsDrm_FairPlay_Ask_Hex" {
-  type        = string
-  description = "The FairPlay Ask key in Hex format"
-}

@@ -37,16 +37,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gridwich.SagaParticipants.E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gridwich.SagaParticipants.Encode.FlipTests", "Gridwich.SagaParticipants.Encode.Flip\tests\Gridwich.SagaParticipants.Encode.FlipTests.csproj", "{5FF04FFA-6563-4A1D-B707-F32377DDE4DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gridwich.SagaParticipants.Encode.MediaServicesV3", "Gridwich.SagaParticipants.Encode.MediaServicesV3\src\Gridwich.SagaParticipants.Encode.MediaServicesV3.csproj", "{4ACBA0A0-4F39-4C0C-B436-8649F05D0330}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gridwich.SagaParticipants.Encode.MediaServicesV3Tests", "Gridwich.SagaParticipants.Encode.MediaServicesV3\tests\Gridwich.SagaParticipants.Encode.MediaServicesV3Tests.csproj", "{407448F2-0874-405E-82C8-30C61DA4BBFB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gridwich.SagaParticipants.Publication.MediaServicesV3", "Gridwich.SagaParticipants.Publication.MediaServicesV3\src\Gridwich.SagaParticipants.Publication.MediaServicesV3.csproj", "{DEBD5A05-913C-4E01-B6F2-8D9630A245B9}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gridwich.SagaParticipants.Publication.MediaServicesV3Tests", "Gridwich.SagaParticipants.Publication.MediaServicesV3\tests\Gridwich.SagaParticipants.Publication.MediaServicesV3Tests.csproj", "{4A613F5F-87AD-4FF5-BC0E-3D52C34F32B5}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gridwich.Core.MediaServicesV3", "Gridwich.Core.MediaServicesV3\src\Gridwich.Core.MediaServicesV3.csproj", "{38E393A6-C152-4A4F-B198-E6A8335F5D19}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gridwich.Core.Tests", "Gridwich.Core.Tests\src\Gridwich.Core.Tests.csproj", "{8A921B7B-4804-49B7-ACD7-F7B29C68CB03}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E12DB174-7726-45A7-B668-CA06E0BF9B3D}"
@@ -56,6 +46,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Build\Code.Analysis\Standard.ruleset = Build\Code.Analysis\Standard.ruleset
 		Build\Code.Analysis\StyleCop.json = Build\Code.Analysis\StyleCop.json
 		Build\Code.Analysis\Tests.ruleset = Build\Code.Analysis\Tests.ruleset
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{306996A3-7D50-495E-B717-81620E741389}"
+	ProjectSection(SolutionItems) = preProject
+		..\doc\1-set-up-azure-devops.md = ..\doc\1-set-up-azure-devops.md
+		..\doc\2-run-admin-scripts.md = ..\doc\2-run-admin-scripts.md
+		..\doc\3-maintain-keys.md = ..\doc\3-maintain-keys.md
+		..\doc\4-set-up-local-environment.md = ..\doc\4-set-up-local-environment.md
+		..\doc\5-create-delete-cloud-environment.md = ..\doc\5-create-delete-cloud-environment.md
+		..\doc\6-test-mediainfo.md = ..\doc\6-test-mediainfo.md
 	EndProjectSection
 EndProject
 Global
@@ -132,26 +132,6 @@ Global
 		{5FF04FFA-6563-4A1D-B707-F32377DDE4DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FF04FFA-6563-4A1D-B707-F32377DDE4DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FF04FFA-6563-4A1D-B707-F32377DDE4DC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4ACBA0A0-4F39-4C0C-B436-8649F05D0330}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4ACBA0A0-4F39-4C0C-B436-8649F05D0330}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4ACBA0A0-4F39-4C0C-B436-8649F05D0330}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4ACBA0A0-4F39-4C0C-B436-8649F05D0330}.Release|Any CPU.Build.0 = Release|Any CPU
-		{407448F2-0874-405E-82C8-30C61DA4BBFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{407448F2-0874-405E-82C8-30C61DA4BBFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{407448F2-0874-405E-82C8-30C61DA4BBFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{407448F2-0874-405E-82C8-30C61DA4BBFB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DEBD5A05-913C-4E01-B6F2-8D9630A245B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DEBD5A05-913C-4E01-B6F2-8D9630A245B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DEBD5A05-913C-4E01-B6F2-8D9630A245B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DEBD5A05-913C-4E01-B6F2-8D9630A245B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4A613F5F-87AD-4FF5-BC0E-3D52C34F32B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A613F5F-87AD-4FF5-BC0E-3D52C34F32B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A613F5F-87AD-4FF5-BC0E-3D52C34F32B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A613F5F-87AD-4FF5-BC0E-3D52C34F32B5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{38E393A6-C152-4A4F-B198-E6A8335F5D19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{38E393A6-C152-4A4F-B198-E6A8335F5D19}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{38E393A6-C152-4A4F-B198-E6A8335F5D19}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{38E393A6-C152-4A4F-B198-E6A8335F5D19}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8A921B7B-4804-49B7-ACD7-F7B29C68CB03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8A921B7B-4804-49B7-ACD7-F7B29C68CB03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A921B7B-4804-49B7-ACD7-F7B29C68CB03}.Release|Any CPU.ActiveCfg = Release|Any CPU

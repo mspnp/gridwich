@@ -7,9 +7,7 @@ using Gridwich.SagaParticipants.Analysis.MediaInfo.MediaInfoProviders;
 using Gridwich.SagaParticipants.Encode;
 using Gridwich.SagaParticipants.Encode.CloudPort;
 using Gridwich.SagaParticipants.Encode.Flip;
-using Gridwich.SagaParticipants.Encode.MediaServicesV3;
 using Gridwich.SagaParticipants.Encode.TelestreamCloud;
-using Gridwich.SagaParticipants.Publication.MediaServicesV3;
 using Gridwich.SagaParticipants.Storage.AzureStorage;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -40,9 +38,7 @@ namespace Gridwich.Host.FunctionApp
             services.AddFlip();
             services.AddAzureStorageManagement();
             services.AddCloudPort();
-            services.AddMediaServicesV3();
             services.AddLazyCache();
-            services.AddMediaServicesV3Publication();
             return services;
         }
     }

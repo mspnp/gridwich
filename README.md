@@ -23,21 +23,17 @@ A framework for stateless workloads (batteries included for video on-demand oper
 * [Synchronous and asynchronous handlers](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-architecture#sync-and-async-handlers).
 * [CI/CD patterns](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-cicd).
 * [Azure Pipelines to Terraform variable flow](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/variable-group-terraform-flow).
-* [Content protection and DRM](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-content-protection-drm).
-* [Azure Media Services](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/media-services-setup-scale).
 * [Gridwich Storage Provider](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-storage-service).
 * [Gridwich ObjectLogger](https://docs.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-logging#objectlogger).
 
 ## Procedures
 
 1. [Set up Azure Project and Azure Pipelines](doc/1-set-up-azure-devops.md).
-1. [Set up content protection and DRM](doc/2-gridwich-content-protection-drm.md).
-1. [Run pipeline-generated admin scripts](doc/3-run-admin-scripts.md).
-1. [Maintain and rotate keys and secrets](doc/4-maintain-keys.md).
-1. [Set up a local development environment](doc/5-set-up-local-environment.md).
-1. [Create or delete a cloud environment](doc/6-create-delete-cloud-environment.md).
-1. [Test Azure Media Services Encoding](doc/7-test-encoding.md).
-1. [Set up and scale Azure Media Services](doc/8-media-services-setup-scale.md).
+1. [Run pipeline-generated admin scripts](doc/2-run-admin-scripts.md).
+1. [Maintain and rotate keys and secrets](doc/3-maintain-keys.md).
+1. [Set up a local development environment](doc/4-set-up-local-environment.md).
+1. [Create or delete a cloud environment](doc/5-create-delete-cloud-environment.md).
+1. [Test Mediainfo service](doc/6-test-mediainfo.md).
 
 ## Resources
 

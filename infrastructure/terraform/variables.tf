@@ -33,27 +33,6 @@ variable "extsys_event_endpoint" {
   description = "The ExtSys endpoint to send events, includes http scheme and full path"
 }
 
-variable "amsDrm_OpenIdConnectDiscoveryDocument_endpoint" {
-  type        = string
-  description = "The endpoint to use for the DRM OpenId Connect Discovery Document."
-}
-
-variable "amsDrm_FairPlay_Pfx_Password" {
-  type        = string
-  description = "The password of the FairPlay Pfx certificate."
-}
-
-variable "amsDrm_FairPlay_Ask_Hex" {
-  type        = string
-  description = "The FairPlay Ask key in Hex format."
-}
-
-variable "amsDrm_EnableContentKeyPolicyUpdate" {
-  type	      = string
-  description = "A setting to ask the function app to enable or not the content key policy at start."
-  default     = "false"
-}
-
 variable "telestream_cloud_api_key" {
   type        = string
   description = "The REST API key needed to access the Flip encoder service."

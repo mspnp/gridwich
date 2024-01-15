@@ -1,4 +1,4 @@
-# Testing Media Info
+# Test Media info service
 
 Testing an application is an integral part of the application development life cycle. Testing ensures that your application or service will perform as expected when published.
 
@@ -57,11 +57,11 @@ You can test your deployed application in Azure or locally, and in both cases, y
 
 ## How to test Gridwich projects locally
 
-Make sure your Gridwich project and pipelines are in place, and developer permissions are set up. For more information, see [Gridwich Azure DevOps setup](set-up-azure-devops.md).
+Make sure your Gridwich project and pipelines are in place, and developer permissions are set up. For more information, see [Gridwich Azure DevOps setup](1-set-up-azure-devops.md).
 
-To create a new cloud development environment, see [Create a new environment](create-delete-cloud-environment.md). Verify that you have the correct settings for the environment you're targeting.
+To create a new cloud development environment, see [Create a new environment](5-create-delete-cloud-environment.md). Verify that you have the correct settings for the environment you're targeting.
 
-To set up your local environment, see [Gridwich local development environment](set-up-local-environment.md).
+To set up your local environment, see [Gridwich local development environment](4-set-up-local-environment.md).
 
 1. Run the Function App. In the command window, you should see the Event Grid function listening locally.
 
@@ -165,16 +165,11 @@ To set up your local environment, see [Gridwich local development environment](s
 
    ![Screenshot showing the Storage Account Output Container.](media/output-container.png)
 
-## Next step
-
-- Scale [Media Services resources](8-media-services-setup-scale.md#scale-media-services-resources).
-
 ## Resources
 
 Product documentation:
 
 - [Gridwich cloud media system](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-architecture)
-- [Azure Media Services v3 overview](https://learn.microsoft.com/azure/media-services/latest/media-services-overview)
 - [Introduction to Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview)
 - [What is Azure Blob storage?](https://learn.microsoft.com/azure/storage/blobs/storage-blobs-overview)
 - [What is Azure Event Grid?](https://learn.microsoft.com/azure/event-grid/overview)
@@ -187,7 +182,5 @@ Microsoft Learn modules:
 
 ## Gridwich resources
 
-- [Gridwich content protection and DRM](gridwich-content-protection-drm.md)
-- [Gridwich Media Services setup and scaling](media-services-setup-scale.md)
 - [Gridwich operations for Azure Storage](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-storage-service)
-- [How to create a Gridwich environment](create-delete-cloud-environment.md)
+- [How to create a Gridwich environment](5-create-delete-cloud-environment.md)

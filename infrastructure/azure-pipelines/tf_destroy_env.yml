@@ -13,9 +13,6 @@ variables:
   value: >-
     -var department=GridwichDevCrew
     -var extsys_event_endpoint="https://viewer-sb.azurewebsites.net/api/eventgrid"
-    -var amsDrm_OpenIdConnectDiscoveryDocument_endpoint="**********"
-    -var amsDrm_FairPlay_Pfx_Password="**********"
-    -var amsDrm_FairPlay_Ask_Hex="**********"
     -var telestream_cloud_api_key="************"
     -var event_grid_function_name='EventGrid'
     -var pipeline_build_id="$(Build.BuildId)"

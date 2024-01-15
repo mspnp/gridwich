@@ -28,10 +28,6 @@ stages:
       TerraformArguments: >-
         -var department=GridwichDevCrew
         -var extsys_event_endpoint="$(eventEndpointExtSys)"
-        -var amsDrm_OpenIdConnectDiscoveryDocument_endpoint="$(amsDrmOpenIdConnectDiscoveryDocumentEndpoint)"
-        -var amsDrm_FairPlay_Pfx_Password="$(amsDrmFairPlayPfxPassword)"
-        -var amsDrm_FairPlay_Ask_Hex="$(amsDrmFairPlayAskHex)"
-        -var amsDrm_EnableContentKeyPolicyUpdate="$(amsDrmEnableContentKeyPolicyUpdate)"
         -var telestream_cloud_api_key=$(telestreamCloudApiKey)
         -var event_grid_function_name='EventGrid'
         -var pipeline_build_id="$(Build.BuildId)"
@@ -45,7 +41,6 @@ stages:
         -target module.shared
         -target module.event_viewer
         -target module.secret_changed_handler
-        -target module.mediaservices
 
   - stage: Functions${{ parameters.environmentName }}Release
     variables:
@@ -115,10 +110,6 @@ stages:
       TerraformArguments: >-
         -var department=GridwichDevCrew
         -var extsys_event_endpoint="$(eventEndpointExtSys)"
-        -var amsDrm_OpenIdConnectDiscoveryDocument_endpoint="$(amsDrmOpenIdConnectDiscoveryDocumentEndpoint)"
-        -var amsDrm_FairPlay_Pfx_Password="$(amsDrmFairPlayPfxPassword)"
-        -var amsDrm_FairPlay_Ask_Hex="$(amsDrmFairPlayAskHex)"
-        -var amsDrm_EnableContentKeyPolicyUpdate="$(amsDrmEnableContentKeyPolicyUpdate)"
         -var telestream_cloud_api_key=$(telestreamCloudApiKey)
         -var event_grid_function_name='EventGrid'
         -var pipeline_build_id="$(Build.BuildId)"
