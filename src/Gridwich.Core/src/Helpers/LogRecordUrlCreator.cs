@@ -1,7 +1,7 @@
-﻿using System;
-using Gridwich.Core.Bases;
+﻿using Gridwich.Core.Bases;
 using Gridwich.Core.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Gridwich.Core.Helpers
 {

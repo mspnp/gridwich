@@ -1,7 +1,6 @@
-using System;
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace Gridwich.Core.DTO
 {

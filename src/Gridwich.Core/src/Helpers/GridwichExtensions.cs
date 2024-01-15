@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-
 using Azure.Storage.Blobs.Models;
 using Gridwich.Core.Constants;
 using Gridwich.Core.Interfaces;
 using Microsoft.Azure.EventGrid.Models;
-using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Gridwich.Core.Helpers
 {

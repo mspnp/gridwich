@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Gridwich.Core.Interfaces;
+using System;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
-using Gridwich.Core.Interfaces;
 
 namespace Gridwich.Core.Bases
 {

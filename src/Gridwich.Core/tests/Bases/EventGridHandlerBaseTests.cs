@@ -1,6 +1,3 @@
-using System;
-using System.Threading.Tasks;
-
 using Azure.Storage.Blobs.Models;
 using Azure.Storage.Blobs.Specialized;
 using Gridwich.Core.Constants;
@@ -11,11 +8,11 @@ using Microsoft.Azure.EventGrid;
 using Microsoft.Azure.EventGrid.Models;
 using Microsoft.Extensions.Logging;
 using Moq;
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Shouldly;
-
+using System;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Gridwich.CoreTests.Bases

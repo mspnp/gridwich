@@ -1,5 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Gridwich.SagaParticipants.Analysis.MediaInfo.MediaInfoProviders
 {

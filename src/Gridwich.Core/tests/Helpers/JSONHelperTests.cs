@@ -1,12 +1,10 @@
-using System;
-using System.Text.RegularExpressions;
 using Gridwich.Core.Constants;
 using Gridwich.Core.DTO;
 using Gridwich.Core.Helpers;
 using Newtonsoft.Json;
-
 using Shouldly;
-
+using System;
+using System.Text.RegularExpressions;
 using Xunit;
 
 namespace Gridwich.CoreTests.Helpers
@@ -153,7 +151,7 @@ namespace Gridwich.CoreTests.Helpers
 
             if (!gotExpectedResult)
             {
-               // DebugHelpers.WriteLine("Bad Deserialization: Expected {0}, Got {1}", ToString(t2aResult), ToString(t2aResultActual));
+                // DebugHelpers.WriteLine("Bad Deserialization: Expected {0}, Got {1}", ToString(t2aResult), ToString(t2aResultActual));
             }
 
             gotExpectedResult.ShouldBeTrue();
@@ -216,13 +214,13 @@ namespace Gridwich.CoreTests.Helpers
 
         // An exemplar for [de]serialize.  Note variety in casing of member names.
         private static readonly T1 T1aStruct = new T1
-            {
-                FirstName = "fiRst",
-                MiddleName = "middlE",
-                Surname = "Surname",
-                TheEnum = T1.X.B,
-                Tier = BlobAccessTier.Cool
-            };
+        {
+            FirstName = "fiRst",
+            MiddleName = "middlE",
+            Surname = "Surname",
+            TheEnum = T1.X.B,
+            Tier = BlobAccessTier.Cool
+        };
         // Equivalent of T1a - whitespace "compressed" version of the JSON input/output.
         private static readonly string T1aJson =
             ($"{{'firstName':'{T1aStruct.FirstName}','middleName':'{T1aStruct.MiddleName}'" +

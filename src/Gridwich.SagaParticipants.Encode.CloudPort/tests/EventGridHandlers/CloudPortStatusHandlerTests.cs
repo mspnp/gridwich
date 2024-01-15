@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Gridwich.Core.Constants;
+﻿using Gridwich.Core.Constants;
 using Gridwich.Core.Helpers;
 using Gridwich.Core.Interfaces;
 using Gridwich.SagaParticipants.Encode.CloudPort.EventGridHandlers;
@@ -8,9 +6,10 @@ using Gridwich.SagaParticipants.Encode.CloudPort.Models;
 using Gridwich.SagaParticipants.Encode.CloudPort.Services;
 using Microsoft.Azure.EventGrid.Models;
 using Moq;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Shouldly;
+using System;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Gridwich.SagaParticipants.Encode.CloudPortTests.EventGridHandlers

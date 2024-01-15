@@ -1,15 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 using Gridwich.Core.Bases;
 using Gridwich.Core.Constants;
 using Gridwich.Core.DTO;
 using Gridwich.Core.Interfaces;
 using Gridwich.Core.Models;
 using Gridwich.SagaParticipants.Analysis.MediaInfo.MediaInfoProviders;
-
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Gridwich.SagaParticipants.Analysis.MediaInfo.EventGridHandlers
 {

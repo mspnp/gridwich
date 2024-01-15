@@ -1,7 +1,7 @@
-﻿using System;
-using Gridwich.Core.Interfaces;
+﻿using Gridwich.Core.Interfaces;
 using Microsoft.Azure.EventGrid.Models;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace Gridwich.Core.Models
 {

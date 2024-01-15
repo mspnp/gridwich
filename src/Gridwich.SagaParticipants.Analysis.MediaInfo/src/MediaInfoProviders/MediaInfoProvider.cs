@@ -1,10 +1,9 @@
-using System;
-
 using Gridwich.Core.Constants;
 using Gridwich.Core.Interfaces;
 using Gridwich.Core.Models;
 using Gridwich.SagaParticipants.Analysis.MediaInfo.Exceptions;
 using Gridwich.SagaParticipants.Analysis.MediaInfo.Services;
+using System;
 using MI = MediaInfo;
 
 namespace Gridwich.SagaParticipants.Analysis.MediaInfo.MediaInfoProviders

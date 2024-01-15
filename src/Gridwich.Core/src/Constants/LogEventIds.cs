@@ -1,6 +1,6 @@
-using System;
 using Gridwich.Core.Helpers;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace Gridwich.Core.Constants
 {

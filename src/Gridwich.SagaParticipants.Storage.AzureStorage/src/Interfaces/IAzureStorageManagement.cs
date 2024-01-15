@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Gridwich.SagaParticipants.Storage.AzureStorage.Interfaces
+﻿namespace Gridwich.SagaParticipants.Storage.AzureStorage.Interfaces
 {
     /// <summary>
     /// Azure Management storage related interfaces.

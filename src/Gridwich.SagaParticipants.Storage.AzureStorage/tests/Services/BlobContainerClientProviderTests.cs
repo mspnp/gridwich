@@ -1,4 +1,3 @@
-using System;
 using Azure.Core;
 using Azure.Storage.Blobs;
 using Gridwich.Core.Constants;
@@ -8,11 +7,9 @@ using Gridwich.Core.Models;
 using Gridwich.SagaParticipants.Storage.AzureStorage.Interfaces;
 using Gridwich.SagaParticipants.Storage.AzureStorage.Services;
 using LazyCache;
-
 using Moq;
-
 using Shouldly;
-
+using System;
 using Xunit;
 
 namespace Gridwich.SagaParticipants.Storage.AzureStorageTests.Services

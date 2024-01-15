@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq;
-using Gridwich.SagaParticipants.Storage.AzureStorage.Interfaces;
+﻿using Gridwich.SagaParticipants.Storage.AzureStorage.Interfaces;
 using Microsoft.Azure.Management.Fluent;
+using System;
+using System.Linq;
 
 namespace Gridwich.SagaParticipants.Storage.AzureStorage.Services
 {

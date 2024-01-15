@@ -1,7 +1,6 @@
+using Microsoft.Azure.EventGrid.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
-using Microsoft.Azure.EventGrid.Models;
 
 namespace Gridwich.Core.Interfaces
 {

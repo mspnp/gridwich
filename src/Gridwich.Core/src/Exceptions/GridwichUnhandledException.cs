@@ -1,6 +1,6 @@
-﻿using System;
-using Gridwich.Core.Constants;
+﻿using Gridwich.Core.Constants;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace Gridwich.Core.Exceptions
 {

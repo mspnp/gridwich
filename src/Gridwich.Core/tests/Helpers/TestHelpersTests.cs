@@ -1,7 +1,6 @@
-using System;
-
 using Gridwich.Core.Helpers;
 using Shouldly;
+using System;
 using Xunit;
 
 

@@ -1,10 +1,10 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Azure.Core;
+﻿using Azure.Core;
 using Gridwich.Core.Interfaces;
 using Gridwich.SagaParticipants.Storage.AzureStorage.EventGridHandlers;
 using Gridwich.SagaParticipants.Storage.AzureStorage.Interfaces;
 using Gridwich.SagaParticipants.Storage.AzureStorage.Services;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Gridwich.SagaParticipants.Storage.AzureStorage
 {

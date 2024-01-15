@@ -1,7 +1,6 @@
-﻿using System.Threading.Tasks;
-using Gridwich.Core.DTO;
-using Gridwich.SagaParticipants.Encode;
+﻿using Gridwich.Core.DTO;
 using Gridwich.SagaParticipants.Encode.Flip.Models;
+using System.Threading.Tasks;
 
 namespace Gridwich.SagaParticipants.Encode.Flip.Services
 {

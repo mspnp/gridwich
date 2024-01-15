@@ -1,6 +1,6 @@
+using Azure.Storage.Blobs.Models;
 using System;
 using System.Collections.Generic;
-using Azure.Storage.Blobs.Models;
 
 namespace Gridwich.Core.Constants
 {

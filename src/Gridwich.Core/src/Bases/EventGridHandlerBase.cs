@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-using Gridwich.Core.Constants;
+﻿using Gridwich.Core.Constants;
 using Gridwich.Core.DTO;
 using Gridwich.Core.Exceptions;
 using Gridwich.Core.Helpers;
 using Gridwich.Core.Interfaces;
 using Gridwich.Core.Models;
-
 using Microsoft.Azure.EventGrid.Models;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Gridwich.Core.Bases
 {

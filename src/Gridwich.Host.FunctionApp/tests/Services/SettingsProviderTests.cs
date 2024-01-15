@@ -1,10 +1,10 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
 using Gridwich.Host.FunctionApp.Services;
 using Gridwich.Host.FunctionAppTests.Services.Utils;
 using Microsoft.Extensions.Configuration;
 using Moq;
 using Shouldly;
+using System;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace Gridwich.Host.FunctionAppTests.Services

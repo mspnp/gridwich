@@ -17,6 +17,6 @@ namespace Gridwich.Core.DTO
         /// Gets or sets the decimal seconds to end trim an encode.
         /// </summary>
         [JsonProperty("endSeconds")]
-        public double EndSeconds { get; set;  }
+        public double EndSeconds { get; set; }
     }
 }

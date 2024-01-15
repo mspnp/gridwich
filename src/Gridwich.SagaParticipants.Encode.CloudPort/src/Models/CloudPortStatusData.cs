@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Gridwich.Core.Helpers;
+﻿using Gridwich.Core.Helpers;
 using Gridwich.Core.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace Gridwich.SagaParticipants.Encode.CloudPort.Models
 {

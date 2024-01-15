@@ -1,17 +1,10 @@
+using Gridwich.Core.Helpers;
+using Newtonsoft.Json.Linq;
+using Shouldly;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-
-using Gridwich.Core.Helpers;
-using Gridwich.Core.Models;
-
-using Microsoft.Azure.EventGrid.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
-using Shouldly;
 using Xunit;
-using sc=Gridwich.Core.Models.StorageClientProviderContext;
+using sc = Gridwich.Core.Models.StorageClientProviderContext;
 
 namespace Gridwich.CoreTests.Models
 {
@@ -35,9 +28,9 @@ namespace Gridwich.CoreTests.Models
     // When Stylecop eventually catches up to the compiler's C# level, these
     // pragmas can be removed.
     //
-    #pragma warning disable SA1135 // Using directives must be qualified
-    using TupleDS1=System.Tuple<string, bool?, sc, string, sc, System.Type>;
-    #pragma warning restore SA1135 // Using directives must be qualified
+#pragma warning disable SA1135 // Using directives must be qualified
+    using TupleDS1 = System.Tuple<string, bool?, sc, string, sc, System.Type>;
+#pragma warning restore SA1135 // Using directives must be qualified
 
     public class StorageClientProviderContextTests
     {
@@ -111,7 +104,7 @@ namespace Gridwich.CoreTests.Models
         }
 
         [Theory]
-        [MemberData(nameof(TestDataGenerator.GetDataSet1), MemberType=typeof(TestDataGenerator))]
+        [MemberData(nameof(TestDataGenerator.GetDataSet1), MemberType = typeof(TestDataGenerator))]
         public void EnsureStorageContextEquivalenceViaStringInits(
             string contextStringIn, bool? setMute, sc contextObjectIn,
             string contextStringOut, sc contextObjectOut,
@@ -180,7 +173,7 @@ namespace Gridwich.CoreTests.Models
         /// Same set of validations, except via CreateSafe, which should not throw an exception
         /// </summary>
         [Theory]
-        [MemberData(nameof(TestDataGenerator.GetDataSet1Short), MemberType=typeof(TestDataGenerator))]
+        [MemberData(nameof(TestDataGenerator.GetDataSet1Short), MemberType = typeof(TestDataGenerator))]
         public void EnsureStorageContextEquivalenceViaCreateSafe(
             string contextStringIn, bool? setMute, sc contextObjectIn,
             string contextStringOut, sc contextObjectOut)

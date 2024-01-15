@@ -1,7 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Gridwich.Core.Interfaces;
+﻿using Gridwich.Core.Interfaces;
 using Gridwich.SagaParticipants.Analysis.MediaInfo.EventGridHandlers;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Gridwich.SagaParticipants.Analysis.MediaInfo
 {

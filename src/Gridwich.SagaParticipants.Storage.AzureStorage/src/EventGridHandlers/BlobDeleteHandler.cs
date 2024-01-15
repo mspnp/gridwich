@@ -1,15 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 using Gridwich.Core.Bases;
 using Gridwich.Core.Constants;
 using Gridwich.Core.DTO;
 using Gridwich.Core.Exceptions;
 using Gridwich.Core.Interfaces;
 using Gridwich.Core.Models;
-
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Gridwich.SagaParticipants.Storage.AzureStorage.EventGridHandlers
 {

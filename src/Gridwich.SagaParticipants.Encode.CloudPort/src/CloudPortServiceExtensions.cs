@@ -1,8 +1,8 @@
-using System.Diagnostics.CodeAnalysis;
 using Gridwich.Core.Interfaces;
 using Gridwich.SagaParticipants.Encode.CloudPort.EventGridHandlers;
 using Gridwich.SagaParticipants.Encode.CloudPort.Services;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Gridwich.SagaParticipants.Encode.CloudPort
 {

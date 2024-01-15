@@ -1,13 +1,12 @@
-using System;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
-
 using Gridwich.Core.Constants;
 using Gridwich.Core.Helpers;
 using Gridwich.Core.Interfaces;
 using Gridwich.Core.Models;
 using Gridwich.SagaParticipants.Analysis.MediaInfo.Exceptions;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace Gridwich.SagaParticipants.Analysis.MediaInfo.MediaInfoProviders
 {

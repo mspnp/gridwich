@@ -1,10 +1,10 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Gridwich.Core.Constants;
+﻿using Gridwich.Core.Constants;
 using Gridwich.Core.DTO;
 using Gridwich.Core.Helpers;
 using Gridwich.Core.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Gridwich.SagaParticipants.Encode.Flip.Models
 {

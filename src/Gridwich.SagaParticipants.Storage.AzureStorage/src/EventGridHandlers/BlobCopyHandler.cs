@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Azure.Storage.Blobs.Models;
 using Gridwich.Core.Bases;
 using Gridwich.Core.Constants;
@@ -8,6 +5,9 @@ using Gridwich.Core.DTO;
 using Gridwich.Core.Exceptions;
 using Gridwich.Core.Interfaces;
 using Gridwich.Core.Models;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Gridwich.SagaParticipants.Storage.AzureStorage.EventGridHandlers
 {

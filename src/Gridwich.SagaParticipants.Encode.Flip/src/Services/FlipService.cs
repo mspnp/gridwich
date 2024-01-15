@@ -1,14 +1,13 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Gridwich.Core.DTO;
 using Gridwich.Core.Interfaces;
 using Gridwich.Core.Models;
-using Gridwich.SagaParticipants.Encode;
 using Gridwich.SagaParticipants.Encode.Exceptions;
 using Gridwich.SagaParticipants.Encode.Flip.Models;
 using Gridwich.SagaParticipants.Encode.TelestreamCloud;
 using Newtonsoft.Json;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Telestream.Cloud.Flip.Client;
 using Telestream.Cloud.Flip.Model;
 

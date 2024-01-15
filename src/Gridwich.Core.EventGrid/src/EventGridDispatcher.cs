@@ -1,16 +1,13 @@
+using Gridwich.Core.Constants;
+using Gridwich.Core.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.EventGrid;
+using Microsoft.Azure.EventGrid.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-using Gridwich.Core.Constants;
-using Gridwich.Core.Interfaces;
-
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.EventGrid;
-using Microsoft.Azure.EventGrid.Models;
-
-using Newtonsoft.Json;
 
 namespace Gridwich.Core.EventGrid
 {

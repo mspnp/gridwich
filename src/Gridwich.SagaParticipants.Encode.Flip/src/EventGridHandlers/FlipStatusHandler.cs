@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Gridwich.Core.Bases;
+﻿using Gridwich.Core.Bases;
 using Gridwich.Core.Constants;
 using Gridwich.Core.DTO;
 using Gridwich.Core.Interfaces;
@@ -12,6 +8,10 @@ using Gridwich.SagaParticipants.Encode.Flip.Services;
 using Microsoft.Azure.EventGrid.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Gridwich.SagaParticipants.Encode.Flip.EventGridHandlers
 {

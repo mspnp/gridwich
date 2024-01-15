@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Gridwich.Core.Constants;
+﻿using Gridwich.Core.Constants;
 using Gridwich.Core.DTO;
-
 using Microsoft.Azure.EventGrid.Models;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
 
 namespace Gridwich.Core.Exceptions
 {

@@ -1,6 +1,3 @@
-using System;
-using System.Threading.Tasks;
-
 namespace Gridwich.Core.Interfaces
 {
     /// <summary>

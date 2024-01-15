@@ -1,5 +1,5 @@
-using System.Threading.Tasks;
 using Microsoft.Azure.EventGrid.Models;
+using System.Threading.Tasks;
 
 namespace Gridwich.Core.Interfaces
 {

@@ -1,7 +1,6 @@
-using System.Diagnostics.CodeAnalysis;
-
 using Gridwich.Core.Helpers;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 
 [assembly: FunctionsStartup(typeof(Gridwich.Host.FunctionApp.Startup))]
 namespace Gridwich.Host.FunctionApp

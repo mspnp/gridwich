@@ -1,3 +1,7 @@
+using Gridwich.Core.Constants;
+using Gridwich.Core.Helpers;
+using Microsoft.Extensions.Logging;
+using Shouldly;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -5,10 +9,6 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Gridwich.Core.Constants;
-using Gridwich.Core.Helpers;
-using Microsoft.Extensions.Logging;
-using Shouldly;
 using Xunit;
 
 namespace Gridwich.CoreTests
@@ -74,12 +74,12 @@ namespace Gridwich.CoreTests
             // reuse the bump-table from EventHelpers -- it has all of the subsystem/level combinations as keys.
             var rangeSizes = GenerateRangeBracketsForEventIds<RangeInfoData>(
                     (lowIdForRange) => new RangeInfoData()
-                        {
-                            LowEventId = lowIdForRange,
-                            HighEventId = new EventId(lowIdForRange).GetMaxEventIdForRange(),
-                            EventCount = 0,
-                            HaveSeenZeroEntry = false,
-                        });
+                    {
+                        LowEventId = lowIdForRange,
+                        HighEventId = new EventId(lowIdForRange).GetMaxEventIdForRange(),
+                        EventCount = 0,
+                        HaveSeenZeroEntry = false,
+                    });
 
             // Walk through every EventId noting which used ranges
             // have any present and which have one with an index of zero.

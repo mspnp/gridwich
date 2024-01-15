@@ -1,14 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using Microsoft.Rest.Azure;
 using Microsoft.Rest.Serialization;
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace Gridwich.Core.Helpers
 {
