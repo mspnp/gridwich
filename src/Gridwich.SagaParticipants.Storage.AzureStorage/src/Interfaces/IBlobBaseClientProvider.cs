@@ -1,5 +1,5 @@
-﻿using System;
-using Gridwich.Core.Models;
+﻿using Gridwich.Core.Models;
+using System;
 
 namespace Gridwich.SagaParticipants.Storage.AzureStorage.Interfaces
 {

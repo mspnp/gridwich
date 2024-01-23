@@ -21,18 +21,6 @@ variable "function_app_id" {
 variable "function_principal_id" {
 }
 
-variable "media_services_name" {
-  default = ""
-}
-
-variable "media_services_resource_group_name" {
-  default = ""
-}
-
-variable "media_services_account_resource_id" {
-  default = ""
-}
-
 variable "key_vault_name" {
   default = ""
 }
@@ -61,9 +49,6 @@ resource "template_dir" "config" {
     logicAppSCHServicePrincipalId    = var.logic_app_sch_service_principal_id
     logicAppKRServicePrincipalId     = var.logic_app_kr_service_principal_id
     functionAppId                    = var.function_app_id
-    mediaServicesName                = var.media_services_name
-    mediaServicesResourceGroupName   = var.media_services_resource_group_name
-    mediaServicesAccountResourceId   = var.media_services_account_resource_id
     keyVaultName                     = var.key_vault_name
     storageAccountIds                = join(" ", var.storage_account_ids)
     storageRgIds                     = join(" ", var.storage_resource_group_ids)

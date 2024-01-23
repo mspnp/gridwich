@@ -1,7 +1,7 @@
-using System;
 using Azure.Core;
 using Azure.Core.Pipeline;
 using Gridwich.Core.Models;
+using System;
 
 namespace Gridwich.SagaParticipants.Storage.AzureStorage.Services
 {

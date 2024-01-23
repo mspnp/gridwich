@@ -1,12 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Azure.Storage.Blobs;
+﻿using Azure.Storage.Blobs;
 using Gridwich.Core.Constants;
 using Gridwich.Core.Exceptions;
 using Gridwich.Core.Helpers;
 using Gridwich.SagaParticipants.Encode.TelestreamCloud.Exceptions;
 using Gridwich.SagaParticipants.Storage.AzureStorage.Interfaces;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Telestream.Cloud.Stores.Client;
 using Telestream.Cloud.Stores.Model;
 

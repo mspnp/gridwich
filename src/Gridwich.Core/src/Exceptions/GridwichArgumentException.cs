@@ -1,7 +1,6 @@
-﻿using System;
-using Gridwich.Core.Exceptions;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace Gridwich.Core.Exceptions
 {

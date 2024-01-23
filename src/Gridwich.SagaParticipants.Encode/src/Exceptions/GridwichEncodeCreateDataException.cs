@@ -1,8 +1,8 @@
-﻿using System;
-using Gridwich.Core.Constants;
+﻿using Gridwich.Core.Constants;
 using Gridwich.Core.Exceptions;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace Gridwich.SagaParticipants.Encode.Exceptions
 {

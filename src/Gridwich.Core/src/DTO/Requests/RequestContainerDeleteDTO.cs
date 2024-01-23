@@ -1,4 +1,3 @@
-using Gridwich.Core.Constants;
 using Newtonsoft.Json;
 
 namespace Gridwich.Core.DTO

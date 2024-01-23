@@ -4,7 +4,7 @@ Gridwich uses two types of Azure Key Vault keys, storage keys and third-party ke
 
 ## Run admin scripts
 
-To give the Azure Functions App and the two Logic Apps permissions to take Azure Storage Account and Key Vault actions, run the pipeline-generated admin scripts. For instructions, see [Pipeline-generated admin scripts](run-admin-scripts.md).
+To give the Azure Functions App and the two Logic Apps permissions to take Azure Storage Account and Key Vault actions, run the pipeline-generated admin scripts. For instructions, see [Pipeline-generated admin scripts](2-run-admin-scripts.md).
 
 ## Key Roller Logic App for storage keys
 
@@ -97,7 +97,7 @@ To add or change a key:
    # so if one of the values for these secrets changes, the Function App using them will be updated to
    # use the new value
    output "secrets_in_shared_keyvault" {
-     value = ["telestream-cloud-api-key", "grw-topic-end-point", "grw-topic-key", "ams-sp-client-id", "ams-sp-client-secret", "appinsights-instrumentationkey", "ams-fairplay-pfx-password", "ams-fairplay-ask-hex", "ams-fairPlay-certificate-b64"]
+     value = ["telestream-cloud-api-key", "grw-topic-end-point", "grw-topic-key", "appinsights-connectionstring"]
    }
    ##################################################################################
    # Functions KeyVault References Terraform file
@@ -118,7 +118,7 @@ To add or change a key:
 
 ## Next step
 
-- Set up a [local development environment](5-set-up-local-environment.md).
+- Set up a [local development environment](4-set-up-local-environment.md).
 
 ## Resources
 
@@ -126,7 +126,7 @@ Product documentation:
 
 - [Gridwich cloud media system](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-architecture)
 - [About Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/overview)
-- [Introduction to Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview)
+- [Azure Functions overview](https://learn.microsoft.com/azure/azure-functions/functions-overview)
 - [What is Azure Blob storage?](https://learn.microsoft.com/azure/storage/blobs/storage-blobs-overview)
 - [What is Azure Event Grid?](https://learn.microsoft.com/azure/event-grid/overview)
 - [What is Azure Logic Apps?](https://learn.microsoft.com/azure/logic-apps/logic-apps-overview)
@@ -142,6 +142,5 @@ Microsoft Learn modules:
 
 ## Gridwich resources
 
-- [Gridwich content protection and DRM](gridwich-content-protection-drm.md)
 - [Gridwich operations for Azure Storage](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-storage-service)
-- [Test Media Services v3 encoding](test-encoding.md)
+- 

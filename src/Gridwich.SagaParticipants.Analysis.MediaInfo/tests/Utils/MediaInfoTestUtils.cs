@@ -1,5 +1,5 @@
-using System;
 using Azure.Storage.Blobs.Models;
+using System;
 
 namespace Gridwich.SagaParticipants.Analysis.MediaInfoTests.Utils
 {

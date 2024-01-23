@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using Azure;
 using Azure.Storage.Blobs;
+using System.Collections.Generic;
 
 namespace Gridwich.SagaParticipants.Storage.AzureStorageTests.Models
 {

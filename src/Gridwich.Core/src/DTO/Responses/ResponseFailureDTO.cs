@@ -1,10 +1,7 @@
+using Gridwich.Core.Constants;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-
-using Gridwich.Core.Constants;
-using Gridwich.Core.DTO;
-
-using Newtonsoft.Json;
 
 namespace Gridwich.Core.DTO
 {

@@ -1,8 +1,8 @@
-using System;
 using Gridwich.Core.Constants;
 using Gridwich.Core.Exceptions;
 using Newtonsoft.Json.Linq;
 using Shouldly;
+using System;
 using Xunit;
 
 namespace Gridwich.CoreTests

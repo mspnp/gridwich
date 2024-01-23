@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Linq;
 using Gridwich.Core.Helpers;
 using Gridwich.Core.Interfaces;
 using Gridwich.Host.FunctionApp;
@@ -10,9 +6,12 @@ using Gridwich.SagaParticipants.Storage.AzureStorage.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
 using Moq;
 using Shouldly;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Linq;
 using Xunit;
 
 namespace Gridwich.Host.FunctionAppTests.Services

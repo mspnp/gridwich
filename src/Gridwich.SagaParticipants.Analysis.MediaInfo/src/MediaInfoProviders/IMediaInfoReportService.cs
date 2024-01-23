@@ -1,7 +1,7 @@
-using System;
-using System.Threading.Tasks;
 using Gridwich.Core.Models;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Threading.Tasks;
 
 namespace Gridwich.SagaParticipants.Analysis.MediaInfo.MediaInfoProviders
 {

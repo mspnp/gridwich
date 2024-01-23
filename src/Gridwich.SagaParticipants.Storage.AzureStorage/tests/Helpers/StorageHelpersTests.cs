@@ -1,11 +1,9 @@
-using System;
-using System.Collections.Generic;
-
 using Gridwich.Core.Constants;
 using Gridwich.Core.Helpers;
 using Shouldly;
+using System;
+using System.Collections.Generic;
 using Xunit;
-
 // Tuple types used for the different test datasets below
 using TupleDS2 = System.Tuple<string, string, string, string, System.Type>;
 using TupleDS3 = System.Tuple<string, bool, string, System.Type>;

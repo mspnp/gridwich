@@ -1,9 +1,8 @@
-using System;
-
 using Gridwich.Core.Constants;
 using Gridwich.Core.Helpers;
 using Microsoft.Extensions.Logging;
 using Shouldly;
+using System;
 using Xunit;
 
 namespace Gridwich.CoreTests

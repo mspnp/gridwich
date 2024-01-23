@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using Gridwich.Core.Constants;
 using Gridwich.Core.DTO;
 using Gridwich.Core.Helpers;
@@ -10,6 +8,8 @@ using Microsoft.Azure.EventGrid.Models;
 using Moq;
 using Newtonsoft.Json.Linq;
 using Shouldly;
+using System;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Gridwich.SagaParticipants.Storage.AzureStorageTests.EventGridHandlers

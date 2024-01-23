@@ -1,8 +1,8 @@
-using System.Diagnostics.CodeAnalysis;
 using Gridwich.Core.Interfaces;
 using Gridwich.SagaParticipants.Encode.Flip.EventGridHandlers;
 using Gridwich.SagaParticipants.Encode.Flip.Services;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Gridwich.SagaParticipants.Encode.Flip
 {

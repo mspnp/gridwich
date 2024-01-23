@@ -1,6 +1,5 @@
-﻿using System.Threading.Tasks;
-using Gridwich.Core.DTO;
-using Gridwich.SagaParticipants.Encode;
+﻿using Gridwich.Core.DTO;
+using System.Threading.Tasks;
 using Telestream.Cloud.VantageCloudPort.Model;
 
 namespace Gridwich.SagaParticipants.Encode.CloudPort.Services

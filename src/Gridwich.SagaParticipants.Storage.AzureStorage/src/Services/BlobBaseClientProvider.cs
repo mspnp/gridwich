@@ -1,15 +1,13 @@
-﻿using System;
-
-using Azure.Core;
+﻿using Azure.Core;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Specialized;
-
 using Gridwich.Core.Constants;
 using Gridwich.Core.Helpers;
 using Gridwich.Core.Interfaces;
 using Gridwich.Core.Models;
 using Gridwich.SagaParticipants.Storage.AzureStorage.Interfaces;
 using LazyCache;
+using System;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Gridwich.SagaParticipants.Storage.AzureStorageTests")]
 

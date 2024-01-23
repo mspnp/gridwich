@@ -25,35 +25,6 @@ az login --tenant "<tenantID>"
 az account set --subscription "<subscriptionID>"
 ```
 
-### The ams_sp.sh script
-
-The `ams_sp.sh` script grants the Azure Function App access to Azure Media Services resources, and creates the Media Services service principal.
-
-The script:
-
-1. Loops and grants the Function App **Contributor** access to Media Services resources.
-1. Creates a Media Services service principal.
-1. Temporarily grants the service principal access to the shared Azure Key Vault.
-1. Stores the service principal ClientId/AppId and secret in the key vault secrets.
-1. Revokes the service principal's access to the key vault.
-
-The Terraform variables are:
-
-- **mediaServicesAccountResourceId**, a list of Media Services Resource IDs.
-- **functionPrincipalId**, the Function App managed identity service principal ID.
-- **mediaServicesName**, the Media Services account name.
-- **mediaServicesResourceGroupName**, the Media Services account resource group.
-- **keyVaultName**, the shared Key Vault name.
-
-To run the script:
-
-1. Download the *ams_sp.sh* file that the pipeline published as an artifact in the *bash_scripts_\** folder.
-1. Run the following command:
-
-   ```bash
-   chmod +x ams_sp.sh && ./ams_sp.sh
-   ```
-
 ### The egv_app_registration.sh script
 
 The `egv_app_registration.sh` script uses the *egv_app_registration_manifest.json* file to secure the Azure Event Grid Viewer web app for each environment. The script creates and configures an [Azure App Registration](https://learn.microsoft.com/entra/identity-platform/quickstart-register-app) for [Microsoft Entra ID)](https://learn.microsoft.com/entra/fundamentals/whatis). The script then configures the Event Grid Viewer web app to use the App Registration to secure the viewer, making it available only to those that have proper Microsoft Entra credentials.
@@ -129,7 +100,7 @@ To run the script:
 
 ## Next step
 
-- Manage [Key Vault keys](4-maintain-keys.md).
+- Manage [Key Vault keys](3-maintain-keys.md).
 
 ## Gridwich resource
 

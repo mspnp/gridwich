@@ -1,8 +1,7 @@
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace Gridwich.Host.FunctionAppTests.Services.Utils
 {

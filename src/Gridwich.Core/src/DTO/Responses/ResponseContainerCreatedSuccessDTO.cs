@@ -1,7 +1,5 @@
-using System;
 using Gridwich.Core.Constants;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Gridwich.Core.DTO
 {

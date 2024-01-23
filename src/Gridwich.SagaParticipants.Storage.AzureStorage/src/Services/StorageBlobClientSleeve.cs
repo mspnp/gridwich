@@ -1,8 +1,8 @@
-using System;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Specialized;
 using Gridwich.Core.Models;
 using Gridwich.SagaParticipants.Storage.AzureStorage.Interfaces;
+using System;
 
 namespace Gridwich.SagaParticipants.Storage.AzureStorage.Services
 {

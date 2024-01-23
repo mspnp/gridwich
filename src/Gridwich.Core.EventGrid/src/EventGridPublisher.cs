@@ -1,13 +1,10 @@
+using Gridwich.Core.Constants;
+using Gridwich.Core.Interfaces;
+using Microsoft.Azure.EventGrid;
+using Microsoft.Azure.EventGrid.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
-using Gridwich.Core.Constants;
-using Gridwich.Core.Helpers;
-using Gridwich.Core.Interfaces;
-
-using Microsoft.Azure.EventGrid;
-using Microsoft.Azure.EventGrid.Models;
 
 namespace Gridwich.Core.EventGrid
 {

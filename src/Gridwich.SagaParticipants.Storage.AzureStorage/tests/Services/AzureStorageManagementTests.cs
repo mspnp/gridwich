@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using Gridwich.SagaParticipants.Storage.AzureStorage.Services;
+﻿using Gridwich.SagaParticipants.Storage.AzureStorage.Services;
 using Microsoft.Azure.Management.Fluent;
 using Microsoft.Azure.Management.Storage.Fluent;
 using Microsoft.Azure.Management.Storage.Fluent.Models;
 using Moq;
 using Shouldly;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Gridwich.SagaParticipants.Storage.AzureStorageTests.Services

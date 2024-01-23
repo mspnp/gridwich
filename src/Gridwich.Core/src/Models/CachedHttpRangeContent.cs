@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Azure;
+using System;
 using System.IO;
-using Azure;
 
 namespace Gridwich.Core.Models
 {

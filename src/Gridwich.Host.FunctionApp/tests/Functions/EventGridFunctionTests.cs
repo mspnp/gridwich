@@ -1,24 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
 using Gridwich.Core.Constants;
 using Gridwich.Core.Interfaces;
 using Gridwich.Host.FunctionApp.Functions;
-
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.EventGrid.Models;
 using Moq;
-
 using Newtonsoft.Json.Linq;
-
 using Shouldly;
-
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Gridwich.Host.FunctionAppTests.Functions

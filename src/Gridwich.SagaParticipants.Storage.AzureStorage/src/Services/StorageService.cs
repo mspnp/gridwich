@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Azure;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
@@ -17,6 +10,13 @@ using Gridwich.SagaParticipants.Storage.AzureStorage.Exceptions;
 using Gridwich.SagaParticipants.Storage.AzureStorage.Interfaces;
 using IntervalTree;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Gridwich.SagaParticipants.Storage.AzureStorage.Services
 {

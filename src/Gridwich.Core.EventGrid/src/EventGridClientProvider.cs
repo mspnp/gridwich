@@ -1,12 +1,9 @@
-using System;
-
 using Gridwich.Core.Helpers;
 using Gridwich.Core.Interfaces;
-
 using LazyCache;
-
 using Microsoft.Azure.EventGrid;
 using Microsoft.Azure.EventGrid.Models;
+using System;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Gridwich.Core.EventGridTests")]
 

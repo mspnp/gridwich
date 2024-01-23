@@ -1,8 +1,7 @@
-using System;
-using System.Globalization;
 using Gridwich.Core.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Gridwich.CoreTests")]
 

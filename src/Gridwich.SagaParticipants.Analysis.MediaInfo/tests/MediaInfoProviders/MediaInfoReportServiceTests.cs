@@ -1,10 +1,4 @@
-using System;
-using System.Globalization;
-using System.IO;
-using System.Reflection;
-using System.Threading.Tasks;
 using Azure;
-using Azure.Storage.Blobs.Models;
 using Gridwich.Core.Constants;
 using Gridwich.Core.Helpers;
 using Gridwich.Core.Interfaces;
@@ -16,6 +10,11 @@ using Gridwich.SagaParticipants.Analysis.MediaInfoTests.Utils;
 using Moq;
 using Newtonsoft.Json.Linq;
 using Shouldly;
+using System;
+using System.Globalization;
+using System.IO;
+using System.Reflection;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Gridwich.SagaParticipants.Analysis.MediaInfoTests.MediaInfoProviders

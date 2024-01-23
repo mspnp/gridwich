@@ -1,8 +1,6 @@
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Gridwich.Core.DTO
 {
@@ -33,7 +31,7 @@ namespace Gridwich.Core.DTO
         /// <summary>
         /// Gets or sets the Blob Url for an asset involved in the encode process.
         /// </summary>
-        [property:SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings", Justification="Not applicable to DTOs")]
+        [property: SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings", Justification = "Not applicable to DTOs")]
         [JsonProperty("blobUri")]
         public string BlobUri { get; set; }
     }

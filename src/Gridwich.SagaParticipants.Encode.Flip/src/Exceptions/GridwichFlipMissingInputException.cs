@@ -1,15 +1,15 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
 using Gridwich.Core.Constants;
 using Gridwich.Core.Exceptions;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Gridwich.SagaParticipants.Encode.Exceptions
 {
     /// <summary>
     /// Throws when a Flip encode cannot find one or more input blobs.
     /// </summary>
-    [type:SuppressMessage("Microsoft.Design", "CA1054:URI parameters should not be strings", Justification="Intent is clearer with no extra overloads.")]
+    [type: SuppressMessage("Microsoft.Design", "CA1054:URI parameters should not be strings", Justification = "Intent is clearer with no extra overloads.")]
     public class GridwichFlipMissingInputException : GridwichException
     {
         /// <summary>The key in the exception data under which the problem URI string is stored.</summary>

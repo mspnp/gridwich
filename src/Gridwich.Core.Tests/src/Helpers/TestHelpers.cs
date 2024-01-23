@@ -1,7 +1,7 @@
+using Gridwich.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Gridwich.Core.Models;
 
 namespace Gridwich.Core.Helpers
 {
@@ -25,7 +25,7 @@ namespace Gridwich.Core.Helpers
 
             var opContext = $"{{\"guid\":\"{g}\"}}";  // some simple JSON to house the GUID
             var ret = new StorageClientProviderContext(
-                opContext, muted: false,  trackETag: trackETag, initialETag: eTagValue);
+                opContext, muted: false, trackETag: trackETag, initialETag: eTagValue);
             return ret;
         }
 

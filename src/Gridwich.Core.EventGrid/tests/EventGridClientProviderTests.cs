@@ -1,10 +1,10 @@
-using System;
 using Gridwich.Core.EventGrid;
 using Gridwich.Core.Helpers;
 using LazyCache;
 using Microsoft.Azure.EventGrid;
 using Moq;
 using Shouldly;
+using System;
 using Xunit;
 
 namespace Gridwich.Core.EventGridTests

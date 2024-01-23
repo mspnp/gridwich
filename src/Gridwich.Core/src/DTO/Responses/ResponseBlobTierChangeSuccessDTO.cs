@@ -11,7 +11,7 @@ namespace Gridwich.Core.DTO
         /// <summary>
         /// Gets or sets the target BlobUri.
         /// </summary>
-        [property:System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings", Justification="Not applicable to DTOs")]
+        [property: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings", Justification = "Not applicable to DTOs")]
         [JsonProperty("blobUri")]
         public string BlobUri { get; set; }
 

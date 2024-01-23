@@ -238,15 +238,6 @@ module "sub_extsys_to_topic" {
   dead_letter_container_name = module.shared.dead_letter_container_name
 }
 
-module "sub_function_to_mediaservices" {
-  source                 = "./egsubscription"
-  endpoint               = "https://${module.functions.functionapp_endpoint_base}/api/${var.event_grid_function_name}?code=${module.functionKeys.host_key}"
-  scope_ids              = [module.mediaservices.azurerm_media_services_account_resource_id]
-  name                   = "${var.appname}-amsfxn-egsub-${var.environment}"
-  fail_gracefully        = var.run_flag_subscriptions_fail_gracefully
-  subscriptions_disabled = var.run_flag_subscriptions_disabled
-}
-
 module "sub_function_to_topic" {
   source                 = "./egsubscription"
   endpoint               = "https://${module.functions.functionapp_endpoint_base}/api/${var.event_grid_function_name}?code=${module.functionKeys.host_key}"
@@ -261,15 +252,6 @@ module "sub_function_to_storage_accounts" {
   endpoint               = "https://${module.functions.functionapp_endpoint_base}/api/${var.event_grid_function_name}?code=${module.functionKeys.host_key}"
   scope_ids              = local.all_storage_accounts_ids
   name                   = "${var.appname}-storagefxn-egsub-${var.environment}"
-  fail_gracefully        = var.run_flag_subscriptions_fail_gracefully
-  subscriptions_disabled = var.run_flag_subscriptions_disabled
-}
-
-module "sub_viewer_to_mediaservices" {
-  source                 = "./egsubscription"
-  endpoint               = module.event_viewer.event_viewer_subscription_endpoint
-  scope_ids              = [module.mediaservices.azurerm_media_services_account_resource_id]
-  name                   = "${var.appname}-amsviewer-egsub-${var.environment}"
   fail_gracefully        = var.run_flag_subscriptions_fail_gracefully
   subscriptions_disabled = var.run_flag_subscriptions_disabled
 }
@@ -292,28 +274,11 @@ module "sub_viewer_to_storage_accounts" {
   subscriptions_disabled = var.run_flag_subscriptions_disabled
 }
 
-module "mediaservices" {
-  source                                         = "./mediaservices"
-  appname                                        = var.appname
-  environment                                    = var.environment
-  resource_group_name                            = azurerm_resource_group.application.name
-  location                                       = azurerm_resource_group.application.location
-  subscription_id                                = data.azurerm_client_config.current.subscription_id
-  tenant_id                                      = data.azurerm_client_config.current.tenant_id
-  key_vault_name                                 = module.shared.shared_kv_name
-  scope_ids                                      = local.all_storage_accounts_ids
-  amsDrm_OpenIdConnectDiscoveryDocument_endpoint = var.amsDrm_OpenIdConnectDiscoveryDocument_endpoint
-  amsDrm_EnableContentKeyPolicyUpdate            = var.amsDrm_EnableContentKeyPolicyUpdate
-}
-
 module "bash_script_generator" {
   source                                = "./bashscriptgenerator"
   logic_app_sch_service_principal_id    = module.secret_changed_handler.logic_app_service_principal_id
   logic_app_kr_service_principal_id     = module.key_roller.logic_app_service_principal_id
   function_app_id                       = module.functions.function_app_id
-  media_services_name                   = module.mediaservices.azurerm_media_services_account_resource_name
-  media_services_resource_group_name    = azurerm_resource_group.application.name
-  media_services_account_resource_id    = module.mediaservices.azurerm_media_services_account_resource_id
   key_vault_name                        = module.shared.shared_kv_name
   storage_account_ids                   = local.all_storage_accounts_ids
   storage_resource_group_ids            = local.all_storage_resource_groups_ids

@@ -1,6 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Gridwich.Core.Interfaces;
+﻿using Gridwich.Core.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Gridwich.Core.EventGrid
 {

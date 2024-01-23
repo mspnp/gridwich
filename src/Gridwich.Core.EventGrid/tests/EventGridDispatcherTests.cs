@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Gridwich.Core.Constants;
 using Gridwich.Core.EventGrid;
 using Gridwich.Core.Interfaces;
@@ -10,6 +7,9 @@ using Microsoft.Azure.EventGrid.Models;
 using Moq;
 using Newtonsoft.Json.Linq;
 using Shouldly;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Gridwich.Core.EventGridTests

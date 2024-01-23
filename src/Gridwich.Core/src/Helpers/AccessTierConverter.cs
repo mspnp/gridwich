@@ -1,6 +1,6 @@
-using System;
 using Gridwich.Core.Constants;
 using Newtonsoft.Json;
+using System;
 
 namespace Gridwich.Core.Helpers
 {

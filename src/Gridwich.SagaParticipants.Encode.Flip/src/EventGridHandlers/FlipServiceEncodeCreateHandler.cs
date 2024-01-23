@@ -1,12 +1,10 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 using Gridwich.Core.Bases;
 using Gridwich.Core.Constants;
 using Gridwich.Core.DTO;
 using Gridwich.Core.Interfaces;
-using Gridwich.SagaParticipants.Encode;
 using Gridwich.SagaParticipants.Encode.Flip.Services;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Gridwich.SagaParticipants.Encode.Flip.EventGridHandlers
 {

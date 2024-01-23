@@ -1,7 +1,7 @@
-using System;
 using Gridwich.Core.Interfaces;
 using Gridwich.SagaParticipants.Encode.TelestreamCloud;
 using Moq;
+using System;
 using Xunit;
 
 namespace Gridwich.SagaParticipants.Encode.TelestreamCloudTests

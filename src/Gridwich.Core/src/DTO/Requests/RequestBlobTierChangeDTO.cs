@@ -1,8 +1,6 @@
-using System.Diagnostics.CodeAnalysis;
-using Azure.Storage.Blobs.Models;
 using Gridwich.Core.Constants;
-using Gridwich.Core.Helpers;
 using Newtonsoft.Json;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Gridwich.Core.DTO
 {
@@ -14,7 +12,7 @@ namespace Gridwich.Core.DTO
         /// <summary>
         /// Gets or sets the target BlobUri.
         /// </summary>
-        [property:SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings", Justification="Not applicable to DTOs")]
+        [property: SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings", Justification = "Not applicable to DTOs")]
         [JsonProperty("blobUri")]
         public string BlobUri { get; set; }
 

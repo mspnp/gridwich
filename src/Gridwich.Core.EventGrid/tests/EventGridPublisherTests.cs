@@ -1,18 +1,15 @@
+using Gridwich.Core.Constants;
+using Gridwich.Core.EventGrid;
+using Gridwich.Core.Interfaces;
+using Microsoft.Azure.EventGrid;
+using Microsoft.Azure.EventGrid.Models;
+using Microsoft.Rest.Azure;
+using Moq;
+using Shouldly;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-
-using Gridwich.Core.Constants;
-using Gridwich.Core.EventGrid;
-using Gridwich.Core.Interfaces;
-
-using Microsoft.Azure.EventGrid;
-using Microsoft.Azure.EventGrid.Models;
-using Microsoft.Rest.Azure;
-
-using Moq;
-using Shouldly;
 using Xunit;
 
 namespace Gridwich.Core.EventGridTests

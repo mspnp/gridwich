@@ -1,6 +1,3 @@
-using System;
-using System.Threading.Tasks;
-
 using Gridwich.Core.Constants;
 using Gridwich.Core.DTO;
 using Gridwich.Core.Helpers;
@@ -9,16 +6,15 @@ using Gridwich.Core.Models;
 using Gridwich.SagaParticipants.Analysis.MediaInfo.EventGridHandlers;
 using Gridwich.SagaParticipants.Analysis.MediaInfo.Exceptions;
 using Gridwich.SagaParticipants.Analysis.MediaInfo.MediaInfoProviders;
-
 using Microsoft.Azure.EventGrid;
 using Microsoft.Azure.EventGrid.Models;
 using Microsoft.Extensions.Logging;
 using Moq;
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Shouldly;
-
+using System;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Gridwich.SagaParticipants.Analysis.MediaInfoTests.EventGridHandlers

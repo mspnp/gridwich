@@ -1,6 +1,5 @@
-using System;
-
 using Newtonsoft.Json;
+using System;
 
 namespace Gridwich.Core.DTO
 {

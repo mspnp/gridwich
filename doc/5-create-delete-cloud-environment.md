@@ -4,7 +4,7 @@ An environment is a collection of resources that can be targeted by deployment j
 
 This article describes how to use the `ci_cd_ext_release` or `tf_destroy_env` pipeline to create or delete a new cloud development or testing environment. The `ci_cd_ext_release` pipeline uses the **gridwich-cicd-variables.single_env** variable group.
 
-To create the Azure DevOps project, pipelines, and variable groups, see [Gridwich Azure DevOps setup](set-up-azure-devops.md).
+To create the Azure DevOps project, pipelines, and variable groups, see [Gridwich Azure DevOps setup](1-set-up-azure-devops.md).
 
 The following procedures use placeholder project name `gridwich-clone`, app name `cl1grw`, and environment name `f233`. Replace these placeholders with your own values as appropriate.
 
@@ -34,13 +34,13 @@ The following procedures use placeholder project name `gridwich-clone`, app name
 
    ![Screenshot of the pipeline dialog with Run highlighted.](media/run-pipeline.png)
 
-The pipeline steps deploy the application into Azure, but they don't set up any of the identity principals or their access rights to Azure resources. An admin must follow the instructions in [Pipeline-generated admin scripts](run-admin-scripts.md) to complete the setup.
+The pipeline steps deploy the application into Azure, but they don't set up any of the identity principals or their access rights to Azure resources. An admin must follow the instructions in [Pipeline-generated admin scripts](2-run-admin-scripts.md) to complete the setup.
 
 To verify that your environment is up and running, in the Azure portal, confirm that resource groups exist with your environment name.
 
 You should now be able to reach the Event Grid Viewer endpoint and see the web app. Use the endpoint without the `api/eventgrid` URI segment in a web browser to open a URL like: `https://cl1grw-grw-wa-viewer-f233.azurewebsites.net`.
 
-Follow [Test Azure Media Services v3 encoding](test-encoding.md) to fully test your environment.
+Follow [Test MediaInfo](6-test-mediainfo.md) to fully test the setup.
 
 ## Azure resources
 
@@ -62,7 +62,7 @@ To delete an environment:
 
 ## Next step
 
-- Follow [Test Azure Media Services v3 encoding](7-test-encoding.md) to fully test the setup.
+- Follow [Test MediaInfo](6-test-mediainfo.md) to fully test the setup.
 
 ## Resources
 
@@ -81,7 +81,6 @@ Microsoft Learn modules:
 
 ## Gridwich resources
 
-- [Gridwich keys and secrets management](maintain-keys.md)
+- [Gridwich keys and secrets management](3-maintain-keys.md)
 - [Gridwich operations for Azure Storage](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-storage-service)
 - [Gridwich project naming and namespaces](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-project-names)
-- [Test Media Services v3 encoding](test-encoding.md)

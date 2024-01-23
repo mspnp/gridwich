@@ -1,13 +1,12 @@
-﻿using System;
-using Azure.Core;
+﻿using Azure.Core;
 using Azure.Storage.Blobs;
-
 using Gridwich.Core.Constants;
 using Gridwich.Core.Helpers;
 using Gridwich.Core.Interfaces;
 using Gridwich.Core.Models;
 using Gridwich.SagaParticipants.Storage.AzureStorage.Interfaces;
 using LazyCache;
+using System;
 
 namespace Gridwich.SagaParticipants.Storage.AzureStorage.Services
 {

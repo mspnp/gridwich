@@ -1,6 +1,6 @@
-using System;
 using Gridwich.Core.Helpers;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace Gridwich.Core.Constants
 {
@@ -155,12 +155,6 @@ namespace Gridwich.Core.Constants
 
             /// <summary>Media Services: MediaInfo</summary>
             MediaInfo = 50,
-
-            /// <summary>Media Services: Azure Media Services Version 3 Encoder</summary>
-            MediaServicesV3Encoder = 51,
-
-            /// <summary>Media Services: Azure Media Services Version 3 Publisher</summary>
-            MediaServicesV3Publisher = 52,
 
             /// <summary>
             /// The largest LogEventIdSubsystem enumerator value that should ever

@@ -1,7 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Gridwich.Core.Constants;
+﻿using Gridwich.Core.Constants;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Gridwich.Core.DTO
 {
