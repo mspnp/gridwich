@@ -40,7 +40,7 @@ To verify that your environment is up and running, in the Azure portal, confirm 
 
 You should now be able to reach the Event Grid Viewer endpoint and see the web app. Use the endpoint without the `api/eventgrid` URI segment in a web browser to open a URL like: `https://cl1grw-grw-wa-viewer-f233.azurewebsites.net`.
 
-Follow [Test Media Info](6-test-mediainfo.md) to fully test the setup.
+Follow [Test MediaInfo](6-test-mediainfo.md) to fully test the setup.
 
 ## Azure resources
 
@@ -62,7 +62,7 @@ To delete an environment:
 
 ## Next step
 
-- Follow [Test Media Info](6-test-mediainfo.md) to fully test the setup.
+- Follow [Test MediaInfo](6-test-mediainfo.md) to fully test the setup.
 
 ## Resources
 

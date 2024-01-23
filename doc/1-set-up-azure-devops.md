@@ -300,9 +300,9 @@ Adjust the following suggested settings as you see fit.
 
 ## Azure portal procedures
 
-For non-development environments, the pipeline doesn't autopopulate most secrets on deployment. Instead the pipeline creates the key vault secrets for the environment with placeholder values. For Gridwich to work, a secrets manager must replace these placeholders with actual values in Azure Key Vault. For more information, see [Manage and rotate keys](maintain-keys.yml).
+For non-development environments, the pipeline doesn't autopopulate most secrets on deployment. Instead the pipeline creates the key vault secrets for the environment with placeholder values. For Gridwich to work, a secrets manager must replace these placeholders with actual values in Azure Key Vault. For more information, see [Manage and rotate keys](3-maintain-keys.md).
 
-The pipeline steps deploy the application into Azure, but they don't set up any of the identity principals or their access rights to Azure resources. A user with elevated privileges must follow the instructions in [Pipeline-generated admin scripts](run-admin-scripts.yml) to complete the setup.
+The pipeline steps deploy the application into Azure, but they don't set up any of the identity principals or their access rights to Azure resources. A user with elevated privileges must follow the instructions in [Pipeline-generated admin scripts](2-run-admin-scripts.md) to complete the setup.
 
 ### Grant admin and user role permissions
 

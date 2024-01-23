@@ -126,7 +126,7 @@ Product documentation:
 
 - [Gridwich cloud media system](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-architecture)
 - [About Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/overview)
-- [Introduction to Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview)
+- [Azure Functions overview](https://learn.microsoft.com/azure/azure-functions/functions-overview)
 - [What is Azure Blob storage?](https://learn.microsoft.com/azure/storage/blobs/storage-blobs-overview)
 - [What is Azure Event Grid?](https://learn.microsoft.com/azure/event-grid/overview)
 - [What is Azure Logic Apps?](https://learn.microsoft.com/azure/logic-apps/logic-apps-overview)

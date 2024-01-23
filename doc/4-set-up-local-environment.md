@@ -123,7 +123,6 @@ $APPINSIGHTS_INSTRUMENTATIONKEY=$((az keyvault secret show --vault-name $keyVaul
 $TELESTREAMCLOUD_API_KEY=$((az keyvault secret show --vault-name $keyVaultName --name telestream-cloud-api-key  | ConvertFrom-Json).value)
 $GRW_TOPIC_END_POINT=$((az keyvault secret show --vault-name $keyVaultName --name grw-topic-end-point  | ConvertFrom-Json).value)
 $GRW_TOPIC_KEY=$((az keyvault secret show --vault-name $keyVaultName --name grw-topic-key   | ConvertFrom-Json).value)
-$AmsDrmFairPlayAskHex=$((az keyvault secret show --vault-name $keyVaultName --name ams-fairplay-ask-hex   | ConvertFrom-Json).value)
 echo $('"APPINSIGHTS_INSTRUMENTATIONKEY":"'+$APPINSIGHTS_INSTRUMENTATIONKEY+'",') $('"TELESTREAMCLOUD_API_KEY":"'+$TELESTREAMCLOUD_API_KEY+'",') $('"GRW_TOPIC_END_POINT":"'+$GRW_TOPIC_END_POINT+'",') $('"GRW_TOPIC_KEY":"'+$GRW_TOPIC_KEY+'",')
 ```
 
