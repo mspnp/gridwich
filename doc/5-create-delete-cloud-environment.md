@@ -34,7 +34,7 @@ The following procedures use placeholder project name `gridwich-clone`, app name
 
    ![Screenshot of the pipeline dialog with Run highlighted.](media/run-pipeline.png)
 
-The pipeline steps deploy the application into Azure, but they don't set up any of the identity principals or their access rights to Azure resources. An admin must follow the instructions in [Pipeline-generated admin scripts](run-admin-scripts.md) to complete the setup.
+The pipeline steps deploy the application into Azure, but they don't set up any of the identity principals or their access rights to Azure resources. An admin must follow the instructions in [Pipeline-generated admin scripts](2-run-admin-scripts.md) to complete the setup.
 
 To verify that your environment is up and running, in the Azure portal, confirm that resource groups exist with your environment name.
 
@@ -81,6 +81,6 @@ Microsoft Learn modules:
 
 ## Gridwich resources
 
-- [Gridwich keys and secrets management](maintain-keys.md)
+- [Gridwich keys and secrets management](3-maintain-keys.md)
 - [Gridwich operations for Azure Storage](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-storage-service)
 - [Gridwich project naming and namespaces](https://learn.microsoft.com/azure/architecture/reference-architectures/media-services/gridwich-project-names)

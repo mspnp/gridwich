@@ -4,7 +4,7 @@ Gridwich uses two types of Azure Key Vault keys, storage keys and third-party ke
 
 ## Run admin scripts
 
-To give the Azure Functions App and the two Logic Apps permissions to take Azure Storage Account and Key Vault actions, run the pipeline-generated admin scripts. For instructions, see [Pipeline-generated admin scripts](run-admin-scripts.md).
+To give the Azure Functions App and the two Logic Apps permissions to take Azure Storage Account and Key Vault actions, run the pipeline-generated admin scripts. For instructions, see [Pipeline-generated admin scripts](2-run-admin-scripts.md).
 
 ## Key Roller Logic App for storage keys
 
