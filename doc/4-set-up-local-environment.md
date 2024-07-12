@@ -13,7 +13,7 @@ This article describes how to set up a local Gridwich development environment in
 Optional:
 
 - [curl](https://curl.haxx.se/)
-- [Postman](https://www.postman.com/)
+- A REST testing tool
 
 ## Visual Studio Code setup
 
