@@ -36,7 +36,7 @@
     <PackageReference Update="MSTest.TestAdapter" Version="3.1.1" />
     <PackageReference Update="MSTest.TestFramework" Version="3.1.1" />
     <PackageReference Update="Shouldly" Version="4.2.1" />
-    <PackageReference Update="xunit" Version="2.6.6" />
+    <PackageReference Update="xunit" Version="2.9.1" />
     <PackageReference Update="xunit.runner.visualstudio" Version="2.5.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
